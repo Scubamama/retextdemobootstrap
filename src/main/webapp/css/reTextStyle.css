@@ -1,0 +1,146 @@
+
+#container-welcome {
+	border:0; 
+	background-color: #C90016;
+	background-color: #701C1C;
+	background-color: #990000;
+	background-color: #002147;
+	opacity: 0.85;
+	padding:15px;
+	border-spacing: 5px;
+	width:99%;
+	height:99%;
+	align: center;
+}
+
+#container {
+	border:0; 
+	background-color: #C90016;
+	background-color: #0047AB;
+	background-color: #08457E;
+	background-color: #003366;
+	background-color: #002147;
+	opacity: 0.85;
+	padding:15px;
+	border-spacing: 5px;
+	width:99%;
+	height:99%;
+	align: center;
+}
+#container_lt {
+	border:0; 
+	background-color: #C90016;
+	background-color: #0047AB;
+	background-color: #08457E;
+	background-color: #003366;
+	background-color: #002147; 		/*oxford blue*/
+	background-color: #EEEEEE;    	/*lt grey*/
+	opacity: 0.85;
+	color: black;
+	padding:15px;
+	border-spacing: 5px;
+	width:99%;
+	height:99%;
+	align: center;
+}
+* {
+	font-family: "Arial Black", Sans-Serif;
+	font-family: "Arial", Sans-Serif;
+	font-family: "Impact", Sans-Serif;
+}
+h2 {
+	color: white;
+	text-align: center;
+	padding:15px;
+}
+h3 {
+	color: white;
+	text-align: center;
+	padding:25px;
+}
+table {
+border:0; 
+background-color:#EEEEEE; 
+background-color:white;
+align: "center";
+padding:5px;
+border-spacing: 5px;
+width:70%; 
+margin-left:15%; 
+margin-right:15%;
+}
+	table#contact_table {
+	border:0; 
+	background-color:#EEEEEE; 
+	padding:20px;
+	border-spacing: 5px;
+	}
+	td#rt_field{
+	    text-align:right;
+	}
+	td#cntr{
+	    text-align:center;
+	}
+	td#loc_meet{
+	    text-align:left;
+	}
+#find,#located {
+	color: white;
+	text-align: center;
+	padding:5px;
+}
+#buy-sell {
+	color: white;
+	text-align: center;
+	padding:10px;
+}
+#button {
+	radius: 5px;
+	text-align:center;
+}
+.blk_center {
+	color: black;
+	text-align: center;
+	padding:5px;
+}
+.black {
+	color: black;
+}
+#browse-button {
+	radius: 5px;
+	text-align:center;
+	padding: 25px;
+}
+.center-button {
+	radius: 5px;
+	text-align:center;
+	padding: 15px;
+}
+#add-button {
+	radius: 5px;
+	float:left;
+	padding: 25px;
+}
+#create-id-button {
+	radius: 5px;
+	float:right;
+	padding: 25px;
+}
+#contact-button {
+	radius: 5px;
+	float:right;
+	text-align:center;
+	padding: 25px;
+}
+#copyright {
+	 position: absolute; 
+	 bottom: 0px; 
+	 left: 0px;
+	 padding: 10px;
+}
+.copyright {
+	 position: absolute; 
+	 bottom: 0px; 
+	 left: 0px;
+	 padding: 10px;
+}
