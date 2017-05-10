@@ -1,4 +1,4 @@
-package model;
+package model2;
 
 /**
  * The UserInventoryDisplay entity represents a both book and user data used to display 

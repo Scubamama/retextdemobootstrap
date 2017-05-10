@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.DatabaseManager;
-import model.AUser;
+import model2.AUser;
 
 /**
  * A class to learn about MySql and JDBC

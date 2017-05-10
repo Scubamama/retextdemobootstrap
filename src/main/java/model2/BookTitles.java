@@ -1,4 +1,4 @@
-package model;
+package model2;
 
 /**
  * The Book entity represents a book title used in the reText app (working name tabby)

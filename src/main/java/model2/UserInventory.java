@@ -1,4 +1,4 @@
-package model;
+package model2;
 
 /**
  * The UserInventory entity represents actual books owned by a user.

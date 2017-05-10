@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.DatabaseManager;
-import model.BookTitles;
+import model2.BookTitles;
 
 /**
  * A class to learn about MySql and JDBC

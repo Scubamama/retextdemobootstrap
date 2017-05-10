@@ -1,4 +1,4 @@
-package retextdemo;
+package servlets;
 
 import java.util.*;
 public class HelloWorld {

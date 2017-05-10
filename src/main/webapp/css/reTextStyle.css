@@ -1,25 +1,18 @@
 
-#container-welcome {
+#wrapper {
 	border:0; 
-	background-color: #C90016;
-	background-color: #701C1C;
-	background-color: #990000;
-	background-color: #002147;
+	background-color: #EEEEEE;    	/*lt grey*/
 	opacity: 0.85;
 	padding:15px;
 	border-spacing: 5px;
-	width:99%;
-	height:99%;
+	width:95%;
+	height:95%;
 	align: center;
 }
 
 #container {
 	border:0; 
-	background-color: #C90016;
-	background-color: #0047AB;
-	background-color: #08457E;
-	background-color: #003366;
-	background-color: #002147;
+	background-color: #002147;		/*oxford blue*/
 	opacity: 0.85;
 	padding:15px;
 	border-spacing: 5px;
@@ -30,58 +23,68 @@
 #container_lt {
 	border:0; 
 	background-color: #C90016;
-	background-color: #0047AB;
-	background-color: #08457E;
+	background-color: #0047AB;  
 	background-color: #003366;
 	background-color: #002147; 		/*oxford blue*/
 	background-color: #EEEEEE;    	/*lt grey*/
 	opacity: 0.85;
 	color: black;
 	padding:15px;
+	margin 25px;
 	border-spacing: 5px;
 	width:99%;
 	height:99%;
 	align: center;
 }
+/*
 * {
 	font-family: "Arial Black", Sans-Serif;
 	font-family: "Arial", Sans-Serif;
 	font-family: "Impact", Sans-Serif;
 }
+*/
 h2 {
-	color: white;
 	text-align: center;
-	padding:15px;
+	padding:10px;
 }
 h3 {
-	color: white;
 	text-align: center;
-	padding:25px;
+	padding:5px;
+}
+#tagline {
+	 padding: 20px;
+	 text-align: center;
+	 align: "center";
+	 font-size: 90%;
+	 margin: 20px; 
 }
 table {
-border:0; 
-background-color:#EEEEEE; 
-background-color:white;
-align: "center";
-padding:5px;
-border-spacing: 5px;
-width:70%; 
-margin-left:15%; 
-margin-right:15%;
+	border:0; 
+	background-color:#EEEEEE; 
+	/*background-color:white;*/
+	align: "center";
+	padding:5px;
+	border-spacing: 5px;
+	width:70%; 
+	margin-left:15%; 
+	margin-right:15%;
 }
-	table#contact_table {
+table#contact_table {
 	border:0; 
 	background-color:#EEEEEE; 
 	padding:20px;
 	border-spacing: 5px;
 	}
-	td#rt_field{
+td#rt_field{
 	    text-align:right;
 	}
-	td#cntr{
+td#cntr{
 	    text-align:center;
 	}
-	td#loc_meet{
+td#lt_field{
+	    text-align:left;
+	}
+td#loc_meet{
 	    text-align:left;
 	}
 #find,#located {
@@ -90,41 +93,43 @@ margin-right:15%;
 	padding:5px;
 }
 #buy-sell {
-	color: white;
 	text-align: center;
 	padding:10px;
 }
 #button {
 	radius: 5px;
 	text-align:center;
+	background-color: #848482; 
 }
-.blk_center {
-	color: black;
-	text-align: center;
-	padding:5px;
-}
-.black {
-	color: black;
-}
+
 #browse-button {
 	radius: 5px;
 	text-align:center;
-	padding: 25px;
+	align: center;
+	padding: 15px 25px;
+	margin: 20px; 
+	width:30%; 
+	margin-left:35%; 
+	margin-right:35%;
+	background-color: #848482; 
 }
-.center-button {
+.center_button {
 	radius: 5px;
 	text-align:center;
 	padding: 15px;
+	margin: 20px; 
 }
-#add-button {
+#lt_button {
 	radius: 5px;
 	float:left;
-	padding: 25px;
+	padding: 5px 15px;
+	margin: 25px;
 }
-#create-id-button {
+#rt_button {
 	radius: 5px;
 	float:right;
-	padding: 25px;
+	padding: 5px 15px;
+	margin: 25px;
 }
 #contact-button {
 	radius: 5px;
@@ -134,13 +139,17 @@ margin-right:15%;
 }
 #copyright {
 	 position: absolute; 
-	 bottom: 0px; 
-	 left: 0px;
-	 padding: 10px;
+	 bottom: 3px; 
+	 left: 25px;
+	 padding: 2px;
+	 background-color: #EEEEEE; 
+	 font-size: 60%;
 }
 .copyright {
 	 position: absolute; 
 	 bottom: 0px; 
-	 left: 0px;
-	 padding: 10px;
+	 left: 25px;
+	 padding: 2px;
+	 background-color: #EEEEEE; 
+	 font-size: 60%;
 }

@@ -1,4 +1,4 @@
-package model;
+package model2;
 
 /**
  * The User entity (can't call it User because of so many other things that use the key word user)
