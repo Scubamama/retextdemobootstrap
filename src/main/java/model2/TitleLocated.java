@@ -1,10 +1,10 @@
 package model2;
 
 /**
- * The UserInventoryDisplay entity represents a both book and user data used to display 
- *   books owned by the user as well as their title, author, edition, dept, course number,
- *   isbn, and price.
- *   Used in the reText app and the user_inventory table in the retext db
+ * The TitleLocated entity represents a both book and user data used to display 
+ *   price, condition, and seller name
+ *   
+ *   Used in the reText app 
  * 
  * @author Holly Williams
  *
@@ -19,28 +19,23 @@ public class TitleLocated {
 	private String courseNum = "";
 	private String isbn = "";
 	private Double price = 0.0;
+	private String condition = "";
+	private String seller = "";
 	
 	public TitleLocated(Integer id, String title, String author, String edition, String dept, String courseNum,
-			String isbn, Double price) {
+			String isbn, Double price, String condition, String seller) {
 	
-		this.id = id;
-		this.title = title;
-		this.author = author;
-		this.edition = edition;
+		this(id,title,author,edition,isbn,price);
+	//	this.id = id;
+	//	this.title = title;
+	//	this.author = author;
+	//	this.edition = edition;
 		this.dept = dept;
 		this.courseNum = courseNum;
-		this.isbn = isbn;
-		this.price = price;
-	}
-
-
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
+	//	this.isbn = isbn;
+	//	this.price = price;
+		this.condition = condition;
+		this.seller = seller;
 	}
 
 
@@ -77,8 +72,26 @@ public class TitleLocated {
 		this.price = price;
 	}
 
+	public TitleLocated(Integer id, String isbn, Double price, String condition, String seller) {
+	
+		this.id = id;
+		this.isbn = isbn;
+		this.price = price;
+		this.condition = condition;
+		this.seller = seller;
+	}
 	public TitleLocated() {
 		//super();
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -150,4 +163,25 @@ public class TitleLocated {
 		this.price = price;
 	}
 	
-} // end class DisplayUserInventory
+
+	public String getCondition() {
+		return condition;
+	}
+
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+
+	public String getSeller() {
+		return seller;
+	}
+
+
+	public void setSeller(String seller) {
+		this.seller = seller;
+	}
+
+	
+} // end class TitleLocated

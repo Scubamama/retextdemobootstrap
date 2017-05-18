@@ -46,23 +46,16 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 	private void displayTitle(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		System.out.println("Inside displayTitle.");
+		
 		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
 		String test = "test 123";
 		
 		List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
 		
-		System.out.println("\n In retextManagerServlet.displayTitle");
-		for (DisplayUserInventory i: titleList) {
-			
-			System.out.println("id = " + i.getId() + " Title = " + i.getTitle() );
-			System.out.println("author = " + i.getAuthor() + " edition = " + i.getEdition() );
-			System.out.println("isbn = " + i.getIsbn() + " price = " + i.getPrice() );
-		}
 		request.setAttribute("titleList", titleList);
 		request.setAttribute("test", test);
 		RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retext-title-located.jsp");
+				 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
 		dispatcher.forward(request, response);
 		
 	}

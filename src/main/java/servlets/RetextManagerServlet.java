@@ -33,24 +33,16 @@ public class RetextManagerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 		
 		throws ServletException, IOException {
 		String pathInfo = request.getPathInfo();
-		System.out.println("in RetextManagerServlet, doGet pathInfo = " + pathInfo);
+		
 		try {
-	// this will need to be changed eventually to an if-else statement
 			
 			if (pathInfo == null || "".equals(pathInfo)) {
-				System.out.println("going to welcome()");
 				welcome(request, response);
 			} else if (pathInfo.equals("/*") ){
-				System.out.println("going to welcome()");
 				welcome(request, response);
 			} else if (pathInfo.equals("/browse") ){
-				System.out.println("going to browseBooks()");
 				browseBooks(request, response);
 			}
-	//		else if (pathInfo.equals("/titleLocated") ){
-	//			System.out.println("going to displayTitle()");
-	//			displayTitle(request, response);
-	//		}
 			
 		}
 		finally {
@@ -73,7 +65,7 @@ public class RetextManagerServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// just show the welcome page retext-welcome.jsp
 		 RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retext-welcome.jsp");
+				 request.getRequestDispatcher("/WEB-INF/retextWelcome.jsp");
 		 dispatcher.forward(request, response);
 	} // end welcome
 	 
@@ -82,9 +74,9 @@ public class RetextManagerServlet extends HttpServlet {
 	private void browseBooks(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// find some books to sell
-		System.out.println("Inside browse.");
+		
 		RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retext-browse.jsp");
+				 request.getRequestDispatcher("/WEB-INF/retextBrowse.jsp");
 		dispatcher.forward(request, response);
 		
 	} // end browseBooks
@@ -93,23 +85,14 @@ public class RetextManagerServlet extends HttpServlet {
 	private void displayTitle(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		System.out.println("Inside displayTitle.");
 		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
-		String test = "test 123";
-		
+			
 		List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
 		
-		System.out.println("\n In retextManagerServlet.displayTitle");
-		for (DisplayUserInventory i: titleList) {
-			
-			System.out.println("id = " + i.getId() + " Title = " + i.getTitle() );
-			System.out.println("author = " + i.getAuthor() + " edition = " + i.getEdition() );
-			System.out.println("isbn = " + i.getIsbn() + " price = " + i.getPrice() );
-		}
 		request.setAttribute("titleList", titleList);
-		request.setAttribute("test", test);
+		
 		RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retext-title-located.jsp");
+				 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
 		dispatcher.forward(request, response);
 		
 	}

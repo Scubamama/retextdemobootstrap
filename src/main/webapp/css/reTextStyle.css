@@ -4,7 +4,7 @@
 	background-color: #EEEEEE;    	/*lt grey*/
 	opacity: 0.85;
 	padding:15px;
-	border-spacing: 5px;
+	border-spacing: 15px;
 	width:95%;
 	height:95%;
 	align: center;
@@ -111,6 +111,28 @@ td#loc_meet{
 	width:30%; 
 	margin-left:35%; 
 	margin-right:35%;
+	background-color: #848482; 
+}
+#cntr-button {
+	radius: 5px;
+	text-align:center;
+	align: center;
+	padding: 15px 25px;
+	margin: 20px; 
+	width:30%; 
+	margin-left:35%; 
+	margin-right:35%;
+	background-color: #848482; 
+}
+#left-button {
+	radius: 5px;
+	text-align:center;
+	align: left;
+	padding: 15px 25px;
+	margin: 20px; 
+	width:30%; 
+	margin-left:15%; 
+	margin-right:55%;
 	background-color: #848482; 
 }
 .center_button {

@@ -57,7 +57,7 @@ public class RetextLoginServlet extends HttpServlet {
 		request.setAttribute("titleList", titleList);
 		request.setAttribute("test", test);
 		RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retext-login-form.jsp");
+				 request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
 		dispatcher.forward(request, response);
 		
 	}

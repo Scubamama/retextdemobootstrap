@@ -22,7 +22,6 @@
 					
 					<tr><td class="center_button"><input type="button" name="Create" value="Create New User Id" /></td></tr>
 					
-					<tr><td class="center_button""><input type="submit" name="Login" value="Login"/></td></tr>
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/located/titleLocated">Login</a>  </td></tr>
 				</table>
 			</div>

@@ -26,7 +26,7 @@
 					
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/located/titleLocated">Browse for Book</a>  </td></tr>
 					
-					<tr><td id="other_button"><input type="submit" name="addABook" value="Add a Book"  /> </td>   
+					<tr></tr>   
 					
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/login">Login</a>  </td></tr>
 					<tr></tr>

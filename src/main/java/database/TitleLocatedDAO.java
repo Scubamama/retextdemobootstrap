@@ -6,13 +6,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.DatabaseManager;
-import model2.AUser;
+import database.DataSource;
+import model2.TitleLocated;
 import model2.UserInventory;
 import model2.UserInventoryDisplay;
 
 /**
- * A class to learn about MySql and JDBC
+ * A class to dsiplay info from the user inventory table of the retext db
  * Uses prepared statements to access a database
  * 
  * @author Holly Williams
@@ -21,12 +21,15 @@ import model2.UserInventoryDisplay;
 
 public class TitleLocatedDAO {
 
+	DataSource ds;
+	
 	public TitleLocatedDAO() {
-		
+		this.ds = DataSource.getInstance();
 	}
 
+	// looks at my books and retrieves any with a title like what I am searching for
 	public List<UserInventoryDisplay> searchMyBooks(String text) throws SQLException {
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		List<UserInventoryDisplay> myBookList = new ArrayList<UserInventoryDisplay>();
 		//List<AUser> userList = new ArrayList<AUser>();
 		//String sql = "SELECT * FROM Users where UserName LIKE ? ";
@@ -45,7 +48,7 @@ public class TitleLocatedDAO {
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setInt(1,currUserId);
@@ -66,13 +69,17 @@ public class TitleLocatedDAO {
 	
 			} //end try
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 
 		} // end searchUsers
 
+	// lists all of the books that I have in my personal inventory
 	public List<UserInventoryDisplay> listMyBooks() throws SQLException {
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		List<UserInventoryDisplay> invList = new ArrayList<UserInventoryDisplay>();
 		// String sql = "SELECT * FROM User_Inventory WHERE User_Id = ? AND Book_Id = ?";
 		
@@ -89,7 +96,7 @@ public class TitleLocatedDAO {
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setInt(1,currUserId);
@@ -104,7 +111,10 @@ public class TitleLocatedDAO {
 				return invList;
 			} //end try
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 
 	} // end listMyBooks
@@ -134,14 +144,14 @@ public class TitleLocatedDAO {
 		
 		String sql = "UPDATE User_Inventory SET Price=?,Sold=? WHERE id=?";
 
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 
@@ -155,7 +165,10 @@ public class TitleLocatedDAO {
 				exc.printStackTrace();
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 		
 	} // end update()
@@ -169,14 +182,14 @@ public class TitleLocatedDAO {
 				+ "(User_Id, Book_Id, Price, Sold)"
 				+ "VALUES (?, ?, ?, ?)";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				myStmt.setInt(1,inv.getUserId()); //pulls email from object
@@ -202,7 +215,10 @@ public class TitleLocatedDAO {
 				
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 
 	} // end insert()
@@ -212,14 +228,14 @@ public class TitleLocatedDAO {
 		
 	String sql = "SELECT * FROM user_inventory where id=?";
 	
-	DatabaseManager mgr = new DatabaseManager();
+//	DatabaseManager mgr = new DatabaseManager();
 	PreparedStatement myStmt = null;
 	ResultSet myRs = null;
 	Connection myConn = null;
 	
 	try {
 		// 1. Get a connection to the database
-			myConn = mgr.getConnection();
+			myConn = ds.getConnection();
 		// 2. Create a statement object
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setInt(1,id);
@@ -238,7 +254,10 @@ public class TitleLocatedDAO {
 
 		} //end try
 		finally {
-			mgr.silentClose(myConn, myStmt, myRs);
+	//		mgr.silentClose(myConn, myStmt, myRs);
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
 		}
 
 	} // end get()
@@ -248,14 +267,14 @@ public class TitleLocatedDAO {
 		
 	String sql = "DELETE FROM User_Inventory WHERE User_Id=? AND Book_Id=?";
 	
-	DatabaseManager mgr = new DatabaseManager();
+//	DatabaseManager mgr = new DatabaseManager();
 	PreparedStatement myStmt = null;
 	ResultSet myRs = null;
 	Connection myConn = null;
 	
 	try {
 		// 1. Get a connection to the database
-			myConn = mgr.getConnection();
+			myConn = ds.getConnection();
 		// 2. Create a statement object
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setInt(1, currUserId);
@@ -269,9 +288,12 @@ public class TitleLocatedDAO {
 			
 		}
 		finally {
-			mgr.silentClose(myConn, myStmt, myRs);
+	//		mgr.silentClose(myConn, myStmt, myRs);
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
 		}
 
 	} // end delete
 	
-} // end class UsersDAO
+} // end class TitleLocatedDAO

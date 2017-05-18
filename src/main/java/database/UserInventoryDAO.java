@@ -73,9 +73,9 @@ public class UserInventoryDAO {
 	
 			} //end try
 			finally {
-				ds.silentClose(myConn);
-				ds.silentClose(myStmt);
-				ds.silentClose(myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 
 		} // end searchUsers
@@ -128,9 +128,9 @@ public class UserInventoryDAO {
 			}
 			finally {
 			//	mgr.silentClose(myConn, myStmt, myRs);
-				ds.silentClose(myConn);
-				ds.silentClose(myStmt);
-				ds.silentClose(myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 		//		return invList;
 			}
 		return invList;
@@ -184,9 +184,9 @@ public class UserInventoryDAO {
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
-				ds.silentClose(myConn);
-				ds.silentClose(myStmt);
-				ds.silentClose(myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 		
 	} // end update()
@@ -234,9 +234,9 @@ public class UserInventoryDAO {
 			}
 			finally {
 		//		mgr.silentClose(myConn, myStmt, myRs);
-				ds.silentClose(myConn);
-				ds.silentClose(myStmt);
-				ds.silentClose(myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 
 	} // end insert()
@@ -273,9 +273,9 @@ public class UserInventoryDAO {
 		} //end try
 		finally {
 	//		mgr.silentClose(myConn, myStmt, myRs);
-			ds.silentClose(myConn);
-			ds.silentClose(myStmt);
-			ds.silentClose(myRs);
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
 		}
 
 	} // end get()
@@ -307,9 +307,9 @@ public class UserInventoryDAO {
 		}
 		finally {
 	//		mgr.silentClose(myConn, myStmt, myRs);
-			ds.silentClose(myConn);
-			ds.silentClose(myStmt);
-			ds.silentClose(myRs);
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
 		}
 
 	} // end delete

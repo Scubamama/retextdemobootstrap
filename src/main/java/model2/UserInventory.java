@@ -14,11 +14,23 @@ public class UserInventory {
 	private int userId = 0;
 	private int bookId = 0;
 	private double price = 0.0;
+	private String condition = "";
+
 	private int sold  = 0;
 	
 	
 	public UserInventory() {
 		//super();
+	}
+
+	public UserInventory(int id, int userId, int bookId, double price, String condition, int sold) {
+		this(id,userId,bookId);
+	//	this.id = id;
+	//	this.userId = userId;
+	//	this.bookId = bookId;
+		this.price = price;
+		this.condition = condition;
+		this.sold = sold;
 	}
 
 	public UserInventory(int id, int userId, int bookId, double price, int sold) {
@@ -29,7 +41,6 @@ public class UserInventory {
 		this.price = price;
 		this.sold = sold;
 	}
-
 	public UserInventory(int id, int userId, int bookId) {
 	//	super();
 		this.id = id;
@@ -84,6 +95,13 @@ public class UserInventory {
 		this.price = price;
 	}
 
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
 	public int getSold() {
 		return sold;
 	}

@@ -6,12 +6,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.DatabaseManager;
+import database.DataSource;
 import model2.AUser;
 
 /**
- * A class to learn about MySql and JDBC
- * Uses prepared statements to access a database
  * 
  * @author Holly Williams
  *
@@ -19,12 +17,14 @@ import model2.AUser;
 
 public class UsersDAO {
 
+	DataSource ds;
+	
 	public UsersDAO() {
-		
+		this.ds = DataSource.getInstance();
 	}
 
 	public List<AUser> searchUsers(String text) throws SQLException {
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		List<AUser> userList = new ArrayList<AUser>();
 		String sql = "SELECT * FROM Users where UserName LIKE ? ";
 		
@@ -34,7 +34,7 @@ public class UsersDAO {
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setString(1, "%" + text + "%");
@@ -49,13 +49,16 @@ public class UsersDAO {
 		
 			} //end try
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 		
 		} // end searchUsers
 
 	public List<AUser> listMyUsers() throws SQLException {
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		List<AUser> userList = new ArrayList<AUser>();
 		String sql = "SELECT * FROM users";
 		
@@ -65,7 +68,7 @@ public class UsersDAO {
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				
@@ -80,7 +83,10 @@ public class UsersDAO {
 			} //end try
 
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 			
 	} // end listMyUsers
@@ -107,14 +113,14 @@ public class UsersDAO {
 		out.println("UPDATING... ");
 		
 		String sql = "UPDATE Users SET UserName=? WHERE id=?";
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the databased
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 
@@ -127,7 +133,10 @@ public class UsersDAO {
 				exc.printStackTrace();
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 		
 	} // end update()
@@ -141,14 +150,14 @@ public class UsersDAO {
 				+ "(Email, UserName, UserPassword, TakeCards, school)"
 				+ "VALUES (?, ?, ?, ?, ?)";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				myStmt.setString(1,newU.getUserEmail()); //pulls email from object
@@ -173,7 +182,10 @@ public class UsersDAO {
 				exc.printStackTrace();
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 
 	} // end insert()
@@ -183,14 +195,14 @@ public class UsersDAO {
 		
 		String sql = "SELECT * FROM users where id=?";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setInt(1,id);
@@ -207,7 +219,10 @@ public class UsersDAO {
 			} //end try
 
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 
 	} // end get()
@@ -216,14 +231,14 @@ public class UsersDAO {
 		
 		String sql = "SELECT * FROM users where UserName=?";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setString(1,uName);
@@ -240,7 +255,10 @@ public class UsersDAO {
 			} //end try
 
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 
 	} // end get()
@@ -249,14 +267,14 @@ public class UsersDAO {
 			
 		String sql = "DELETE FROM users WHERE id=?";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database 
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setInt(1, id);
@@ -269,7 +287,10 @@ public class UsersDAO {
 				
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
 
 	} // end delete

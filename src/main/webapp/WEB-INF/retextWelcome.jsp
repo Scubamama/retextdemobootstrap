@@ -16,8 +16,8 @@
 				<table>
 					
 					<tr><td><input id="browse-button" type="submit" name="Browse" value="Browse Books"  /></td></tr>
-					<tr><td><input id="lt_button" type="button" name="login" value="Login"  />  
-					<input id="rt_button"type="button" name="createUserId" value="Create User Id"  /> </td></tr>
+					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/login">Login</a>  </td></tr>
+					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/newUser/*">Create New User Id</a>  </td></tr>
 				</table>
 			</div>
 		</div>
