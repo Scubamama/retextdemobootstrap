@@ -31,6 +31,7 @@ public class RetextCreateUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Inside RetextCreateUserServlet - doGet.");
+		
 		gatherNewUserInfo(request, response);
 	}
 

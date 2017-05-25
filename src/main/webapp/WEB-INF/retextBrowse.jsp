@@ -9,7 +9,7 @@
 
 <body>
 
-	<form method=GET action="/retextdemo/manage/titleLocated">
+	<form action="<%=request.getContextPath() %>/located/titleLocated" method=POST>
 		<div id="container">
 			<div id="wrapper">
 				<h2>ReText</h2>
@@ -19,11 +19,11 @@
 				</div>
 				
 				<table id="find_table">
-					<tr><td id="in_field">School: <input type="text" name="school" /> </td></tr>
+					<tr><td>School: <input type="text" name="school" /> </td></tr>
 					
-					<tr><td id="in_field">ISBN: <input type="text" name="isbn" /> </td></tr>
+					<tr><td>ISBN: <input type="input" name="isbn" /> </td></tr>
 					<tr><td>    </td></tr>
-					
+					<tr><td id="browse-button"> <input type="submit" name="browsebutt" value="search" >   </td></tr>
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/located/titleLocated">Browse for Book</a>  </td></tr>
 					
 					<tr></tr>   

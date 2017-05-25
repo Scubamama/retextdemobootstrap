@@ -21,6 +21,7 @@ public class TitleLocated {
 	private Double price = 0.0;
 	private String condition = "";
 	private String seller = "";
+	private int sellerId = 0;
 	
 	public TitleLocated(Integer id, String title, String author, String edition, String dept, String courseNum,
 			String isbn, Double price, String condition, String seller) {
@@ -80,6 +81,16 @@ public class TitleLocated {
 		this.condition = condition;
 		this.seller = seller;
 	}
+	
+	public TitleLocated(Integer id, String isbn, Double price, String condition, Integer sellerId) {
+		
+		this.id = id;
+		this.isbn = isbn;
+		this.price = price;
+		this.condition = condition;
+		this.sellerId = sellerId;
+	}
+	
 	public TitleLocated() {
 		//super();
 	}

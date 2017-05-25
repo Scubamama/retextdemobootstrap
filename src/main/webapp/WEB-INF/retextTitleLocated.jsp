@@ -27,11 +27,17 @@
 			<th>Seller</th>
 		</tr>
 			
-		<c:forEach var="tempTitle" items="${titleList}">		
+		<c:forEach var="tempTitle" items="${titleList}">	
+		
+					<c:url var="tempLink" value="StudentControllerServlet">
+						<c:param name="command" value="LOAD" />
+						<c:param name="studentId" value="${tempStudent.id}" />
+					</c:url>
+						
 			<tr>
 				<td>  ${tempTitle.price} </td>
-				<td>  ${tempTitle.author}</td>
-				<td>  ${tempTitle.edition}</td>
+				<td>  ${tempTitle.condition}</td>
+				<td>  ${tempTitle.seller}</td>
 			</tr>
 		</c:forEach>
 	</table>	

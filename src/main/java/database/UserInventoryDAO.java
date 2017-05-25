@@ -214,23 +214,20 @@ public class UserInventoryDAO {
 				myStmt.setInt(2,inv.getBookId());
 				myStmt.setDouble(3,inv.getPrice());
 				myStmt.setInt(4,inv.getSold());
-
 				
 				myStmt.executeUpdate();
 
-				try (ResultSet generatedKeys = myStmt.getGeneratedKeys()) {
+				ResultSet generatedKeys = myStmt.getGeneratedKeys();
 					if (generatedKeys.next()) {
 						inv.setId(generatedKeys.getInt(1));
 					} else {
 						throw new SQLException("Insertion failed, no new id created.");
 					}
-						
-				} // end inner try
 
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
-				
+		//		exc.printStackTrace();
+				throw new RuntimeException(exc);
 			}
 			finally {
 		//		mgr.silentClose(myConn, myStmt, myRs);
@@ -241,7 +238,6 @@ public class UserInventoryDAO {
 
 	} // end insert()
 
-	
 	public UserInventory get(Integer id) throws SQLException {
 		
 	String sql = "SELECT * FROM user_inventory where id=?";

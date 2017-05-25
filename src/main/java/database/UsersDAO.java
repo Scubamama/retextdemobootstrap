@@ -10,7 +10,7 @@ import database.DataSource;
 import model2.AUser;
 
 /**
- * 
+ * CRUD functionality for users in reText app
  * @author Holly Williams
  *
  */
@@ -168,18 +168,17 @@ public class UsersDAO {
 				
 				myStmt.executeUpdate();
 				
-				try (ResultSet generatedKeys = myStmt.getGeneratedKeys()) {
+				ResultSet generatedKeys = myStmt.getGeneratedKeys();
 					if (generatedKeys.next()) {
 						newU.setId(generatedKeys.getInt(1));
 					} else {
 						throw new SQLException("Insertion failed, no new id created.");
 					}
 						
-				} // end inner try
-
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
+		//		exc.printStackTrace();
+				throw new RuntimeException(exc);
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
