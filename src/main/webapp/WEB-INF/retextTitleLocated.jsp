@@ -20,7 +20,7 @@
 	
 	
 	<table id="located_table">
-		<tr><td >  Title Located  </td></tr>
+		<tr><td >  Title Located:"${title}"  </td></tr>
 		<tr>
 			<th>Price</th>
 			<th>Condition</th>
@@ -29,15 +29,16 @@
 			
 		<c:forEach var="tempTitle" items="${titleList}">	
 		
-					<c:url var="tempLink" value="StudentControllerServlet">
-						<c:param name="command" value="LOAD" />
-						<c:param name="studentId" value="${tempStudent.id}" />
-					</c:url>
+			<c:url var="tempLink" value="RetextMessagesServlet">
+				<c:param name="command" value="contactSeller" />
+				<c:param name="sellerId" value="${tempTitle.id}" />
+			</c:url>
 						
 			<tr>
 				<td>  ${tempTitle.price} </td>
 				<td>  ${tempTitle.condition}</td>
 				<td>  ${tempTitle.seller}</td>
+				<td><a href="${tempLink}">Contact Seller</a></td>
 			</tr>
 		</c:forEach>
 	</table>	

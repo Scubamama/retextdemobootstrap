@@ -30,11 +30,9 @@ public class TitleLocatedDAO {
 	// looks at my books and retrieves any with a title like what I am searching for
 	
 //	public List<TitleLocated> findAvailableBooks(String isbn) throws SQLException {
-		public List<TitleLocated> findAvailableBooks(String isbn)  {
-	//	DatabaseManager mgr = new DatabaseManager();
+	
+	public List<TitleLocated> findAvailableBooks(String isbn)  {
 		List<TitleLocated> myBookList = new ArrayList<TitleLocated>();
-		
-		//String sql = "SELECT * FROM Users where UserName LIKE ? ";
 		
 	//	String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + 
 	//			"i.price " + 
@@ -46,7 +44,7 @@ public class TitleLocatedDAO {
 				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id " +
 				"join retext.users u " +
 			"where b.id = i.Book_id and i.User_id = u.id ";
-		
+		System.out.println("SQL: " + sql);
 		// actual working sql from mysql workbench:
 	//	select i.price, i.condition, u.UserName, u.id
 	//	from retext.user_inventory i  
@@ -64,30 +62,19 @@ public class TitleLocatedDAO {
 		try {
 			// 1. Get a connection to the database
 				myConn = ds.getConnection();
-				System.out.println("after getConnection()");
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
-				System.out.println("after prepareStatement()");
 				myStmt.setString(1,isbn);
-				System.out.println("after setString()");
-	//			myStmt.setString(2, "%" + text + "%");
 				myRs = myStmt.executeQuery();
 
 				System.out.println("after executeQuery()");
 				// 4. Process the result set - put it into the ArrayList
 				if (myRs == null) {System.out.println("myRs is null");}
 				else System.out.println("myRs is not null");
-				while (myRs.next()) {
-				//	userList.add(new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), 
-				//		myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") ));
-				//	myBookList.add(new DisplayUserInventory(myRs.getInt("Id"), myRs.getString("Email"), 
-				//		myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), 
-				//		myRs.getString("school") ));
-					
+				while (myRs.next()) {					
 					myBookList.add(new TitleLocated(myRs.getInt("Id"),myRs.getString("Isbn"), 
-						//	 myRs.getDouble("price"), myRs.getString("condition"), myRs.getInt("Id") ));	
-					 myRs.getDouble("price"), myRs.getString("condition"), myRs.getString("userName") ));
-					
+							myRs.getDouble("price"), myRs.getString("condition"), 
+							myRs.getString("userName") ));
 				}
 				return myBookList;
 	
@@ -95,14 +82,11 @@ public class TitleLocatedDAO {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-			finally {
-				
-	//			mgr.silentClose(myConn, myStmt, myRs);
-				DataSource.silentClose(myConn);
-				DataSource.silentClose(myStmt);
-				DataSource.silentClose(myRs);
-				
-			}
+		finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
 		return myBookList;
 		} // end findAvailableBooks
 
@@ -112,7 +96,7 @@ public class TitleLocatedDAO {
 	public List<UserInventoryDisplay> searchMyBooks(String text) throws SQLException {
 	//	DatabaseManager mgr = new DatabaseManager();
 		List<UserInventoryDisplay> myBookList = new ArrayList<UserInventoryDisplay>();
-		//List<AUser> userList = new ArrayList<AUser>();
+		
 		//String sql = "SELECT * FROM Users where UserName LIKE ? ";
 		
 		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + 
@@ -342,7 +326,45 @@ public class TitleLocatedDAO {
 		}
 
 	} // end get()
+	public String getTitle(Integer isbn) throws SQLException {
+		
+	String sql = "SELECT * FROM book_tiles where id=?";
+	String title = "";
+	out.println("SQL: " + sql);
+//	DatabaseManager mgr = new DatabaseManager();
+	PreparedStatement myStmt = null;
+	ResultSet myRs = null;
+	Connection myConn = null;
 	
+	try {
+		// 1. Get a connection to the database
+			myConn = ds.getConnection();
+		// 2. Create a statement object
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setInt(1,isbn);
+			myRs = myStmt.executeQuery();
+			if (myRs.next()) {
+			//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
+				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
+						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
+						myRs.getDouble("price"), myRs.getInt("Sold") );
+				
+				return title;
+				
+			} else {
+				return null;
+			}
+
+		} //end try
+		finally {
+	//		mgr.silentClose(myConn, myStmt, myRs);
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
+
+	} // end getTitle()
+		
 
 	public void delete(Integer currUserId, Integer bookId) throws SQLException {
 		

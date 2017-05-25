@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.DatabaseManager;
+import database.DataSource;
 import model2.BookTitles;
 
 /**
@@ -19,12 +19,15 @@ import model2.BookTitles;
 
 public class BookTitlesDAO {
 
+	DataSource ds;
+	
 	public BookTitlesDAO() {
+		this.ds = DataSource.getInstance();
 		
 	}
 
 	public List<BookTitles> searchBooks(String text) throws SQLException {
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		List<BookTitles> bookList = new ArrayList<BookTitles>();
 		String sql = "SELECT * FROM Book_Titles where Title LIKE ? ";
 		
@@ -34,7 +37,7 @@ public class BookTitlesDAO {
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setString(1, "%" + text + "%");
@@ -49,13 +52,17 @@ public class BookTitlesDAO {
 	
 			} //end try
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 			
 		} // end searchUsers
 
 	public List<BookTitles> listMyBooks() throws SQLException {
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		List<BookTitles> bookList = new ArrayList<BookTitles>();
 		String sql = "SELECT * FROM Book_Titles";
 		
@@ -66,7 +73,7 @@ public class BookTitlesDAO {
 		try {
 			// 1. Get a connection to the database
 
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myRs = myStmt.executeQuery();
@@ -79,7 +86,11 @@ public class BookTitlesDAO {
 				return bookList;
 			} //end try
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 
 	} // end listMyBooks
@@ -108,7 +119,7 @@ public class BookTitlesDAO {
 		
 		String sql = "UPDATE Book_titles SET Title=?, Author=?, Edition=?,Isbn=? WHERE id=?";
 	
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -116,7 +127,7 @@ public class BookTitlesDAO {
 		try {
 			// 1. Get a connection to the database
 			
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 			
@@ -132,7 +143,11 @@ public class BookTitlesDAO {
 				exc.printStackTrace();
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 		
 	} // end update()
@@ -146,14 +161,14 @@ public class BookTitlesDAO {
 				+ "(Title, Author, Edition, Isbn)"   //CourseDept and CourseNumber later
 				+ "VALUES (?, ?, ?, ?)";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				myStmt.setString(1,book.getTitle()); //pulls email from object
@@ -176,7 +191,11 @@ public class BookTitlesDAO {
 				exc.printStackTrace();
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 
 	} // end insert()
@@ -186,14 +205,14 @@ public class BookTitlesDAO {
 			
 		String sql = "SELECT * FROM Book_Titles where id=?";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setInt(1,id);
@@ -210,7 +229,11 @@ public class BookTitlesDAO {
 			} //end try
 
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 			
 	} // end get(id)
@@ -220,14 +243,14 @@ public class BookTitlesDAO {
 			
 		String sql = "SELECT * FROM Book_Titles where Title=?";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setString(1,title);
@@ -244,7 +267,11 @@ public class BookTitlesDAO {
 			} //end try
 
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+		//		mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 			
 	} // end get(title)
@@ -253,14 +280,14 @@ public class BookTitlesDAO {
 		
 		String sql = "DELETE FROM Book_Titles WHERE id=?";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setInt(1, id);
@@ -271,7 +298,11 @@ public class BookTitlesDAO {
 				exc.printStackTrace();				
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+		//		mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 		
 	} // end delete

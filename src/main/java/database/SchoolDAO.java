@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.DatabaseManager;
+import database.DataSource;
 import model2.School;
 
 /**
@@ -19,12 +19,14 @@ import model2.School;
 
 public class SchoolDAO {
 
+	DataSource ds;
+	
 	public SchoolDAO() {
-		
+		this.ds = DataSource.getInstance();
 	}
 
 	public List<School> searchSchool(String text) throws SQLException {
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		List<School> schoolList = new ArrayList<School>();
 		String sql = "SELECT * FROM School where SchoolName LIKE ? "; // later add or nickName like
 		
@@ -34,7 +36,7 @@ public class SchoolDAO {
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setString(1, "%" + text + "%");
@@ -48,13 +50,17 @@ public class SchoolDAO {
 	
 			} //end try
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 		
 		} // end searchSchool
 
 	public List<School> listSchools() throws SQLException {
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		List<School> schoolList = new ArrayList<School>();
 		String sql = "SELECT * FROM School";
 		
@@ -65,7 +71,7 @@ public class SchoolDAO {
 		try {
 			// 1. Get a connection to the database
 	
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 			// 3. get info from the db	
@@ -81,7 +87,11 @@ public class SchoolDAO {
 			} //end try
 
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 		
 	} // end listSchools
@@ -108,14 +118,14 @@ public class SchoolDAO {
 		out.println("UPDATING... ");
 		
 		String sql = "UPDATE School SET SchoolName=?, NickName=?, City=?, Campus=? WHERE id=?";
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				//pulls info from object and puts it into the statement object
 				myStmt = myConn.prepareStatement(sql);
@@ -131,7 +141,11 @@ public class SchoolDAO {
 				exc.printStackTrace();
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 
 	} // end update()
@@ -145,14 +159,14 @@ public class SchoolDAO {
 				+ "(SchoolName, NickName, City, Campus)"
 				+ "VALUES (?, ?, ?, ?)";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database 
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				//pulls info from object and puts it into the statement object
 				myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -178,7 +192,11 @@ public class SchoolDAO {
 				exc.printStackTrace();	
 			}
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 			
 	} // end insert()
@@ -188,14 +206,14 @@ public class SchoolDAO {
 		
 		String sql = "SELECT * FROM School where id=?";
 		
-		DatabaseManager mgr = new DatabaseManager();
+	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
 		
 		try {
 			// 1. Get a connection to the database
-				myConn = mgr.getConnection();
+				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setInt(1,id);
@@ -212,7 +230,11 @@ public class SchoolDAO {
 	
 			} //end try
 			finally {
-				mgr.silentClose(myConn, myStmt, myRs);
+	//			mgr.silentClose(myConn, myStmt, myRs);
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+
 			}
 
 	} // end get()
@@ -222,14 +244,14 @@ public class SchoolDAO {
 		
 	String sql = "DELETE FROM School WHERE id=?";
 	
-	DatabaseManager mgr = new DatabaseManager();
+//	DatabaseManager mgr = new DatabaseManager();
 	PreparedStatement myStmt = null;
 	ResultSet myRs = null;
 	Connection myConn = null;
 	
 	try {
 		// 1. Get a connection to the database
-			myConn = mgr.getConnection();
+			myConn = ds.getConnection();
 		// 2. Create a statement object
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setInt(1, id);
@@ -241,7 +263,11 @@ public class SchoolDAO {
 			exc.printStackTrace();
 		}
 		finally {
-			mgr.silentClose(myConn, myStmt, myRs);
+	//		mgr.silentClose(myConn, myStmt, myRs);
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+
 		}
 	
 	} // end delete

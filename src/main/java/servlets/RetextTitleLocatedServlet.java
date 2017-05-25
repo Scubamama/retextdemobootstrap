@@ -60,12 +60,10 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		System.out.println("school = " + school);
 		
 		TitleLocatedDAO titleDAO = new TitleLocatedDAO();
-		String test = "test 123";
+		String title = "";
 		
-		 isbn = request.getParameter("isbn");
-		System.out.println("isbn = " + isbn);
-		 school = request.getParameter("school");
-		System.out.println("school = " + school);
+		isbn = request.getParameter("isbn");
+		school = request.getParameter("school");
 		List<TitleLocated> titleList = null;
 		try {
 			titleList = titleDAO.findAvailableBooks(isbn);
@@ -75,7 +73,7 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		}
 		if (titleList == null) {System.out.println("after titleDAO null list " );}
 		request.setAttribute("titleList", titleList);
-		request.setAttribute("test", test);
+		request.setAttribute("title", title);
 		RequestDispatcher dispatcher = 
 				 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
 		dispatcher.forward(request, response);
