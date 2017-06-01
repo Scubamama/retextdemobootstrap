@@ -20,7 +20,7 @@
 	
 	
 	<table id="located_table">
-		<tr><td >  Title Located:"${title}"  </td></tr>
+		<tr><td >  Title Located:  ${title} </td></tr>
 		<tr>
 			<th>Price</th>
 			<th>Condition</th>

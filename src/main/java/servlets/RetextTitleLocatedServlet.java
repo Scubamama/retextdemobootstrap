@@ -54,6 +54,7 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		
 		System.out.println("request.getParameter(isbn) = " + request.getParameter("isbn"));
 		System.out.println("request.getParameter(school) = " + request.getParameter("school"));
+		
 		String isbn = request.getParameter("isbn");
 		System.out.println("isbn = " + isbn);
 		String school = request.getParameter("school");
@@ -67,6 +68,8 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		List<TitleLocated> titleList = null;
 		try {
 			titleList = titleDAO.findAvailableBooks(isbn);
+			title = titleDAO.getTitle(isbn);
+			System.out.println("title = " + title);
 		}
 		catch (Exception e) {
 			

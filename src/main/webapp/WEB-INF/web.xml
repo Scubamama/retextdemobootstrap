@@ -23,6 +23,10 @@
   	<servlet-name>RetextCreateUserServlet</servlet-name>
   	<servlet-class>servlets.RetextCreateUserServlet</servlet-class>
   </servlet>
+    <servlet>
+  	<servlet-name>RetextMessagesServlet</servlet-name>
+  	<servlet-class>servlets.RetextMessagesServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
   	<servlet-name>RetextManagerServlet</servlet-name>
@@ -39,6 +43,10 @@
       <servlet-mapping>
   	<servlet-name>RetextCreateUserServlet</servlet-name>
   	<url-pattern>/newUser/*</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+  	<servlet-name>RetextMessagesServlet</servlet-name>
+  	<url-pattern>/messages/*</url-pattern>
   </servlet-mapping>
 
 

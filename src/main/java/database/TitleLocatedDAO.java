@@ -326,11 +326,14 @@ public class TitleLocatedDAO {
 		}
 
 	} // end get()
-	public String getTitle(Integer isbn) throws SQLException {
+	
+	public String getTitle(String isbn) throws SQLException {
 		
-	String sql = "SELECT * FROM book_tiles where id=?";
+	String sql = "SELECT Title FROM book_titles where isbn=?";
 	String title = "";
 	out.println("SQL: " + sql);
+	int checkIsbn = 0;
+	
 //	DatabaseManager mgr = new DatabaseManager();
 	PreparedStatement myStmt = null;
 	ResultSet myRs = null;
@@ -341,14 +344,15 @@ public class TitleLocatedDAO {
 			myConn = ds.getConnection();
 		// 2. Create a statement object
 			myStmt = myConn.prepareStatement(sql);
-			myStmt.setInt(1,isbn);
+			myStmt.setString(1,isbn);
 			myRs = myStmt.executeQuery();
 			if (myRs.next()) {
 			//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
-				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
-						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
-						myRs.getDouble("price"), myRs.getInt("Sold") );
-				
+//				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
+//						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
+//						myRs.getDouble("price"), myRs.getInt("Sold") );
+				title = myRs.getString("Title");
+				out.println("title: " + title);
 				return title;
 				
 			} else {
