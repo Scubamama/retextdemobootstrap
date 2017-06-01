@@ -49,16 +49,16 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 	private void displayTitle(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		System.out.println("in RetextTitleLocatedServlet displayTitle ");
+	//	System.out.println("in RetextTitleLocatedServlet displayTitle ");
 	//	UserInventoryDAO inventoryDAO = new UserInventoryDAO();
 		
-		System.out.println("request.getParameter(isbn) = " + request.getParameter("isbn"));
-		System.out.println("request.getParameter(school) = " + request.getParameter("school"));
+//		System.out.println("request.getParameter(isbn) = " + request.getParameter("isbn"));
+//		System.out.println("request.getParameter(school) = " + request.getParameter("school"));
 		
 		String isbn = request.getParameter("isbn");
-		System.out.println("isbn = " + isbn);
+//		System.out.println("isbn = " + isbn);
 		String school = request.getParameter("school");
-		System.out.println("school = " + school);
+//		System.out.println("school = " + school);
 		
 		TitleLocatedDAO titleDAO = new TitleLocatedDAO();
 		String title = "";
@@ -69,7 +69,7 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		try {
 			titleList = titleDAO.findAvailableBooks(isbn);
 			title = titleDAO.getTitle(isbn);
-			System.out.println("title = " + title);
+//			System.out.println("title = " + title);
 		}
 		catch (Exception e) {
 			

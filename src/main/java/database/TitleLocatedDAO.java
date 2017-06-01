@@ -44,7 +44,8 @@ public class TitleLocatedDAO {
 				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id " +
 				"join retext.users u " +
 			"where b.id = i.Book_id and i.User_id = u.id ";
-		System.out.println("SQL: " + sql);
+		
+	//	System.out.println("SQL: " + sql);
 		// actual working sql from mysql workbench:
 	//	select i.price, i.condition, u.UserName, u.id
 	//	from retext.user_inventory i  
@@ -54,7 +55,7 @@ public class TitleLocatedDAO {
 		
 	//	int currUserId = 1;
 		
-		System.out.println("in TitleLocatedDAO isbn = " + isbn);
+	//	System.out.println("in TitleLocatedDAO isbn = " + isbn);
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -67,10 +68,10 @@ public class TitleLocatedDAO {
 				myStmt.setString(1,isbn);
 				myRs = myStmt.executeQuery();
 
-				System.out.println("after executeQuery()");
+	//			System.out.println("after executeQuery()");
 				// 4. Process the result set - put it into the ArrayList
-				if (myRs == null) {System.out.println("myRs is null");}
-				else System.out.println("myRs is not null");
+	//			if (myRs == null) {System.out.println("myRs is null");}
+	//			else System.out.println("myRs is not null");
 				while (myRs.next()) {					
 					myBookList.add(new TitleLocated(myRs.getInt("Id"),myRs.getString("Isbn"), 
 							myRs.getDouble("price"), myRs.getString("condition"), 

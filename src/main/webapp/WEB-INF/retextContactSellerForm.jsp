@@ -9,8 +9,8 @@
 </head>
 
 <body>
-	<form action="retext-addabook-response.jsp">
 	
+	<form action="<%=request.getContextPath() %>/messages/send" method=POST>
 		<table id="contact_table" >
 			
 			<tr><td id="cntr">Contact a Seller</td></tr>
@@ -26,7 +26,7 @@
 			<tr><td id="loc_meet"><textarea name="notes" cols = "40" rows="5"/></textarea> </td></tr>
 			
 			
-			<tr><td id="cntr"><input type="submit" name="Submit" value="Save"  /> </td></tr>
+			<tr><td id="cntr"><input type="submit" name="Submit" value="Send"  /> </td></tr>
 		
 		</table>
 	
