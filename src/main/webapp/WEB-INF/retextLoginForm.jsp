@@ -7,7 +7,9 @@
 </head>
 
 <body>
-	<form action="retext-login-response.jsp">
+<!-- 	<form action="WEB-INF/retextUserLoggedIn.jsp" method=POST> -->	
+  	<form action="<%=request.getContextPath() %>/login/save" method=POST>  
+	
 		<div id="container">
 			<div id="wrapper">
 				<h2>ReText</h2>
@@ -20,9 +22,11 @@
 					
 					<tr><td id="cntr">Password: <input type="password" name="password" placeholder="Password"/> </td></tr>
 					
-					<tr><td class="center_button"><input type="button" name="Create" value="Create New User Id" /></td></tr>
+			<!-- 		<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/login">Login</a> </td></tr>   -->
 					
-					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/located/titleLocated">Login</a>  </td></tr>
+					<tr><td id="browse-button"><input type="submit" name="Login" value="Submit" /></td></tr>
+					
+					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/newUser/*">Create New User Id</a>  </td></tr>
 				</table>
 			</div>
 		</div>

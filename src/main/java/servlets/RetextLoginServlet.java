@@ -31,37 +31,47 @@ public class RetextLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Inside RetextLoginServlet - doGet.");
-		login(request, response);
+		loginForm(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("Inside RetextLoginServlet - doPost.");
+		login(request, response);
 	}
 
 	// displays all of the copies of the requested title available at user's school
-	private void login(HttpServletRequest request, HttpServletResponse response) 
+	private void loginForm(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		System.out.println("Inside login.");
+		System.out.println("Inside loginForm.");
 		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
 		String test = "test 123";
 		
-		List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
+	//	List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
 		
-		System.out.println("\n In retextLoginServlet.login");
-
-		request.setAttribute("titleList", titleList);
+	//	request.setAttribute("titleList", titleList);
 		request.setAttribute("test", test);
 		RequestDispatcher dispatcher = 
 				 request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
 		dispatcher.forward(request, response);
 		
-	}
+	} // end loginForm
 
+
+	private void login(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		System.out.println("Inside login.");
+		// gather info from form and create a session for user
+		
+		// display new page 
+		request.setAttribute("theUser",request.getParameter("userName") );
+		RequestDispatcher dispatcher = 
+				 request.getRequestDispatcher("/WEB-INF/retextUserLoggedIn.jsp");
+		dispatcher.forward(request, response);
+	} // end login
 	
-	
-}
+} // end class

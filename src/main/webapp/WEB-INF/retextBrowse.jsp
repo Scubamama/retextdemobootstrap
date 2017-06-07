@@ -24,7 +24,7 @@
 					<tr><td>ISBN: <input type="input" name="isbn" /> </td></tr>
 					<tr><td>    </td></tr>
 					<tr><td id="browse-button"> <input type="submit" name="browsebutt" value="search" >   </td></tr>
-					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/located/titleLocated">Browse for Book</a>  </td></tr>
+			<!-- 	<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/located/titleLocated">Browse for Book</a>  </td></tr> -->
 					
 					<tr></tr>   
 					

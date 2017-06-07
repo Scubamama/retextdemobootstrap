@@ -18,9 +18,7 @@
 			<tr><td id="rt_field">Date:    <input type="text" name="date" /> </td></tr>
 			
 			<tr><td id="rt_field">Time:    <input type="text" name="time" /> </td></tr>
-			
-			<tr><td id="rt_field">School: <input type="text" name="school" /> </td></tr>
-			
+						
 			<tr><td id="loc_meet"> Location on Campus to Meet: </td></tr>
 			
 			<tr><td id="loc_meet"><textarea name="notes" cols = "40" rows="5"/></textarea> </td></tr>

@@ -13,8 +13,8 @@
 		<div id="container">
 			<div id="wrapper">
 				<h2>ReText</h2>
-				<h3>New User Created</h3>
-				<h3>Welcome ${newUser}</h3>
+				<h3>User Logged In</h3>
+				<h3>Welcome ${theUser}</h3>
 				<div id="buy-sell">
 					<small>You can buy, sell, and trade text books on campus</small>
 				</div>
@@ -26,7 +26,7 @@
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manage/browse">Browse for Books</a>  </td></tr>
 					
 					<tr></tr>   
-					<tr><td>Set up your profile</td></tr> 
+					<tr><td>Manage your profile</td></tr> 
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manageUsers">Manage User Info</a>  </td></tr>
 					<tr></tr>
 				</table>

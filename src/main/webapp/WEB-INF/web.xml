@@ -19,13 +19,17 @@
   	<servlet-name>RetextLoginServlet</servlet-name>
   	<servlet-class>servlets.RetextLoginServlet</servlet-class>
   </servlet>
-    <servlet>
+   <servlet>
   	<servlet-name>RetextCreateUserServlet</servlet-name>
   	<servlet-class>servlets.RetextCreateUserServlet</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
   	<servlet-name>RetextMessagesServlet</servlet-name>
   	<servlet-class>servlets.RetextMessagesServlet</servlet-class>
+  </servlet>
+  <servlet>  
+  	<servlet-name>RetextManageUserInfoServlet</servlet-name>
+  	<servlet-class>servlets.RetextManageUserInfoServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -36,17 +40,21 @@
   	<servlet-name>RetextTitleLocatedServlet</servlet-name>
   	<url-pattern>/located/*</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
   	<servlet-name>RetextLoginServlet</servlet-name>
   	<url-pattern>/login/*</url-pattern>
   </servlet-mapping>
-      <servlet-mapping>
+  <servlet-mapping>
   	<servlet-name>RetextCreateUserServlet</servlet-name>
   	<url-pattern>/newUser/*</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
   	<servlet-name>RetextMessagesServlet</servlet-name>
   	<url-pattern>/messages/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RetextManageUserInfoServlet</servlet-name>
+  	<url-pattern>/manageUsers/*</url-pattern>
   </servlet-mapping>
 
 
