@@ -10,19 +10,15 @@
 
 <body>
 	
-	<form action="<%=request.getContextPath() %>/messages/send" method=POST>
+	<form action="<%=request.getContextPath() %>/messages/send?id=${sellerId}" method=POST>
+			
 		<table id="contact_table" >
 			
 			<tr><td id="cntr">Contact a Seller</td></tr>
-			
-			<tr><td id="rt_field">Date:    <input type="text" name="date" /> </td></tr>
-			
-			<tr><td id="rt_field">Time:    <input type="text" name="time" /> </td></tr>
-						
+			<tr><td >  Seller:  ${sellerName} </td></tr>
 			<tr><td id="loc_meet"> Location on Campus to Meet: </td></tr>
 			
-			<tr><td id="loc_meet"><textarea name="notes" cols = "40" rows="5"/></textarea> </td></tr>
-			
+			<tr><td id="loc_meet"><textarea name="message" cols = "40" rows="5"/></textarea> </td></tr>
 			
 			<tr><td id="cntr"><input type="submit" name="Submit" value="Send"  /> </td></tr>
 		

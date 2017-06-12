@@ -48,13 +48,7 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 	// displays all of the copies of the requested title available at user's school
 	private void displayTitle(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
-	//	System.out.println("in RetextTitleLocatedServlet displayTitle ");
-	//	UserInventoryDAO inventoryDAO = new UserInventoryDAO();
-		
-//		System.out.println("request.getParameter(isbn) = " + request.getParameter("isbn"));
-//		System.out.println("request.getParameter(school) = " + request.getParameter("school"));
-		
+				
 		String isbn = request.getParameter("isbn");
 //		System.out.println("isbn = " + isbn);
 		String school = request.getParameter("school");

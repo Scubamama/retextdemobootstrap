@@ -28,7 +28,7 @@
 		</tr>
 			
 		<c:forEach var="tempTitle" items="${titleList}">	
-		<!-- this url part lists correctly, but goes back to TitleLocatedServlet -->
+		<!--  -->
 			<c:url var="tempLink" value="RetextMessageServlet"> 
 				<c:param name="command" value="contactSeller" />
 				<c:param name="sellerId" value="${tempTitle.id}" />

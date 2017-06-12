@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import database.MessagesDAO;
 import database.UsersDAO;
 import model2.AUser;
+import model2.Messages;
 
 /**
  * Servlet implementation class RetextTitleLocatedServlet
@@ -50,42 +52,58 @@ public class RetextMessagesServlet extends HttpServlet {
 		// calls up the form that the user fills in their data in (retextCreateUser.jsp)
 		System.out.println("\n In retextMessagesServlet - sendMessageToSeller");
 
-	//	request.setAttribute("titleList", titleList);
-	//	request.setAttribute("test", test);
+		String sellerName = "";
+	//	MessagesDAO messDAO = new MessagesDAO();
+		System.out.println("\n id: " + request.getParameter("id"));
+		int sellerId =Integer.parseInt(request.getParameter("id"));
+		UsersDAO aUserDAO = new UsersDAO();
+		try {
+			AUser u = aUserDAO.get(sellerId); 
+			sellerName = u.getUserName();
+
+		} //end try
+		catch (Exception exc) {
+	//		exc.printStackTrace();
+			throw new RuntimeException(exc);
+		}
+		 
+		System.out.println("\n sellerId: " + sellerId);
+		System.out.println("\n sellerName: " + sellerName);
+		request.setAttribute("sellerName", sellerName);
+		request.setAttribute("sellerId", sellerId);
 		RequestDispatcher dispatcher = 
 				 request.getRequestDispatcher("/WEB-INF/retextContactSellerForm.jsp");
 		dispatcher.forward(request, response);
 		
-	} // end gatherNewUserInfo()
+	} // end sendMessageToSeller()
 
 	private void createNewMessage(HttpServletRequest request, HttpServletResponse response) {
 		// takes the info from gatherNewUserInfo() and stores it in the database
 		
 		System.out.println("\n In retextMessagesServlet - createNewMessage");
 		// this all needs to be done for a new messages object
-//		UsersDAO aUserDAO = new UsersDAO();
-//		String uCard = "";
-//		uCard = request.getParameter("takeCards");
-	//	AUser newU = new AUser(uEmail,uName,uPass,card,uSchool);
+		MessagesDAO messDAO = new MessagesDAO();
 		
-//		System.out.println(" uCard = " + uCard);
-//		int card = 0;  // default user does not take cards
-//		if(uCard.equals("y")) card = 1;
-//		System.out.println(" card = " + card);
-//		AUser newU = new AUser(request.getParameter("email"),request.getParameter("userName"),
-//				request.getParameter("password"),card,request.getParameter("schoolName"));
-//		aUserDAO.save(newU);
-//		System.out.println("\n email = " + request.getParameter("email"));
-//		System.out.println(" userName = " + request.getParameter("userName"));
-//		System.out.println(" schoolName = " + request.getParameter("schoolName"));
-//		System.out.println(" schoolNickName = " + request.getParameter("schoolNickName"));
-//		System.out.println(" takeCards = " + request.getParameter("takeCards"));
-//		System.out.println(" password = " + request.getParameter("password") + "\n ");
+	//	int senderId = Integer.parseInt(request.getParameter("senderId"));
 		
-		// list users to see if add was ok
+		int senderId = 1;   // for now until login sessions are complete
 		
-		// display a page saying that the user has been created 
-//			request.setAttribute("newUser",request.getParameter("userName") );
+		int receiverId = Integer.parseInt(request.getParameter("id"));
+
+		int viewed = 0;
+		String message = request.getParameter("message");
+		
+  System.out.println("senderId: " + senderId);
+  System.out.println("receiverId: " + receiverId);
+  System.out.println("viewed: " + viewed);
+  System.out.println("message: " + message);
+		
+		Messages newMess = new Messages(senderId, 
+				Integer.parseInt(request.getParameter("id")),
+				viewed,	request.getParameter("message"));
+		messDAO.save(newMess);
+		
+	//			request.setAttribute("newUser",request.getParameter("userName") );
 		RequestDispatcher dispatcher = 
 				 request.getRequestDispatcher("/WEB-INF/retextBrowse.jsp");
 		try {
