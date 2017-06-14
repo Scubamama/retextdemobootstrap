@@ -75,8 +75,8 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 				 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
 		dispatcher.forward(request, response);
 		
-	}
+	} // end displayTitle
 
 	
 	
-}
+} // end class RetextTitleLocatedServlet

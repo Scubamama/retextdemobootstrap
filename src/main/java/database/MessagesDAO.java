@@ -12,7 +12,7 @@ import model2.Messages;
 
 
 /**
- * CRUD functionality for users in reText app
+ * CRUD functionality for messages in reText app
  * @author Holly Williams
  *
  */
@@ -25,6 +25,8 @@ public class MessagesDAO {
 		this.ds = DataSource.getInstance();
 	}
 
+	
+	// not fixed yet - may not use this
 	public List<AUser> searchUsers(String text) throws SQLException {
 	//	DatabaseManager mgr = new DatabaseManager();
 		List<AUser> userList = new ArrayList<AUser>();
@@ -59,48 +61,65 @@ public class MessagesDAO {
 		
 		} // end searchUsers
 
-	public List<AUser> listMyUsers() throws SQLException {
-	//	DatabaseManager mgr = new DatabaseManager();
-		List<AUser> userList = new ArrayList<AUser>();
-		String sql = "SELECT * FROM users";
+	// not fixed yet
+//	public List<Messages> listMyMessages(Integer id) throws SQLException {
+//	//	DatabaseManager mgr = new DatabaseManager();
+//		List<Messages> userList = new ArrayList<Messages>();
+//		String sql = "SELECT * FROM messages where id=?";
+//		
+//		PreparedStatement myStmt = null;
+//		ResultSet myRs = null;
+//		Connection myConn = null;
+//		
+//		
+//		try {
+//			// 1. Get a connection to the database
+//				myConn = ds.getConnection();
+//			// 2. Create a statement object
+//				myStmt = myConn.prepareStatement(sql);
+//				myStmt.setInt(1,id);
+//				myRs = myStmt.executeQuery();
+//	
+//				if (myRs.next()) {
+//	//				Messages m = new Messages(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
+//					return m;
+//					
+//				} else {
+//					return null;
+//				}
+//		} //end try
+//		
 		
-		PreparedStatement myStmt = null;
-		ResultSet myRs = null;
-		Connection myConn = null;
-		
-		try {
-			// 1. Get a connection to the database
-				myConn = ds.getConnection();
-			// 2. Create a statement object
-				myStmt = myConn.prepareStatement(sql);
-				
-				myRs = myStmt.executeQuery();
-				
-			// 4. Process the result set - put it into the ArrayList
-			
-				while (myRs.next()) {
-					userList.add(new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") ));
-				}
-				return userList;
-			} //end try
+//		try {
+//			// 1. Get a connection to the database
+//				myConn = ds.getConnection();
+//			// 2. Create a statement object
+//				myStmt = myConn.prepareStatement(sql);
+//				
+//				myRs = myStmt.executeQuery();
+//				
+//			// 4. Process the result set - put it into the ArrayList
+//			
+//				while (myRs.next()) {
+//					userList.add(new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") ));
+//				}
+//				return userList;
+//			} //end try
 
-			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
-				DataSource.silentClose(myConn);
-				DataSource.silentClose(myStmt);
-				DataSource.silentClose(myRs);
-			}
-			
-	} // end listMyUsers
+//			finally {
+//	//			mgr.silentClose(myConn, myStmt, myRs);
+//				DataSource.silentClose(myConn);
+//				DataSource.silentClose(myStmt);
+//				DataSource.silentClose(myRs);
+//			}
+//			
+//	} // end listMyMessages
 
 	
 	public void save(Messages newMess) {
 		// save a user if one like this does not exist 
 		// otherwise update it
-		
-	//	insert(newU);   // for testing 
-	//	update(newU);   // for testing
-		
+				
 		out.println("in save newMess.getId() =  " + newMess.getId());
 		if(newMess.getId() == 0){
 			insert(newMess);
@@ -192,6 +211,7 @@ public class MessagesDAO {
 	} // end insert()
 
 	
+	// not fixed yet
 	public AUser get(Integer id) throws SQLException {
 		
 		String sql = "SELECT * FROM users where id=?";
@@ -228,6 +248,7 @@ public class MessagesDAO {
 
 	} // end get()
 	
+	// not fixed yet
 	public AUser get(String uName) throws SQLException {
 		
 		String sql = "SELECT * FROM users where UserName=?";
@@ -264,6 +285,7 @@ public class MessagesDAO {
 
 	} // end get()
 
+	// not fixed yet
 	public void delete(Integer id) throws SQLException {
 			
 		String sql = "DELETE FROM messages WHERE id=?";
@@ -296,4 +318,4 @@ public class MessagesDAO {
 
 	} // end delete
 	
-} // end class UsersDAO
+} // end class MessagesDAO

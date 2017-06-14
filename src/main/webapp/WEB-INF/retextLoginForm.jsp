@@ -18,7 +18,7 @@
 				<table id="login_table">
 					<tr><td><span id="tagline">You can buy, sell, and trade your text books on your campus</span></td></tr>
 				
-					<tr><td id="cntr">User Name: <input type="email" name="userName" placeholder="User Name"/> </td></tr>
+					<tr><td id="cntr">User Name: <input type="input" name="userName" placeholder="User Name"/> </td></tr>
 					
 					<tr><td id="cntr">Password: <input type="password" name="password" placeholder="Password"/> </td></tr>
 					
