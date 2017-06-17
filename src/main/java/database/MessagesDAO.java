@@ -62,6 +62,7 @@ public class MessagesDAO {
 		} // end searchUsers
 
 	// not fixed yet
+	
 //	public List<Messages> listMyMessages(Integer id) throws SQLException {
 //	//	DatabaseManager mgr = new DatabaseManager();
 //		List<Messages> userList = new ArrayList<Messages>();
@@ -285,7 +286,7 @@ public class MessagesDAO {
 
 	} // end get()
 
-	// not fixed yet
+	
 	public void delete(Integer id) throws SQLException {
 			
 		String sql = "DELETE FROM messages WHERE id=?";

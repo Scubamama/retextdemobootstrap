@@ -11,24 +11,28 @@ package model2;
  */
 public class DisplayMessages {
 
-	private int id = 0;
-	private String sellerName = "";
+//	private int id = 0;
+	private int senderId = 0;
+	private String senderName = "";
+	private int messageId = 0;
 	private String viewed = "";
 	private String message = "";
 	
-	public DisplayMessages(Integer id, String sellerName, 
+	public DisplayMessages(Integer senderId, String senderName, Integer messageId,
 			String viewed, String message) {
 	
-		this(sellerName, viewed, message);
-		this.id = id;
+		this(senderName, messageId, viewed, message);
+		this.senderId = senderId;
+	//	this.id = id;
 //		this.sellerName = sellerName;
 //		this.viewed = viewed;
 //		this.message = message;
 	}
 	
-	public DisplayMessages(String sellerName, String viewed, String message) {
+	public DisplayMessages(String senderName, Integer messageId, String viewed, String message) {
 	
-		this.sellerName = sellerName;
+		this.senderName = senderName;
+		this.messageId = messageId;
 		this.viewed = viewed;
 		this.message = message;
 	}
@@ -37,20 +41,28 @@ public class DisplayMessages {
 		//super();
 	}
 
-	public int getId() {
-		return id;
+	public int getSenderId() {
+		return senderId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setSenderId(int senderId) {
+		this.senderId = senderId;
 	}
 
-	public String getSellerName() {
-		return sellerName;
+	public String getSenderName() {
+		return senderName;
 	}
 
-	public void setSellerName(String sellerName) {
-		this.sellerName = sellerName;
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
+	}
+
+	public int getMessageId() {
+		return messageId;
+	}
+
+	public void setMessageId(int messageId) {
+		this.messageId = messageId;
 	}
 
 	public String getViewed() {

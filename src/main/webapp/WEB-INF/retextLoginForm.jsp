@@ -24,7 +24,7 @@
 					
 			<!-- 		<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/login">Login</a> </td></tr>   -->
 					
-					<tr><td id="browse-button"><input type="submit" name="Login" value="Submit" /></td></tr>
+					<tr><td id="browse-button"><input type="submit" name="Login" value="Log Me In" /></td></tr>
 					
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/newUser/*">Create New User Id</a>  </td></tr>
 				</table>

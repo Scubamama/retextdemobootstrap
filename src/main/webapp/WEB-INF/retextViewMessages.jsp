@@ -32,16 +32,16 @@
 		<!--  -->
 			<c:url var="tempLink" value="RetextMessageServlet"> 
 				<c:param name="command" value="viewMessages" />
-				<c:param name="senderId" value="${tempMessList.id}" />
+				<c:param name="senderId" value="${tempMessList.senderId}" />
 			</c:url>
 						
 			<tr>
-				<td>  ${tempMessList.sellerName} </td>
+				<td>  ${tempMessList.senderName} </td>
 				<td>  ${tempMessList.viewed}</td>
 				<td>  ${tempMessList.message}</td>
 		<!-- 		<td><a href="${tempLink}">Contact Seller</a></td>  -->
-					<td><a href="<%=request.getContextPath() %>/messages/send?id=${tempMessList.id}">Reply</a> </td>
-					<td><a href="<%=request.getContextPath() %>/messages/delete?id=${tempMessList.id}">Delete</a> </td>
+					<td><a href="<%=request.getContextPath() %>/messages/send?id=${tempMessList.senderId}">Reply</a> </td>
+					<td><a href="<%=request.getContextPath() %>/messages/delete?id=${tempMessList.messageId}">Delete</a> </td>
 			</tr>
 		</c:forEach>
 	</table>	
