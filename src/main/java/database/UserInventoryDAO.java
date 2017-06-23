@@ -100,10 +100,10 @@ public class UserInventoryDAO {
 		
 		try {
 			// 1. Get a connection to the database
-			System.out.println("Inside listMyBooks just before getConnection call");
+//			System.out.println("Inside listMyBooks just before getConnection call");
 			//	myConn = mgr.getConnection();
 				myConn = ds.getConnection();
-			System.out.println("Inside listMyBooks just after getConnection call");
+//			System.out.println("Inside listMyBooks just after getConnection call");
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 				myStmt.setInt(1,currUserId);

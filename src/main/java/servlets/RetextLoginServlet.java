@@ -47,7 +47,7 @@ public class RetextLoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("Inside loginForm.");
-		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
+//		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
 		String test = "test 123";
 		
 	//	List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();

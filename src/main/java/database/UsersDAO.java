@@ -263,9 +263,11 @@ public class UsersDAO {
 	} // end get()
 
 	public void delete(Integer id) throws SQLException {
-			
-		String sql = "DELETE FROM users WHERE id=?";
+	// this will actually archive a user (set the archive field to 1 for true)
+	//	String sql = "DELETE FROM users WHERE id=?";
+		String sql = "UPDATE Users SET archived=1 WHERE id=?";
 		
+System.out.println("in dao delete, id: " + id);
 	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;

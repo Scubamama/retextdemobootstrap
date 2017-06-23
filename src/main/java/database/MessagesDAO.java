@@ -26,95 +26,43 @@ public class MessagesDAO {
 	}
 
 	
-	// not fixed yet - may not use this
-	public List<AUser> searchUsers(String text) throws SQLException {
-	//	DatabaseManager mgr = new DatabaseManager();
-		List<AUser> userList = new ArrayList<AUser>();
-		String sql = "SELECT * FROM Users where UserName LIKE ? ";
-		
-		PreparedStatement myStmt = null;
-		ResultSet myRs = null;
-		Connection myConn = null;
-		
-		try {
-			// 1. Get a connection to the database
-				myConn = ds.getConnection();
-			// 2. Create a statement object
-				myStmt = myConn.prepareStatement(sql);
-				myStmt.setString(1, "%" + text + "%");
-				myRs = myStmt.executeQuery();
-
-				// 4. Process the result set - put it into the ArrayList
-				
-				while (myRs.next()) {
-					userList.add(new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") ));
-				}
-				return userList;
-		
-			} //end try
-			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
-				DataSource.silentClose(myConn);
-				DataSource.silentClose(myStmt);
-				DataSource.silentClose(myRs);
-			}
-		
-		} // end searchUsers
-
-	// not fixed yet
-	
-//	public List<Messages> listMyMessages(Integer id) throws SQLException {
+//	// not fixed yet - may not use this
+//	public List<AUser> searchUsers(String text) throws SQLException {
 //	//	DatabaseManager mgr = new DatabaseManager();
-//		List<Messages> userList = new ArrayList<Messages>();
-//		String sql = "SELECT * FROM messages where id=?";
+//		List<AUser> userList = new ArrayList<AUser>();
+//		String sql = "SELECT * FROM Users where UserName LIKE ? ";
 //		
 //		PreparedStatement myStmt = null;
 //		ResultSet myRs = null;
 //		Connection myConn = null;
 //		
-//		
 //		try {
 //			// 1. Get a connection to the database
 //				myConn = ds.getConnection();
 //			// 2. Create a statement object
 //				myStmt = myConn.prepareStatement(sql);
-//				myStmt.setInt(1,id);
+//				myStmt.setString(1, "%" + text + "%");
 //				myRs = myStmt.executeQuery();
-//	
-//				if (myRs.next()) {
-//	//				Messages m = new Messages(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
-//					return m;
-//					
-//				} else {
-//					return null;
-//				}
-//		} //end try
-//		
-		
-//		try {
-//			// 1. Get a connection to the database
-//				myConn = ds.getConnection();
-//			// 2. Create a statement object
-//				myStmt = myConn.prepareStatement(sql);
+//
+//				// 4. Process the result set - put it into the ArrayList
 //				
-//				myRs = myStmt.executeQuery();
-//				
-//			// 4. Process the result set - put it into the ArrayList
-//			
 //				while (myRs.next()) {
 //					userList.add(new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") ));
 //				}
 //				return userList;
+//		
 //			} //end try
-
 //			finally {
 //	//			mgr.silentClose(myConn, myStmt, myRs);
 //				DataSource.silentClose(myConn);
 //				DataSource.silentClose(myStmt);
 //				DataSource.silentClose(myRs);
 //			}
-//			
-//	} // end listMyMessages
+//		
+//		} // end searchUsers
+
+	// not fixed yet
+	
 
 	
 	public void save(Messages newMess) {

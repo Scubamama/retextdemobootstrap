@@ -40,6 +40,11 @@ public class AUser {
 		this.userSchool = school;
 	}
 
+	public AUser( ) {
+		
+	}
+	
+	
 	public int getId() {
 		return id;
 	}

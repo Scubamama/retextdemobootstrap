@@ -184,7 +184,7 @@ public class RetextMessagesServlet extends HttpServlet {
 			request.setAttribute("id", id);
 
 			RequestDispatcher dispatcher = 
-					 request.getRequestDispatcher("/WEB-INF/retextDelMessConfirm.jsp");
+					 request.getRequestDispatcher("/WEB-INF/retextConfirmDeleteMess.jsp");
 
 			dispatcher.forward(request, response);
 
@@ -192,7 +192,7 @@ public class RetextMessagesServlet extends HttpServlet {
 		catch (Exception exc) {
 			throw new RuntimeException(exc);
 		}
-	} // end deleteMessage
+	} // end confirmDeleteMessage
 
 
 	private void deleteMessage(HttpServletRequest request, HttpServletResponse response) {

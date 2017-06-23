@@ -82,20 +82,20 @@ public class RetextManagerServlet extends HttpServlet {
 	} // end browseBooks
 	
 	// displays all of the copies of the requested title available at user's school
-	private void displayTitle(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		
-		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
-			
-		List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
-		
-		request.setAttribute("titleList", titleList);
-		
-		RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
-		dispatcher.forward(request, response);
-		
-	}
+//	private void displayTitle(HttpServletRequest request, HttpServletResponse response) 
+//			throws ServletException, IOException {
+//		
+//		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
+//			
+//		List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
+//		
+//		request.setAttribute("titleList", titleList);
+//		
+//		RequestDispatcher dispatcher = 
+//				 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
+//		dispatcher.forward(request, response);
+//		
+//	} // end displayTitle
 
 	
 } // end RetextManagerServlet

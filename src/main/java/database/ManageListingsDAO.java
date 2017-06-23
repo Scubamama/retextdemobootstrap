@@ -8,6 +8,7 @@ import java.util.List;
 
 import database.DataSource;
 import model2.AUser;
+import model2.DisplayUserListings;
 import model2.UserInventory;
 import model2.UserInventoryDisplay;
 
@@ -74,20 +75,22 @@ public class ManageListingsDAO {
 
 			}
 
-		} // end searchUsers
+		} // end searchMyBooks
 
-	public List<UserInventoryDisplay> listMyBooks() throws SQLException {
+	public List<DisplayUserListings> listMyBooks() throws SQLException {
 	//	DatabaseManager mgr = new DatabaseManager();
-		List<UserInventoryDisplay> invList = new ArrayList<UserInventoryDisplay>();
+		List<DisplayUserListings> listingList = new ArrayList<DisplayUserListings>();
 		// String sql = "SELECT * FROM User_Inventory WHERE User_Id = ? AND Book_Id = ?";
 		
-		// this was working in mysql workbench
-		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + 
-						"i.price " + 
+		String isSold = "";
+		String sql = "select i.id, b.isbn, b.title, b.author, b.edition, " + 
+						"i.price, i.condition, i.sold " + 
 						"from retext.book_titles b join retext.user_inventory i " +
 					"where b.id = i.Book_id and i.User_id = ?";
+		System.out.println("In ManageListingsDAO: listMyBooks ");
+		System.out.println("sql: " + sql);
 		
-		int currUserId = 1;
+		int currUserId = 1;  // until sessions are in place
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -101,12 +104,16 @@ public class ManageListingsDAO {
 				myRs = myStmt.executeQuery();
 				
 			// 4. Process the result set - put it into the ArrayList
-				while (myRs.next()) {							
-					invList.add(new UserInventoryDisplay(myRs.getInt("Id"),myRs.getString("Title"), 
+				while (myRs.next()) {	
+					if (myRs.getInt("sold") == 0) isSold = "N";
+					else isSold = "Y";
+					listingList.add(new DisplayUserListings(myRs.getInt("Id"), 
+							myRs.getString("isbn"), myRs.getString("Title"), 
 							myRs.getString("author"), myRs.getString("edition"), 
-							myRs.getString("isbn"), myRs.getDouble("price") ));
+							 myRs.getDouble("price"), myRs.getString("condition"),
+							 isSold, myRs.getInt("i.id")));
 				}
-				return invList;
+				return listingList;
 			} //end try
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
