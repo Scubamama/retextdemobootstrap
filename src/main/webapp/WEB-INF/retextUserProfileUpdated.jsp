@@ -2,7 +2,7 @@
 
 <head>
 
-<title>Retext User Logged In</title>
+<title>Retext Profile Updated</title>
 
 <link type="text/css" rel="stylesheet" href="/retextdemo/css/reTextStyle.css">
 </head>
@@ -13,7 +13,7 @@
 		<div id="container">
 			<div id="wrapper">
 				<h2>ReText</h2>
-				<h3>User Logged In</h3>
+				<h3>Your Profile has been updated</h3>
 				<h3>You are logged in as ${theUser}</h3>
 				<div id="buy-sell">
 					<small>You can buy, sell, and trade text books on campus</small>

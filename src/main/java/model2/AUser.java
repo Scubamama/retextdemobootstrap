@@ -14,6 +14,7 @@ public class AUser {
 	private String userName = "";
 	private String userPassword = "";
 	private int takeCards = 0;
+	private String takeCardsYN = "";
 	private String userSchool = "";
 	
 	public AUser(int id, String email, String name, String password, int cards, String school ) {
@@ -22,6 +23,15 @@ public class AUser {
 		this.userName = name;
 		this.userPassword = password;
 		this.takeCards = cards;
+		this.userSchool = school;
+	}
+	
+	public AUser(int id, String email, String name, String password, String cards, String school ) {
+		this.id = id;
+		this.userEmail = email;
+		this.userName = name;
+		this.userPassword = password;
+		this.takeCardsYN = cards;
 		this.userSchool = school;
 	}
 	
@@ -39,6 +49,16 @@ public class AUser {
 		this.takeCards = cards;
 		this.userSchool = school;
 	}
+
+	public AUser(String email, String name, String password, String cards, String school ) {
+		
+		this.userEmail = email;
+		this.userName = name;
+		this.userPassword = password;
+		this.takeCardsYN = cards;
+		this.userSchool = school;
+	}
+
 
 	public AUser( ) {
 		
@@ -85,6 +105,14 @@ public class AUser {
 		this.takeCards = takeCards;
 	}
 
+	public String getTakeCardsYN() {
+		return takeCardsYN;
+	}
+
+	public void setTakeCardsYN(String takeCardsYN) {
+		this.takeCardsYN = takeCardsYN;
+	}
+	
 	public String getUserSchool() {
 		return userSchool;
 	}

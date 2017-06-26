@@ -112,7 +112,14 @@ public class UsersDAO {
 		// this is just going to update the user name
 		out.println("UPDATING... ");
 		
-		String sql = "UPDATE Users SET UserName=? WHERE id=?";
+		String sql = "UPDATE Users SET Email=?, UserName=?, UserPassword=?, TakeCards=?, school=?"
+				+ " WHERE id=?";
+		
+//		String sql = "INSERT INTO Users "
+//				+ "(Email, UserName, UserPassword, TakeCards, school)"
+//				+ "VALUES (?, ?, ?, ?, ?)";
+//
+		
 	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
@@ -124,8 +131,15 @@ public class UsersDAO {
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql);
 
-				myStmt.setString(1,newU.getUserName());
-				myStmt.setInt(2,newU.getId());
+//				myStmt.setString(1,newU.getUserName());
+//				myStmt.setInt(2,newU.getId());
+				
+				myStmt.setString(1,newU.getUserEmail()); //pulls email from object
+				myStmt.setString(2,newU.getUserName());
+				myStmt.setString(3,newU.getUserPassword());
+				myStmt.setInt(4,newU.getTakeCards());
+				myStmt.setString(5,newU.getUserSchool());
+				myStmt.setInt(6,newU.getId());
 				
 				myStmt.executeUpdate();
 			} //end try

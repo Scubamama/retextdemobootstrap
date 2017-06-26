@@ -39,9 +39,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// this feature is currently unavailable
 		
 //		featureUnavailable(request, response);
-		// code from messages servlet
 		String pathInfo = request.getPathInfo();
-		System.out.println("pathInfo: " + pathInfo);
+	System.out.println("pathInfo: " + pathInfo);
 		
 		if (pathInfo == null || "".equals(pathInfo)) {
 			manageUserInfo(request, response); // 
@@ -49,53 +48,33 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			viewListings(request, response); // 
 		}  else if (pathInfo.equals("/profile")) {
 			viewProfile(request, response); // 
-		}  else if (pathInfo.equals("/updateProfile")) {
-			viewProfile(request, response); // 
+		}  else if (pathInfo.equals("/updateProfileForm")) {
+			updateProfileForm(request, response); // gets the data to update a user
 		}  else if (pathInfo.equals("/deleteProfile")) {
-			confirmDeleteProfile(request, response); // 
+			confirmDeleteProfile(request, response); // asks if they really want to del
 		} 
-	
 		
-		// edit a listing for this user
-//			else if (pathInfo.equals("/editListing")) {
-//				editListing(request, response);
-//		} else if (pathInfo.equals("/deleteListing")) {
-//			//delete a listing for this user
-//			confirmDeleteListing(request, response);
-//		}
-	 		
-		
-	}
+	} // end doGet
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Inside RetextManageUserInfoServlet - doPost.");
-		//send messages
-//		createNewUser(request, response);
 		
-		System.out.println("Inside RetextManageUserInfoServlet - doPost.");
+	System.out.println("Inside RetextManageUserInfoServlet - doPost.");
 		String pathInfo = request.getPathInfo();
-		System.out.println("pathInfo: " + pathInfo);
+	System.out.println("pathInfo: " + pathInfo);
 		
 		if (pathInfo == null || "".equals(pathInfo)) {
-			manageUserInfo(request, response); // 
+			manageUserInfo(request, response); // screen to ask what they want to do
 		} else if (pathInfo.equals("/updateProfile")) {
-			updateProfile(request, response);
+			updateProfile(request, response); // actually updates the db
 			// "delete" the user profile actually archives it
 		} else if (pathInfo.equals("/archiveProfile")) {
 			archiveProfile(request, response);
 		}
-		
-//		else if (pathInfo.equals("/updateProfile")) {
-			//send messages
-//			updateProfile(request, response);
-//		} 
-//			else if (pathInfo.equals("/deleteListingYes")) {
-//			deleteListing(request, response);
-//		}
-	
+			
 	} // end doPost
 
 
@@ -105,22 +84,18 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// calls up the form that the user fills in their data in (retextCreateUser.jsp)
 		System.out.println("\n In RetextManageUserInfoServlet - manageUserInfo");
 
-	//	request.setAttribute("titleList", titleList);
-	//	request.setAttribute("test", test);
 		RequestDispatcher dispatcher = 
 				 request.getRequestDispatcher("/WEB-INF/retextManageUserInfo.jsp");
 		dispatcher.forward(request, response);
 		
 	} // end featureUnavailable()
 	
-	// displays all of the copies of the requested title available at user's school
+	// displays a screen telling user that a feature is not available yet
 	private void featureUnavailable(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// calls up the form that the user fills in their data in (retextCreateUser.jsp)
 		System.out.println("\n In RetextManageUserInfoServlet - featureUnavailable");
 
-	//	request.setAttribute("titleList", titleList);
-	//	request.setAttribute("test", test);
 		RequestDispatcher dispatcher = 
 				 request.getRequestDispatcher("/WEB-INF/retextFeatureUnavailable.jsp");
 		dispatcher.forward(request, response);
@@ -147,9 +122,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 		}
 		catch (Exception exc) {
-	//		e.printStackTrace();
 			throw new RuntimeException(exc);
-
 		}
 
 		finally {}
@@ -182,10 +155,99 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 						
 		} // end viewProfile
 
-	private void updateProfile(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		System.out.println("\n In RetextManageUserInfoServlet - updateProfile");
+	private void updateProfileForm(HttpServletRequest request, HttpServletResponse response) {
+		// gets the data to update a user
+		System.out.println("\n In RetextManageUserInfoServlet - updateProfileForm");
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		String uCard = "";
+//		uCard = request.getParameter("takeCards");
+//	System.out.println(" uCard: " + uCard);
 
+
+	System.out.println("\n id: " + id);
+		try {
+			UsersDAO aUserDAO = new UsersDAO();
+	System.out.println(" got new UsersDAO " );
+//			int card = 0;  // default user does not take cards
+//	System.out.println(" set card = 0 " );
+
+//			if(uCard.equals("y")) card = 1;
+//	System.out.println(" card = " + card);
+
+			AUser thisUser = new AUser();
+			thisUser = aUserDAO.get(id);
+			if (thisUser.getTakeCards() == 0 ) thisUser.setTakeCardsYN("N");
+			else thisUser.setTakeCardsYN("Y");
+//			thisUser = aUserDAO.get(currUserId);
+			// display a page showing the user's current info and let them change it
+			request.setAttribute("thisUser", thisUser);
+			
+			// update the info the user input
+	//		aUserDAO.delete(id); // archives the user
+
+			request.setAttribute("id", id);
+			request.setAttribute("theUser", thisUser);
+			// this screen will display the current info and allow user to change it
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/WEB-INF/retextUpdateUser.jsp");
+
+			dispatcher.forward(request, response);
+
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
+	
+
+		
+	} // end updateProfileForm
+	
+
+	private void updateProfile(HttpServletRequest request, HttpServletResponse response) {
+		//  takes the data from retextUpdateProfileForm and updates this user in the db
+		System.out.println("\n In RetextManageUserInfoServlet - updateProfile");
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		String uCard = request.getParameter("takeCardsYN");
+
+	System.out.println("\n id: " + id);
+		try {
+			UsersDAO aUserDAO = new UsersDAO();
+	//		AUser thisUser = new AUser();
+	//		thisUser = aUserDAO.get(id);
+		System.out.println(" uCard = " + uCard);
+			int card = 0;  // default user does not take cards and the db field is int
+			if(uCard.equals("y") || uCard.equals("Y")) card = 1;
+		System.out.println(" card = " + card);
+
+			AUser newU = new AUser(id, request.getParameter("email"),request.getParameter("userName"),
+					request.getParameter("password"),card,request.getParameter("schoolName"));
+			
+		System.out.println("\n email = " + request.getParameter("email"));
+		System.out.println(" userName = " + request.getParameter("userName"));
+		System.out.println(" schoolName = " + request.getParameter("schoolName"));
+		System.out.println(" card = " + card);
+		System.out.println(" password = " + request.getParameter("password") + "\n ");
+		
+			aUserDAO.save(newU);
+//			aUserDAO.save(thisUser);
+
+			String curUser = request.getParameter("userName");
+			
+	System.out.println("\n curUser: " + curUser);
+
+			request.setAttribute("userId", id);
+			request.setAttribute("theUser", curUser);
+			RequestDispatcher dispatcher = 
+/*fix?*/					 request.getRequestDispatcher("/WEB-INF/retextUserProfileUpdated.jsp");
+
+			dispatcher.forward(request, response);
+
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
 		
 	} // end updateProfile
 
@@ -213,6 +275,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		
 	} // end confirmDeleteProfile
 
+	
 	private void archiveProfile(HttpServletRequest request, HttpServletResponse response) {
 		//  "deletes" this user
 		System.out.println("\n In RetextManageUserInfoServlet - archiveProfile");
@@ -257,7 +320,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		
 		System.out.println(" uCard = " + uCard);
 		int card = 0;  // default user does not take cards
-		if(uCard.equals("y")) card = 1;
+//		if(uCard.equals("y")) card = 1;
 		System.out.println(" card = " + card);
 		AUser newU = new AUser(request.getParameter("email"),request.getParameter("userName"),
 				request.getParameter("password"),card,request.getParameter("schoolName"));

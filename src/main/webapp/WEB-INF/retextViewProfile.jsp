@@ -12,7 +12,7 @@
 
 <body>
 
-  	<form action="<%=request.getContextPath() %>/manageUsers/updateProfile" method=POST>  
+  	<form action="<%=request.getContextPath() %>/manageUsers/updateProfileForm" method=POST>  
 		
 		<div id="container">
 			<h2>ReText</h2>
@@ -45,7 +45,7 @@
 						<td>  ${thisUser.userSchool}</td>
 						
 				<!-- 		<td><a href="${tempLink}">Contact Seller</a></td>  -->
-							<td><a href="<%=request.getContextPath() %>/manageUsers/updateProfile?id=${thisUser.id}">Update</a> </td>
+							<td><a href="<%=request.getContextPath() %>/manageUsers/updateProfileForm?id=${thisUser.id}">Update</a> </td>
 							<td><a href="<%=request.getContextPath() %>/manageUsers/deleteProfile?id=${thisUser.id}">Delete</a> </td>
 					</tr>
 					
