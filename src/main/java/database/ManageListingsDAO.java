@@ -77,7 +77,7 @@ public class ManageListingsDAO {
 
 		} // end searchMyBooks
 
-	public List<DisplayUserListings> listMyBooks() throws SQLException {
+	public List<DisplayUserListings> listMyBooks(int currUserId) throws SQLException {
 	//	DatabaseManager mgr = new DatabaseManager();
 		List<DisplayUserListings> listingList = new ArrayList<DisplayUserListings>();
 		// String sql = "SELECT * FROM User_Inventory WHERE User_Id = ? AND Book_Id = ?";
@@ -90,7 +90,7 @@ public class ManageListingsDAO {
 		System.out.println("In ManageListingsDAO: listMyBooks ");
 		System.out.println("sql: " + sql);
 		
-		int currUserId = 1;  // until sessions are in place
+	//	int currUserId = 1;  // until sessions are in place
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;

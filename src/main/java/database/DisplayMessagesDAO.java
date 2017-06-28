@@ -29,7 +29,7 @@ public class DisplayMessagesDAO {
 
 	// looks at my messages and retrieves them
 	
-	public List<DisplayMessages> listMyMessages()  {
+	public List<DisplayMessages> listMyMessages(int currUserId)  {
 		
 		List<DisplayMessages> myMessageList = new ArrayList<DisplayMessages>();
 
@@ -40,7 +40,7 @@ public class DisplayMessagesDAO {
 				"from retext.messages m join retext.users u " +
 				"where m.senderId = u.Id and m.receiverId = ? ";
 		
-		int currUserId = 1;  // until sessions is in place
+	//	int currUserId = 1;  // until sessions is in place
 		int senderId = 0;
 		int messageId = 0;
 	//	System.out.println("sql: " + sql);

@@ -8,8 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import database.UserInventoryDAO;
+import database.UsersDAO;
+import model2.AUser;
 import model2.DisplayUserInventory;
 
 /**
@@ -48,15 +51,21 @@ public class RetextLoginServlet extends HttpServlet {
 		
 		System.out.println("Inside loginForm.");
 //		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
-		String test = "test 123";
 		
 	//	List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
 		
-	//	request.setAttribute("titleList", titleList);
-		request.setAttribute("test", test);
-		RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
-		dispatcher.forward(request, response);
+		try{
+
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
+			dispatcher.forward(request, response);
+		
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
+
+		
 		
 	} // end loginForm
 
@@ -65,13 +74,41 @@ public class RetextLoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("Inside login.");
+		String warning = "";
 		// gather info from form and create a session for user
 		
-		// display new page 
-		request.setAttribute("theUser",request.getParameter("userName") );
-		RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retextUserLoggedIn.jsp");
-		dispatcher.forward(request, response);
+		String currUserName = request.getParameter("userName");
+		String currUserPassword = request.getParameter("password");
+		UsersDAO aUserDAO = new UsersDAO();
+		int currUserId = 0;
+		try {
+			currUserId = aUserDAO.checkLogin(currUserName,currUserPassword);
+	System.out.println("currUserId: " + currUserId);
+			
+			request.setAttribute("currUserId", currUserId);
+			if (currUserId == 0) { // invalid login go back to login form page
+				warning = "User Name/Password combination is invalid. Please try again.";
+				request.setAttribute("warning", warning);
+				RequestDispatcher dispatcher = 
+						 request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
+				dispatcher.forward(request, response);
+			}
+			else {
+				// set up a session
+				HttpSession session =request.getSession();
+				session.setAttribute("currUserId", currUserId);
+				// display user logged in page 
+				request.setAttribute("theUser",request.getParameter("userName") );
+				RequestDispatcher dispatcher = 
+						 request.getRequestDispatcher("/WEB-INF/retextUserLoggedIn.jsp");
+				dispatcher.forward(request, response);
+			}
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
+
+		
 	} // end login
 	
 } // end class

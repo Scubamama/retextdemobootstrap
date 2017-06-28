@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import database.DisplayMessagesDAO;
 import database.MessagesDAO;
@@ -80,13 +81,18 @@ public class RetextMessagesServlet extends HttpServlet {
 
 //		System.out.println("\n In retextMessagesServlet - list");
 		
-		int userId = 1;  // change later when sessions are in place
+	//	int userId = 1;  // change later when sessions are in place
+		HttpSession session = request.getSession(false);
+		int currUserId = (int)session.getAttribute("currUserId");
+	
+	System.out.println("currUserId: " + currUserId);
+
 		
-		DisplayMessagesDAO disMessDAO = new DisplayMessagesDAO();
+		DisplayMessagesDAO dispMessDAO = new DisplayMessagesDAO();
 		// get all users messages
 		List<DisplayMessages> messageList = null;
 		try {
-			messageList = disMessDAO.listMyMessages();
+			messageList = dispMessDAO.listMyMessages(currUserId);
 		}
 		catch (Exception exc) {
 	//		e.printStackTrace();
@@ -145,7 +151,13 @@ public class RetextMessagesServlet extends HttpServlet {
 		
 	//	int senderId = Integer.parseInt(request.getParameter("senderId"));
 		
-		int senderId = 1;   // for now until login sessions are complete
+//		int senderId = 1;   // for now until login sessions are complete
+		
+		HttpSession session = request.getSession(false);
+		int senderId = (int)session.getAttribute("currUserId");
+	
+	System.out.println("currUserId (here it is senderId): " + senderId);
+
 		
 		int receiverId = Integer.parseInt(request.getParameter("id"));
 
@@ -208,6 +220,7 @@ public class RetextMessagesServlet extends HttpServlet {
 			messDAO.delete(id);
 			request.setAttribute("id", id);
 			list(request, response);
+			
 //			RequestDispatcher dispatcher = 
 //					 request.getRequestDispatcher("/WEB-INF/retextViewMessages.jsp");
 //

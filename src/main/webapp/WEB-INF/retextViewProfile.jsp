@@ -50,7 +50,8 @@
 					</tr>
 					
 			</table>	
-		
+			<h3><a href="<%=request.getContextPath() %>/manageUsers">Return</a> </h3>
+			
 			<div class="copyright">
 				<small>&copy copyright 2017 Holly Williams</small>
 			</div>

@@ -50,6 +50,7 @@ h2 {
 h3 {
 	text-align: center;
 	padding:5px;
+	background-color:#EEEEEE; 
 }
 #tagline {
 	 padding: 20px;
@@ -159,6 +160,13 @@ td#loc_meet{
 	text-align:center;
 	padding: 25px;
 }
+#warning {
+	color: red;
+	padding: 2px;
+	background-color: #EEEEEE; 
+	font-size: 24px;
+}
+
 #copyright {
 	 position: absolute; 
 	 bottom: 3px; 

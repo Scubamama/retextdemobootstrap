@@ -12,7 +12,7 @@
 				<div id="wrapper">
 					<h2>ReText</h2>
 					<h3>Change fields </h3>
-					<input type="hidden" name="id" value="${thisUser.id}"/>
+					<input type="hidden" name="currUserId" value="${thisUser.id}"/>
 					<table id="login_table">
 					
 						<tr><td id="in_field">Email Address: <input name="email"  type="email" value="${thisUser.userEmail}" /> </td></tr>

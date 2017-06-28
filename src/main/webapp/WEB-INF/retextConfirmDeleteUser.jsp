@@ -9,7 +9,7 @@
 
 <body>
 
-	<form method=POST action="/retextdemo/manageUsers/archiveProfile?id=${id}">
+	<form method=POST action="/retextdemo/manageUsers/archiveProfile?id=${currUserId}">
 		<div id="container">
 			<div id="wrapper">
 				<h2>ReText</h2>
@@ -24,7 +24,7 @@
 					<tr><td>Are you sure you want to delete?</td></tr> 
 					<tr><td id="browse-button"><input type="submit" name="submit" value="Delete User" />  </td></tr>
 
-				<input type="hidden" id="id" name="id" value="${id}">  
+				<input type="hidden" id="currUserId" name="currUserId" value="${currUserId}">  
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manageUsers/profile">Cancel</a>  </td></tr>
 					<tr></tr>   
 					

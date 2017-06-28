@@ -50,8 +50,8 @@
 				<td>  ${tempListingsList.sold}</td>
 				
 		<!-- 		<td><a href="${tempLink}">Contact Seller</a></td>  -->
-					<td><a href="<%=request.getContextPath() %>/messages/send?id=${tempListingsList.listingId}">Edit</a> </td>
-					<td><a href="<%=request.getContextPath() %>/messages/delete?id=${tempListingsList.listingId}">Delete</a> </td>
+					<td><a href="<%=request.getContextPath() %>/manageUsers/updateListingForm?id=${tempListingsList.listingId}">Edit</a> </td>
+					<td><a href="<%=request.getContextPath() %>/manageUsers/deleteListing?id=${tempListingsList.listingId}">Delete</a> </td>
 			</tr>
 		</c:forEach>
 	</table>	

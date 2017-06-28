@@ -310,4 +310,43 @@ System.out.println("in dao delete, id: " + id);
 
 	} // end delete
 	
+	
+	public int checkLogin(String uName, String uPassword) throws SQLException {
+		// check the database to see if a user named uName with a password password exists
+		int id = 0;   // will return 0 if id is not found
+		String sql = "SELECT * FROM users where UserName=? and UserPassword=?";
+		
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		Connection myConn = null;
+		
+		try {
+			// 1. Get a connection to the database
+				myConn = ds.getConnection();
+			// 2. Create a statement object
+				myStmt = myConn.prepareStatement(sql);
+				myStmt.setString(1,uName);
+				myStmt.setString(2,uPassword);
+
+				myRs = myStmt.executeQuery();
+	
+				if (myRs.next()) {
+//					AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
+					id = myRs.getInt("Id");
+					return id;
+					
+				} else {
+					return 0;
+				}
+	
+			} //end try
+
+			finally {
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+			}
+
+	} // end checkLogin
+	
 } // end class UsersDAO

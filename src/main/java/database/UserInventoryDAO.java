@@ -44,7 +44,7 @@ public class UserInventoryDAO {
 				"where b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
 		
 		//String sql = "SELECT * FROM Book_Titles where Title LIKE ? ";  from booksdao
-		int currUserId = 1;
+		int currUserId = 1;     // change to sessions if needed
 		
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
@@ -93,7 +93,7 @@ public class UserInventoryDAO {
 						"from retext.book_titles b join retext.user_inventory i " +
 					"where b.id = i.Book_id and i.User_id = ?";
 		
-		int currUserId = 1;
+		int currUserId = 1;   // change to sessions if needed
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
