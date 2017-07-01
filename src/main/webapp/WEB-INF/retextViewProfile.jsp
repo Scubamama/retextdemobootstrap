@@ -47,9 +47,12 @@
 				<!-- 		<td><a href="${tempLink}">Contact Seller</a></td>  -->
 							<td><a href="<%=request.getContextPath() %>/manageUsers/updateProfileForm?id=${thisUser.id}">Update</a> </td>
 							<td><a href="<%=request.getContextPath() %>/manageUsers/deleteProfile?id=${thisUser.id}">Delete</a> </td>
+							
 					</tr>
 					
-			</table>	
+			</table>
+			<h3><a href="<%=request.getContextPath() %>/loginOut/logOut">Logout</a>  </h3>
+				
 			<h3><a href="<%=request.getContextPath() %>/manageUsers">Return</a> </h3>
 			
 			<div class="copyright">

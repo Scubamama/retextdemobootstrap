@@ -17,6 +17,9 @@
 					
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manageUsers/listings">Manage My Listings</a>  </td></tr>					
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manageUsers/profile">Manage My Profile</a>  </td></tr>
+					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/loginOut/actions">More</a>  </td></tr>
+					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/loginOut/logOut">Logout</a>  </td></tr>
+				
 				</table>
 			</div>
 		</div>

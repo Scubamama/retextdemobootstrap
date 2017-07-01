@@ -18,13 +18,13 @@ import model2.DisplayUserInventory;
 /**
  * Servlet implementation class RetextTitleLocatedServlet
  */
-public class RetextLoginServlet extends HttpServlet {
+public class RetextLoginOutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RetextLoginServlet() {
+    public RetextLoginOutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +34,20 @@ public class RetextLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Inside RetextLoginServlet - doGet.");
-		loginForm(request, response);
+		
+		String pathInfo = request.getPathInfo();
+
+		if (pathInfo == null || "".equals(pathInfo)) {
+			loginForm(request, response); // 
+		} else if (pathInfo.equals("/logOut")) {
+			logout(request, response); // 
+		} else if (pathInfo.equals("/actions")) {
+			userActions(request, response); // 
+		}
+		
+//		loginForm(request, response);
+//		logout(request, response);
+
 	}
 
 	/**
@@ -45,6 +58,26 @@ public class RetextLoginServlet extends HttpServlet {
 		login(request, response);
 	}
 
+	// displays all of the copies of the requested title available at user's school
+	private void userActions(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		System.out.println("Inside userActions.");
+		
+		try{
+
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/WEB-INF/retextUserActions.jsp");
+			dispatcher.forward(request, response);
+		
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
+		
+	} // end userActions
+
+	
 	// displays all of the copies of the requested title available at user's school
 	private void loginForm(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -64,8 +97,6 @@ public class RetextLoginServlet extends HttpServlet {
 		catch (Exception exc) {
 			throw new RuntimeException(exc);
 		}
-
-		
 		
 	} // end loginForm
 
@@ -94,7 +125,7 @@ public class RetextLoginServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			else {
-				// set up a session
+				// set up a session to pass the user's db id around
 				HttpSession session =request.getSession();
 				session.setAttribute("currUserId", currUserId);
 				// display user logged in page 
@@ -110,5 +141,24 @@ public class RetextLoginServlet extends HttpServlet {
 
 		
 	} // end login
+	
+
+	private void logout(HttpServletRequest request, HttpServletResponse response) {
+		// log the user out and invalidate the session
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		try {
+	//		request.setAttribute("theUser",request.getParameter("userName") );
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/WEB-INF/retextUserLoggedOut.jsp");
+			dispatcher.forward(request, response);
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
+	}// end logout
+
+	
 	
 } // end class

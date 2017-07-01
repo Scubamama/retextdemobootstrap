@@ -15,9 +15,6 @@
 <div id="container">
 	<h2>ReText</h2>
 	
-	<%List<DisplayUserInventory> disp =(List<DisplayUserInventory>) request.getAttribute("titleList");%>
-
-	
 	
 	<table id="located_table">
 	<!--	<tr><td >  Title Located:  ${title} </td></tr>  -->
@@ -37,7 +34,7 @@
 		<!--  -->
 			<c:url var="tempLink" value="RetextManageUserInfoServlet"> 
 				<c:param name="command" value="viewMessages" />
-				<c:param name="senderId" value="${tempListingsList.listingId}" />
+				<c:param name="listingId" value="${tempListingsList.listingId}" />
 			</c:url>
 						
 			<tr>
@@ -50,11 +47,13 @@
 				<td>  ${tempListingsList.sold}</td>
 				
 		<!-- 		<td><a href="${tempLink}">Contact Seller</a></td>  -->
-					<td><a href="<%=request.getContextPath() %>/manageUsers/updateListingForm?id=${tempListingsList.listingId}">Edit</a> </td>
-					<td><a href="<%=request.getContextPath() %>/manageUsers/deleteListing?id=${tempListingsList.listingId}">Delete</a> </td>
+					<td><a href="<%=request.getContextPath() %>/manageUsers/updateListingForm?listingId=${tempListingsList.listingId}">Edit</a> </td>
+					<td><a href="<%=request.getContextPath() %>/manageUsers/deleteListingConfirm?listingId=${tempListingsList.listingId}">Delete</a> </td>
 			</tr>
 		</c:forEach>
 	</table>	
+
+	<h3><a href="<%=request.getContextPath() %>/loginOut/actions">More</a>  </h3>
 
 	<div class="copyright">
 		<small>&copy copyright 2017 Holly Williams</small>

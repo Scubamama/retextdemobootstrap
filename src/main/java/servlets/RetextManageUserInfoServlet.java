@@ -37,9 +37,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Inside RetextManageUserInfoServlet - doGet.");
-		// this feature is currently unavailable
-		
-//		featureUnavailable(request, response);
+
 		String pathInfo = request.getPathInfo();
 	System.out.println("pathInfo: " + pathInfo);
 		HttpSession session = request.getSession(false);
@@ -47,7 +45,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	
 	System.out.println("currUserId: " + currUserId);
 
-	
 		if (pathInfo == null || "".equals(pathInfo)) {
 			manageUserInfo(request, response); // 
 		} else if (pathInfo.equals("/listings")) {
@@ -58,6 +55,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			updateProfileForm(request, response); // gets the data to update a user
 		}  else if (pathInfo.equals("/deleteProfile")) {
 			confirmDeleteProfile(request, response); // asks if they really want to del
+		}  else if (pathInfo.equals("/updateListingForm")) {
+			updateListingForm(request, response); // gets the data to update a user
+		}  else if (pathInfo.equals("/deleteListingConfirm")) {
+			confirmDeleteListing(request, response); // asks if they really want to del
 		} 
 		
 	} // end doGet
@@ -79,6 +80,11 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			// "delete" the user profile actually archives it
 		} else if (pathInfo.equals("/archiveProfile")) {
 			archiveProfile(request, response);
+		} else if (pathInfo.equals("/updateListing")) {
+			updateListing(request, response); // actually updates the db
+			// "delete" the user profile actually archives it
+		} else if (pathInfo.equals("/deleteListing")) {
+			deleteListing(request, response);
 		}
 			
 	} // end doPost
@@ -118,7 +124,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		int currUserId = (int)session.getAttribute("currUserId");
 	
 	System.out.println("currUserId: " + currUserId);
-
 		
 		ManageListingsDAO dispListingsDAO = new ManageListingsDAO();
 		// get all users messages
@@ -357,6 +362,200 @@ System.out.println("currUserId: " + currUserId);
 
 		
 	} // end archiveProfile
+
+
+	private void updateListingForm(HttpServletRequest request, HttpServletResponse response) {
+		// gets the data to update a user
+		System.out.println("\n In RetextManageUserInfoServlet - updateProfileForm");
+		
+	//	int id = Integer.parseInt(request.getParameter("id")); // is the user's id
+		
+		HttpSession session = request.getSession(false);
+		int currUserId = (int)session.getAttribute("currUserId");
+	
+	System.out.println("currUserId: " + currUserId);
+
+		String uCard = "";
+//		uCard = request.getParameter("takeCards");
+//	System.out.println(" uCard: " + uCard);
+
+
+//	System.out.println("\n id: " + id);
+		try {
+			UsersDAO aUserDAO = new UsersDAO();
+	System.out.println(" got new UsersDAO " );
+//			int card = 0;  // default user does not take cards
+//	System.out.println(" set card = 0 " );
+
+//			if(uCard.equals("y")) card = 1;
+//	System.out.println(" card = " + card);
+
+			AUser thisUser = new AUser();
+//			thisUser = aUserDAO.get(id);
+			thisUser = aUserDAO.get(currUserId);
+
+			if (thisUser.getTakeCards() == 0 ) thisUser.setTakeCardsYN("N");
+			else thisUser.setTakeCardsYN("Y");
+//			thisUser = aUserDAO.get(currUserId);
+			// display a page showing the user's current info and let them change it
+			request.setAttribute("thisUser", thisUser);
+			
+			// update the info the user input
+	//		aUserDAO.delete(id); // archives the user
+
+			request.setAttribute("currUserId", currUserId);
+			request.setAttribute("theUser", thisUser);
+			// this screen will display the current info and allow user to change it
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/WEB-INF/retextUpdateUser.jsp");
+
+			dispatcher.forward(request, response);
+
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
+	
+	} // end updateListingForm
+
+
+	private void updateListing(HttpServletRequest request, HttpServletResponse response) {
+		//  takes the data from retextUpdateProfileForm and updates this user in the db
+		System.out.println("\n In RetextManageUserInfoServlet - updateProfile");
+		
+//		int id = Integer.parseInt(request.getParameter("id"));
+			
+		HttpSession session = request.getSession(false);
+		int currUserId = (int)session.getAttribute("currUserId");
+	
+	System.out.println("currUserId: " + currUserId);
+
+//		int id = Integer.parseInt(request.getParameter("id"));
+
+		String uCard = request.getParameter("takeCardsYN");
+
+//	System.out.println("\n id: " + id);
+		try {
+			UsersDAO aUserDAO = new UsersDAO();
+	//		AUser thisUser = new AUser();
+	//		thisUser = aUserDAO.get(id);
+		System.out.println(" uCard = " + uCard);
+			int card = 0;  // default user does not take cards and the db field is int
+			if(uCard.equals("y") || uCard.equals("Y")) card = 1;
+		System.out.println(" card = " + card);
+
+			AUser newU = new AUser(currUserId, request.getParameter("email"),request.getParameter("userName"),
+					request.getParameter("password"),card,request.getParameter("schoolName"));
+			
+		System.out.println("\n email = " + request.getParameter("email"));
+		System.out.println(" userName = " + request.getParameter("userName"));
+		System.out.println(" schoolName = " + request.getParameter("schoolName"));
+		System.out.println(" card = " + card);
+		System.out.println(" password = " + request.getParameter("password") + "\n ");
+		
+			aUserDAO.save(newU);
+//			aUserDAO.save(thisUser);
+
+			String curUser = request.getParameter("userName");
+			
+	System.out.println("\n curUser: " + curUser);
+			
+			viewProfile(request, response);
+		
+//			request.setAttribute("userId", id);
+//			request.setAttribute("theUser", curUser);
+//			RequestDispatcher dispatcher = 
+//					 request.getRequestDispatcher("/WEB-INF/retextUserProfileUpdated.jsp");
+//
+//			dispatcher.forward(request, response);
+
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
+		
+	} // end updateListing
+
+	
+	private void confirmDeleteListing(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		System.out.println("\n In RetextManageUserInfoServlet - confirmDeleteProfile");
+		
+			int listingId = Integer.parseInt(request.getParameter("listingId"));
+		
+	HttpSession session = request.getSession(false);
+	int currUserId = (int)session.getAttribute("currUserId");
+
+System.out.println("currUserId: " + currUserId);
+
+System.out.println("listingId: " + listingId);
+//		System.out.println("\n id: " + id);
+			UsersDAO aUserDAO = new UsersDAO();
+			AUser thisUser = new AUser();
+
+			try {
+				request.setAttribute("currUserId", currUserId);
+				request.setAttribute("listingId", listingId);
+
+				RequestDispatcher dispatcher = 
+						 request.getRequestDispatcher("/WEB-INF/retextConfirmDeleteListing.jsp");
+
+				dispatcher.forward(request, response);
+
+			} //end try
+			catch (Exception exc) {
+				throw new RuntimeException(exc);
+			}
+		
+	} // end confirmDeleteListing
+
+	
+	private void deleteListing(HttpServletRequest request, HttpServletResponse response) {
+		//  "deletes" this user
+		System.out.println("\n In RetextManageUserInfoServlet - archiveProfile");
+		// this is the id of the listing in the user_inventory table
+		int listingId = Integer.parseInt(request.getParameter("listingId"));
+		
+//	System.out.println("\n id: " + id);
+	
+//		HttpSession session = request.getSession(false);
+//		int currUserId = (int)session.getAttribute("currUserId");
+		
+//System.out.println("currUserId: " + currUserId);
+	
+		try {
+			ManageListingsDAO listingsDAO = new ManageListingsDAO();
+			// delete this listing
+			listingsDAO.deleteListing(listingId);   // delete it from the db
+			// show the user the list again
+			viewListings(request, response);
+			
+//			UsersDAO aUserDAO = new UsersDAO();
+//			AUser thisUser = new AUser();
+//			thisUser = aUserDAO.get(currUserId);
+			
+//			thisListing = listingsDAO.get(listingId);
+			// set the archive field to true
+//			aUserDAO.delete(currUserId); // archives the user
+//			String curUser = thisUser.getUserName();
+//	System.out.println("\n curUser: " + curUser);
+
+//			request.setAttribute("currUserId", currUserId);
+//			request.setAttribute("theUser", curUser);
+//			RequestDispatcher dispatcher = 
+//					 request.getRequestDispatcher("/WEB-INF/retextListingDeleted.jsp");
+//
+//			dispatcher.forward(request, response);
+
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
+	
+
+		
+	} // end deleteListing
+
 
 	
 //	private void createNewUser(HttpServletRequest request, HttpServletResponse response) {

@@ -8,7 +8,7 @@
 
 <body>
 <!-- 	<form action="WEB-INF/retextUserLoggedIn.jsp" method=POST> -->	
-  	<form action="<%=request.getContextPath() %>/login/save" method=POST>  
+  	<form action="<%=request.getContextPath() %>/loginOut/save" method=POST>  
 	
 		<div id="container">
 			<div id="wrapper">
@@ -22,7 +22,7 @@
 					
 					<tr><td id="cntr">Password: <input type="password" name="password" placeholder="Password"/> </td></tr>
 					
-			<!-- 		<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/login">Login</a> </td></tr>   -->
+			<!-- 		<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/loginOut">Login</a> </td></tr>   -->
 					
 					<tr><td id="browse-button"><input type="submit" name="Login" value="Log Me In" /></td></tr>
 					

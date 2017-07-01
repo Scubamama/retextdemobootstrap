@@ -265,9 +265,9 @@ public class ManageListingsDAO {
 
 	} // end get()
 	
-	public void delete(Integer currUserId, Integer bookId) throws SQLException {
+	public void deleteListing(Integer listingId) throws SQLException {
 		
-	String sql = "DELETE FROM User_Inventory WHERE User_Id=? AND Book_Id=?";
+	String sql = "DELETE FROM User_Inventory WHERE Id=?";
 	
 //	DatabaseManager mgr = new DatabaseManager();
 	PreparedStatement myStmt = null;
@@ -279,8 +279,7 @@ public class ManageListingsDAO {
 			myConn = ds.getConnection();
 		// 2. Create a statement object
 			myStmt = myConn.prepareStatement(sql);
-			myStmt.setInt(1, currUserId);
-			myStmt.setInt(2, bookId);
+			myStmt.setInt(1, listingId);
 			
 			myStmt.executeUpdate();
 

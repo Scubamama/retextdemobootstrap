@@ -30,7 +30,10 @@
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/messages/view?id=${currUserId}">Read Messages</a>  </td></tr>
 					<tr></tr>
 					<tr><td>Manage Your Listings and Profile</td></tr> 
-					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manageUsers">Manage My Info</a>  </td></tr>
+					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manageUsers">Manage User Info</a>  </td></tr>
+					<tr></tr>
+					<tr><td>Log Out</td></tr> 					
+					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/loginOut/logOut">Logout</a>  </td></tr>
 					<tr></tr>
 					
 				</table>

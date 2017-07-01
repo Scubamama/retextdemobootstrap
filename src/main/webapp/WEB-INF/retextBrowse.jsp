@@ -28,7 +28,7 @@
 					
 					<tr></tr>   
 					
-					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/login">Login</a>  </td></tr>
+					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/loginOut">Login</a>  </td></tr>
 					<tr></tr>
 				</table>
 

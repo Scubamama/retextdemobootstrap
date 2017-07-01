@@ -17,7 +17,7 @@
   </servlet>
   <servlet>
   	<servlet-name>RetextLoginServlet</servlet-name>
-  	<servlet-class>servlets.RetextLoginServlet</servlet-class>
+  	<servlet-class>servlets.RetextLoginOutServlet</servlet-class>
   </servlet>
    <servlet>
   	<servlet-name>RetextCreateUserServlet</servlet-name>
@@ -42,7 +42,7 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>RetextLoginServlet</servlet-name>
-  	<url-pattern>/login/*</url-pattern>
+  	<url-pattern>/loginOut/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>RetextCreateUserServlet</servlet-name>

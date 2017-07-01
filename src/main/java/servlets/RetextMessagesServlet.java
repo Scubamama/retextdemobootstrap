@@ -153,11 +153,14 @@ public class RetextMessagesServlet extends HttpServlet {
 		
 //		int senderId = 1;   // for now until login sessions are complete
 		
+		// if user is not logged in make them do it now
+		
 		HttpSession session = request.getSession(false);
+		if (session == null) {}
+		
 		int senderId = (int)session.getAttribute("currUserId");
 	
 	System.out.println("currUserId (here it is senderId): " + senderId);
-
 		
 		int receiverId = Integer.parseInt(request.getParameter("id"));
 
