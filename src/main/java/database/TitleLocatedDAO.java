@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.DataSource;
+import model2.BookTitles;
 import model2.TitleLocated;
 import model2.UserInventory;
 import model2.UserInventoryDisplay;
@@ -290,9 +291,9 @@ public class TitleLocatedDAO {
 	} // end insert()
 
 	
-	public UserInventory get(Integer id) throws SQLException {
+	public BookTitles get(Integer id) throws SQLException {
 		
-	String sql = "SELECT * FROM user_inventory where id=?";
+	String sql = "SELECT * FROM book_titles where id=?";
 	
 //	DatabaseManager mgr = new DatabaseManager();
 	PreparedStatement myStmt = null;
@@ -308,11 +309,12 @@ public class TitleLocatedDAO {
 			myRs = myStmt.executeQuery();
 			if (myRs.next()) {
 			//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
-				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
-						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
-						myRs.getDouble("price"), myRs.getInt("Sold") );
+			
+				BookTitles book = new BookTitles(myRs.getInt("Id"), 
+						myRs.getString("title"), myRs.getString("author"), 
+						myRs.getString("edition"), myRs.getString("isbn") );
 				
-				return inv;
+				return book;
 				
 			} else {
 				return null;
@@ -370,6 +372,43 @@ public class TitleLocatedDAO {
 
 	} // end getTitle()
 		
+	
+	public int getId(String isbn) throws SQLException {
+		
+	String sql = "SELECT id FROM book_titles where isbn=?";
+	
+	PreparedStatement myStmt = null;
+	ResultSet myRs = null;
+	Connection myConn = null;
+	
+	try {
+		// 1. Get a connection to the database
+			myConn = ds.getConnection();
+		// 2. Create a statement object
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1,isbn);
+			myRs = myStmt.executeQuery();
+			if (myRs.next()) {
+			
+//				BookTitles book = new BookTitles(myRs.getInt("Id"), 
+//						myRs.getString("title"), myRs.getString("author"), 
+//						myRs.getString("edition"), myRs.getString("isbn") );
+				
+				return myRs.getInt("Id");
+				
+			} else {  // this isbn is not found
+				return 0;
+			}
+
+		} //end try
+		finally {
+	//		mgr.silentClose(myConn, myStmt, myRs);
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
+
+	} // end getIsbn()
 
 	public void delete(Integer currUserId, Integer bookId) throws SQLException {
 		

@@ -258,7 +258,45 @@ public class UserInventoryDAO {
 			//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
 				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
 						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
-						myRs.getDouble("price"), myRs.getInt("Sold") );
+						myRs.getDouble("price"), myRs.getString("condition"), myRs.getInt("Sold") );
+				
+				return inv;
+				
+			} else {
+				return null;
+			}
+
+		} //end try
+		finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
+
+	} // end get(id)
+	
+
+	public UserInventory get(String isbn) throws SQLException {
+		
+	String sql = "SELECT * FROM user_inventory where isbn=?";
+	
+//	DatabaseManager mgr = new DatabaseManager();
+	PreparedStatement myStmt = null;
+	ResultSet myRs = null;
+	Connection myConn = null;
+	
+	try {
+		// 1. Get a connection to the database
+			myConn = ds.getConnection();
+		// 2. Create a statement object
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1,isbn);
+			myRs = myStmt.executeQuery();
+			if (myRs.next()) {
+			//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
+				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
+						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
+						myRs.getDouble("price"), myRs.getString("condition"), myRs.getInt("Sold") );
 				
 				return inv;
 				
@@ -274,8 +312,9 @@ public class UserInventoryDAO {
 			DataSource.silentClose(myRs);
 		}
 
-	} // end get()
+	} // end get(isbn)
 	
+
 
 	public void delete(Integer currUserId, Integer bookId) throws SQLException {
 		

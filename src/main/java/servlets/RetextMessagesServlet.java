@@ -184,7 +184,7 @@ public class RetextMessagesServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		} catch (Exception e) {}
 		finally {}
-	} // end createNewUser()
+	} // end createNewMessage()
 	
 
 	private void confirmDeleteMessage(HttpServletRequest request, HttpServletResponse response) {

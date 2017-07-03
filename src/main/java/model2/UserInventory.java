@@ -41,6 +41,14 @@ public class UserInventory {
 		this.price = price;
 		this.sold = sold;
 	}
+
+	public UserInventory(int userId, int bookId, double price, String condition) {
+		this.userId = userId;
+		this.bookId = bookId;
+		this.price = price;
+		this.condition = condition;
+	}
+	
 	public UserInventory(int id, int userId, int bookId) {
 	//	super();
 		this.id = id;

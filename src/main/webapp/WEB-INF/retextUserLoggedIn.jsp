@@ -27,7 +27,7 @@
 					
 					<tr></tr>   
 					<tr><td>Read Your Messages</td></tr> 
-					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/messages/view?id=${currUserId}">Read Messages</a>  </td></tr>
+					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/messages/view?id=${currUserId}">Read My Messages</a>  </td></tr>
 					<tr></tr>
 					<tr><td>Manage Your Listings and Profile</td></tr> 
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manageUsers">Manage My Info</a>  </td></tr>

@@ -53,6 +53,8 @@
 		</c:forEach>
 	</table>	
 
+	<h3><a href="<%=request.getContextPath() %>/manageUsers/addListingForm">Add a Listing</a>  </h3>
+
 	<h3><a href="<%=request.getContextPath() %>/loginOut/actions">More</a>  </h3>
 
 	<div class="copyright">

@@ -46,6 +46,8 @@
 		</c:forEach>
 	</table>	
 
+	<h3><a href="<%=request.getContextPath() %>/loginOut/actions">More</a>  </h3>
+
 	<div class="copyright">
 		<small>&copy copyright 2017 Holly Williams</small>
 	</div>
