@@ -84,7 +84,7 @@ public class ManageListingsDAO {
 		
 		String isSold = "";
 		String sql = "select i.id, b.isbn, b.title, b.author, b.edition, " + 
-						"i.price, i.condition, i.sold " + 
+						"i.price, i.bookCondition, i.sold " + 
 						"from retext.book_titles b join retext.user_inventory i " +
 					"where b.id = i.Book_id and i.User_id = ?";
 		System.out.println("In ManageListingsDAO: listMyBooks ");
@@ -110,7 +110,7 @@ public class ManageListingsDAO {
 					listingList.add(new DisplayUserListings(myRs.getInt("Id"), 
 							myRs.getString("isbn"), myRs.getString("Title"), 
 							myRs.getString("author"), myRs.getString("edition"), 
-							 myRs.getDouble("price"), myRs.getString("condition"),
+							 myRs.getDouble("price"), myRs.getString("bookCondition"),
 							 isSold, myRs.getInt("i.id")));
 				}
 				return listingList;

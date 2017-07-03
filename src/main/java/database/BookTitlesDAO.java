@@ -100,10 +100,6 @@ public class BookTitlesDAO {
 		// save a user if one like this does not exist 
 		// otherwise update it
 		
-	//	insert(newU);   // for testing 
-	//	update(newU);   // for testing
-		
-		//out.println("in save book.getId() =  " + book.getId());
 		if(book.getId() == 0){
 			out.println("INSERTING... ");
 			insert(book);
@@ -171,7 +167,7 @@ public class BookTitlesDAO {
 				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-				myStmt.setString(1,book.getTitle()); //pulls email from object
+				myStmt.setString(1,book.getTitle()); //pulls info from object
 				myStmt.setString(2,book.getAuthor());
 				myStmt.setString(3,book.getEdition());
 				myStmt.setString(4,book.getIsbn());

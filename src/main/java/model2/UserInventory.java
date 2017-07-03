@@ -14,7 +14,7 @@ public class UserInventory {
 	private int userId = 0;
 	private int bookId = 0;
 	private double price = 0.0;
-	private String condition = "";
+	private String bookCondition = "";
 
 	private int sold  = 0;
 	
@@ -29,7 +29,7 @@ public class UserInventory {
 	//	this.userId = userId;
 	//	this.bookId = bookId;
 		this.price = price;
-		this.condition = condition;
+		this.bookCondition = condition;
 		this.sold = sold;
 	}
 
@@ -46,7 +46,7 @@ public class UserInventory {
 		this.userId = userId;
 		this.bookId = bookId;
 		this.price = price;
-		this.condition = condition;
+		this.bookCondition = condition;
 	}
 	
 	public UserInventory(int id, int userId, int bookId) {
@@ -104,11 +104,11 @@ public class UserInventory {
 	}
 
 	public String getCondition() {
-		return condition;
+		return bookCondition;
 	}
 
 	public void setCondition(String condition) {
-		this.condition = condition;
+		this.bookCondition = condition;
 	}
 	public int getSold() {
 		return sold;

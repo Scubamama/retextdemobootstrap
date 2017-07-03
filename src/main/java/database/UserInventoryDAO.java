@@ -197,10 +197,14 @@ public class UserInventoryDAO {
 		out.println("INSERTING New User book... ");
 		
 		String sql = "INSERT INTO User_Inventory "
-				+ "(User_Id, Book_Id, Price, Sold)"
-				+ "VALUES (?, ?, ?, ?)";
-		
-	//	DatabaseManager mgr = new DatabaseManager();
+				+ "(User_Id, Book_Id, Price, Sold, bookCondition) "
+				+ "VALUES (?, ?, ?, ?, ?)";
+//	String sql = "UPDATE Book_titles SET Title=?, Author=?, Edition=?,Isbn=? WHERE id=?";
+
+	System.out.println("sql: " + sql);
+	System.out.println("condition: " + inv.getCondition());
+
+	
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -210,10 +214,12 @@ public class UserInventoryDAO {
 				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-				myStmt.setInt(1,inv.getUserId()); //pulls email from object
+				myStmt.setInt(1,inv.getUserId()); //pulls data from object
 				myStmt.setInt(2,inv.getBookId());
 				myStmt.setDouble(3,inv.getPrice());
 				myStmt.setInt(4,inv.getSold());
+				myStmt.setString(5,inv.getCondition());
+
 				
 				myStmt.executeUpdate();
 
@@ -258,7 +264,7 @@ public class UserInventoryDAO {
 			//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
 				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
 						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
-						myRs.getDouble("price"), myRs.getString("condition"), myRs.getInt("Sold") );
+						myRs.getDouble("price"), myRs.getString("bookCondition"), myRs.getInt("Sold") );
 				
 				return inv;
 				
@@ -296,7 +302,7 @@ public class UserInventoryDAO {
 			//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
 				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
 						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
-						myRs.getDouble("price"), myRs.getString("condition"), myRs.getInt("Sold") );
+						myRs.getDouble("price"), myRs.getString("bookCondition"), myRs.getInt("Sold") );
 				
 				return inv;
 				

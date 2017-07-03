@@ -75,7 +75,7 @@ public class TitleLocatedDAO {
 	//			else System.out.println("myRs is not null");
 				while (myRs.next()) {					
 					myBookList.add(new TitleLocated(myRs.getInt("Id"),myRs.getString("Isbn"), 
-							myRs.getDouble("price"), myRs.getString("condition"), 
+							myRs.getDouble("price"), myRs.getString("bookCondition"), 
 							myRs.getString("userName") ));
 				}
 				return myBookList;

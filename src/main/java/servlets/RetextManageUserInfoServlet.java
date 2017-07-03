@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import database.BookTitlesDAO;
 import database.DisplayMessagesDAO;
 import database.ManageListingsDAO;
 import database.MessagesDAO;
@@ -93,6 +94,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			deleteListing(request, response);
 		} else if (pathInfo.equals("/addListing")) {
 			addListing(request, response);
+		} else if (pathInfo.equals("/addTitle")) {
+			addTitle(request, response);
+		} else if (pathInfo.equals("/gatherListingInfo")) {
+			gatherListingInfo(request, response);
 		}
 			
 	} // end doPost
@@ -565,27 +570,26 @@ System.out.println("listingId: " + listingId);
 		// gets the data to update a user
 		System.out.println("\n In RetextManageUserInfoServlet - gatherListingInfo");
 		
-	//	int id = Integer.parseInt(request.getParameter("id")); // is the user's id
-		
+	//	int id = Integer.parseInt(request.getParameter("id"));
+		String isbn = request.getParameter("isbn");
+		String condition = request.getParameter("condition");
+
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
+		if (isbn == null) isbn = "";
+		if (condition == null) condition = "";
+
 	System.out.println("currUserId: " + currUserId);
 
 		String uCard = "";
 
 //	System.out.println("\n id: " + id);
 		try {
-//			UsersDAO aUserDAO = new UsersDAO();
-//	System.out.println(" got new UsersDAO " );
 
-			// display a page allowing the user to enter info for a new listing
-//			request.setAttribute("thisUser", thisUser);
-			
-			// update the info the user input
-	//		aUserDAO.delete(id); // archives the user
+			request.setAttribute("isbn", isbn);
+			request.setAttribute("condition", condition);
 
-//			request.setAttribute("currUserId", currUserId);
 //			request.setAttribute("theUser", thisUser);
 			// this screen will display the current info and allow user to change it
 			RequestDispatcher dispatcher = 
@@ -632,7 +636,7 @@ System.out.println(" price = " + request.getParameter("price") + "\n ");
 				// add a user_inventory row from user_id, book_id, price, and condition
 	
 				UserInventory thisUserInv =  new UserInventory(currUserId, bookId, price, condition);
-		System.out.println(" thisUserInv created " );
+		System.out.println(" thisUserInv created condition:" + thisUserInv.getCondition());
 			
 				userInventoryDAO.save(thisUserInv);  // put this in the db	
 		System.out.println(" after save " );
@@ -640,14 +644,16 @@ System.out.println(" price = " + request.getParameter("price") + "\n ");
 				viewListings(request, response);
 			}
 			else {  // that book title is not in our system and we need to add it
+				request.setAttribute("condition", condition);
+				request.setAttribute("price", price);
+				request.setAttribute("isbn", isbn);
+
+				RequestDispatcher dispatcher = 
+						 request.getRequestDispatcher("/WEB-INF/retextAddTitle.jsp");
+
+				dispatcher.forward(request, response);
 				
 			}
-//			request.setAttribute("userId", id);
-//			request.setAttribute("theUser", curUser);
-//			RequestDispatcher dispatcher = 
-//					 request.getRequestDispatcher("/WEB-INF/retextUserProfileUpdated.jsp");
-//
-//			dispatcher.forward(request, response);
 
 		} //end try
 		catch (Exception exc) {
@@ -656,6 +662,61 @@ System.out.println(" price = " + request.getParameter("price") + "\n ");
 		
 	} // end addListing
 
+
+	private void addTitle(HttpServletRequest request, HttpServletResponse response) {
+		//  takes the data from retextUpdateProfileForm and updates this user in the db
+		System.out.println("\n In RetextManageUserInfoServlet - addTitle");
+		
+//		int id = Integer.parseInt(request.getParameter("id"));
+			
+		HttpSession session = request.getSession(false);
+		int currUserId = (int)session.getAttribute("currUserId");
+		String isbn = request.getParameter("isbn");
+		double price = Double.parseDouble(request.getParameter("price"));
+		String condition = request.getParameter("condition");
+		
+	System.out.println("currUserId: " + currUserId);
+
+		try {
+	//		public BookTitles(String title, String author, String edition, String isbn) {
+
+			BookTitlesDAO titleDAO = new BookTitlesDAO();
+
+			BookTitles newTitle = new BookTitles(request.getParameter("title"),request.getParameter("author"),
+					request.getParameter("edition"),request.getParameter("isbn"));
+			
+		System.out.println("\n title = " + request.getParameter("title"));
+		System.out.println(" author = " + request.getParameter("author"));
+		System.out.println(" edition = " + request.getParameter("edition"));
+		System.out.println(" isbn = " + request.getParameter("isbn") + "\n ");
+		
+			titleDAO.save(newTitle);
+//			aUserDAO.save(thisUser);
+
+			String curUser = request.getParameter("userName");
+			
+	System.out.println("\n curUser: " + curUser);
+			
+//			viewListings(request, response);
+	
+		// go back to gather listing info page with isbn, price, and condition
+	
+			request.setAttribute("isbn", isbn);
+			request.setAttribute("price", price);
+			request.setAttribute("condition", condition);
+
+//			request.setAttribute("theUser", curUser);
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/WEB-INF/retextGatherListingInfo.jsp");
+
+			dispatcher.forward(request, response);
+
+		} //end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		}
+		
+	} // end addTitle
 
 	
 //	private void createNewUser(HttpServletRequest request, HttpServletResponse response) {
