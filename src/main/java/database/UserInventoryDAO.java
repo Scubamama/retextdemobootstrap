@@ -124,7 +124,9 @@ public class UserInventoryDAO {
 		//	return invList;
 			} //end try
 			catch (SQLException e){
-				e.printStackTrace();
+//				e.printStackTrace();
+				throw new RuntimeException(e);
+
 			}
 			finally {
 			//	mgr.silentClose(myConn, myStmt, myRs);
@@ -158,7 +160,7 @@ public class UserInventoryDAO {
 	
 	private void update (UserInventory inv) {
 		// this is going to update price and sold
-		out.println("UPDATING New User book... ");
+		out.println("UPDATING User book... ");
 		
 		String sql = "UPDATE User_Inventory SET Price=?,Sold=? WHERE id=?";
 
@@ -180,7 +182,9 @@ public class UserInventoryDAO {
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
@@ -343,8 +347,9 @@ public class UserInventoryDAO {
 
 		} //end try
 		catch (Exception exc) {
-			exc.printStackTrace();
-			
+//			exc.printStackTrace();
+			throw new RuntimeException(exc);
+
 		}
 		finally {
 	//		mgr.silentClose(myConn, myStmt, myRs);

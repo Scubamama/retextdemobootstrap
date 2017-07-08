@@ -66,7 +66,7 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 //			System.out.println("title = " + title);
 		}
 		catch (Exception e) {
-			
+			throw new RuntimeException(e);
 		}
 		if (titleList == null) {System.out.println("after titleDAO null list " );}
 		request.setAttribute("titleList", titleList);

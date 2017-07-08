@@ -140,9 +140,9 @@ public class ManageListingsDAO {
 	
 	private void update (UserInventory inv) {
 		// this is going to update price and sold
-		out.println("UPDATING New User book... ");
-		
-		String sql = "UPDATE User_Inventory SET Price=?,Sold=? WHERE id=?";
+		out.println("UPDATING User book... ");
+
+		String sql = "UPDATE User_Inventory SET Price=?,Sold=?, bookCondition=? WHERE id=?";
 
 	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
@@ -157,12 +157,16 @@ public class ManageListingsDAO {
 
 				myStmt.setDouble(1,inv.getPrice());
 				myStmt.setInt(2,inv.getSold());
-				myStmt.setInt(3,inv.getId());
+				myStmt.setString(3,inv.getCondition());
+				
+				myStmt.setInt(4,inv.getId());
 				
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
@@ -212,8 +216,9 @@ public class ManageListingsDAO {
 
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
-				
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
@@ -225,45 +230,84 @@ public class ManageListingsDAO {
 
 	} // end insert()
 
-	
+
 	public UserInventory get(Integer id) throws SQLException {
 		
-	String sql = "SELECT * FROM user_inventory where id=?";
+		String sql = "SELECT * FROM user_inventory where id=?";
+		
+	//	DatabaseManager mgr = new DatabaseManager();
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		Connection myConn = null;
+		
+		try {
+			// 1. Get a connection to the database
+				myConn = ds.getConnection();
+			// 2. Create a statement object
+				myStmt = myConn.prepareStatement(sql);
+				myStmt.setInt(1,id);
+				myRs = myStmt.executeQuery();
+				if (myRs.next()) {
+				//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
+					UserInventory inv = new UserInventory(myRs.getInt("Id"), 
+							myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
+							myRs.getDouble("price"), myRs.getString("bookCondition"), myRs.getInt("Sold") );
+					
+					return inv;
+					
+				} else {
+					return null;
+				}
 	
-//	DatabaseManager mgr = new DatabaseManager();
-	PreparedStatement myStmt = null;
-	ResultSet myRs = null;
-	Connection myConn = null;
-	
-	try {
-		// 1. Get a connection to the database
-			myConn = ds.getConnection();
-		// 2. Create a statement object
-			myStmt = myConn.prepareStatement(sql);
-			myStmt.setInt(1,id);
-			myRs = myStmt.executeQuery();
-			if (myRs.next()) {
-			//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
-				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
-						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
-						myRs.getDouble("price"), myRs.getInt("Sold") );
-				
-				return inv;
-				
-			} else {
-				return null;
+			} //end try
+			finally {
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
 			}
+	
+	} // end get(id)
+	
 
-		} //end try
-		finally {
-	//		mgr.silentClose(myConn, myStmt, myRs);
-			DataSource.silentClose(myConn);
-			DataSource.silentClose(myStmt);
-			DataSource.silentClose(myRs);
-
-		}
-
-	} // end get()
+	
+//	public UserInventory get(Integer id) throws SQLException {
+//		
+//	String sql = "SELECT * FROM user_inventory where id=?";
+//	
+////	DatabaseManager mgr = new DatabaseManager();
+//	PreparedStatement myStmt = null;
+//	ResultSet myRs = null;
+//	Connection myConn = null;
+//	
+//	try {
+//		// 1. Get a connection to the database
+//			myConn = ds.getConnection();
+//		// 2. Create a statement object
+//			myStmt = myConn.prepareStatement(sql);
+//			myStmt.setInt(1,id);
+//			myRs = myStmt.executeQuery();
+//			if (myRs.next()) {
+//			//	UserInventory inv = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
+//				UserInventory inv = new UserInventory(myRs.getInt("Id"), 
+//						myRs.getInt("User_ID"), myRs.getInt("Book_ID"), 
+//						myRs.getDouble("price"), myRs.getInt("Sold") );
+//				
+//				return inv;
+//				
+//			} else {
+//				return null;
+//			}
+//
+//		} //end try
+//		finally {
+//	//		mgr.silentClose(myConn, myStmt, myRs);
+//			DataSource.silentClose(myConn);
+//			DataSource.silentClose(myStmt);
+//			DataSource.silentClose(myRs);
+//
+//		}
+//
+//	} // end get()
 	
 	public void deleteListing(Integer listingId) throws SQLException {
 		
@@ -285,7 +329,9 @@ public class ManageListingsDAO {
 
 		} //end try
 		catch (Exception exc) {
-			exc.printStackTrace();
+//			exc.printStackTrace();
+			throw new RuntimeException(exc);
+
 			
 		}
 		finally {

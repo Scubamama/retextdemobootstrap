@@ -196,40 +196,26 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// gets the data to update a user
 		System.out.println("\n In RetextManageUserInfoServlet - updateProfileForm");
 		
-	//	int id = Integer.parseInt(request.getParameter("id")); // is the user's id
-		
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
 	System.out.println("currUserId: " + currUserId);
 
 		String uCard = "";
-//		uCard = request.getParameter("takeCards");
-//	System.out.println(" uCard: " + uCard);
 
-
-//	System.out.println("\n id: " + id);
 		try {
 			UsersDAO aUserDAO = new UsersDAO();
 	System.out.println(" got new UsersDAO " );
-//			int card = 0;  // default user does not take cards
-//	System.out.println(" set card = 0 " );
-
-//			if(uCard.equals("y")) card = 1;
-//	System.out.println(" card = " + card);
 
 			AUser thisUser = new AUser();
-//			thisUser = aUserDAO.get(id);
 			thisUser = aUserDAO.get(currUserId);
 
 			if (thisUser.getTakeCards() == 0 ) thisUser.setTakeCardsYN("N");
 			else thisUser.setTakeCardsYN("Y");
-//			thisUser = aUserDAO.get(currUserId);
 			// display a page showing the user's current info and let them change it
 			request.setAttribute("thisUser", thisUser);
 			
 			// update the info the user input
-	//		aUserDAO.delete(id); // archives the user
 
 			request.setAttribute("currUserId", currUserId);
 			request.setAttribute("theUser", thisUser);
@@ -251,22 +237,16 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		//  takes the data from retextUpdateProfileForm and updates this user in the db
 		System.out.println("\n In RetextManageUserInfoServlet - updateProfile");
 		
-//		int id = Integer.parseInt(request.getParameter("id"));
-			
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
 	System.out.println("currUserId: " + currUserId);
-
-//		int id = Integer.parseInt(request.getParameter("id"));
 
 		String uCard = request.getParameter("takeCardsYN");
 
 //	System.out.println("\n id: " + id);
 		try {
 			UsersDAO aUserDAO = new UsersDAO();
-	//		AUser thisUser = new AUser();
-	//		thisUser = aUserDAO.get(id);
 		System.out.println(" uCard = " + uCard);
 			int card = 0;  // default user does not take cards and the db field is int
 			if(uCard.equals("y") || uCard.equals("Y")) card = 1;
@@ -377,48 +357,40 @@ System.out.println("currUserId: " + currUserId);
 
 	private void updateListingForm(HttpServletRequest request, HttpServletResponse response) {
 		// gets the data to update a user
-		System.out.println("\n In RetextManageUserInfoServlet - updateProfileForm");
-		
-	//	int id = Integer.parseInt(request.getParameter("id")); // is the user's id
-		
+		System.out.println("\n In RetextManageUserInfoServlet - updateListingForm");
+			
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
-	
-	System.out.println("currUserId: " + currUserId);
+		int listingId = Integer.parseInt(request.getParameter("listingId"));
+		
 
-		String uCard = "";
-//		uCard = request.getParameter("takeCards");
-//	System.out.println(" uCard: " + uCard);
-
-
-//	System.out.println("\n id: " + id);
 		try {
-			UsersDAO aUserDAO = new UsersDAO();
-	System.out.println(" got new UsersDAO " );
-//			int card = 0;  // default user does not take cards
-//	System.out.println(" set card = 0 " );
+			// pull info from user_inventory table from given listingID
+			// put pulled info into an object
+			// send the object to retextUpdateListing.jsp
+			ManageListingsDAO listingDAO = new ManageListingsDAO();
 
-//			if(uCard.equals("y")) card = 1;
-//	System.out.println(" card = " + card);
+			UserInventory thisListing = new UserInventory();
+			// get returns db id, userId, bookId, price, bookCondition, sold from the db table
+			thisListing = listingDAO.get(listingId); // get the data from the specific listing
 
-			AUser thisUser = new AUser();
-//			thisUser = aUserDAO.get(id);
-			thisUser = aUserDAO.get(currUserId);
+	System.out.println(" thisListing created bookId:" + thisListing.getBookId());
+	System.out.println(" thisListing created db id:" + thisListing.getId());
+	System.out.println(" thisListing created userId:" + thisListing.getUserId());
+	System.out.println(" thisListing created price:" + thisListing.getPrice());
+	System.out.println(" thisListing created bookcondition:" + thisListing.getCondition());
 
-			if (thisUser.getTakeCards() == 0 ) thisUser.setTakeCardsYN("N");
-			else thisUser.setTakeCardsYN("Y");
-//			thisUser = aUserDAO.get(currUserId);
+			int bookId = thisListing.getBookId();
+			
 			// display a page showing the user's current info and let them change it
-			request.setAttribute("thisUser", thisUser);
+			request.setAttribute("thisListing", thisListing);
 			
 			// update the info the user input
-	//		aUserDAO.delete(id); // archives the user
 
 			request.setAttribute("currUserId", currUserId);
-			request.setAttribute("theUser", thisUser);
 			// this screen will display the current info and allow user to change it
 			RequestDispatcher dispatcher = 
-					 request.getRequestDispatcher("/WEB-INF/retextUpdateUser.jsp");
+					 request.getRequestDispatcher("/WEB-INF/retextUpdateListing.jsp");
 
 			dispatcher.forward(request, response);
 
@@ -432,46 +404,43 @@ System.out.println("currUserId: " + currUserId);
 
 	private void updateListing(HttpServletRequest request, HttpServletResponse response) {
 		//  takes the data from retextUpdateProfileForm and updates this user in the db
-		System.out.println("\n In RetextManageUserInfoServlet - updateProfile");
-		
-//		int id = Integer.parseInt(request.getParameter("id"));
-			
+		System.out.println("\n In RetextManageUserInfoServlet - updateListing");
+					
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
 	System.out.println("currUserId: " + currUserId);
 
-//		int id = Integer.parseInt(request.getParameter("id"));
-
-		String uCard = request.getParameter("takeCardsYN");
-
-//	System.out.println("\n id: " + id);
 		try {
-			UsersDAO aUserDAO = new UsersDAO();
-	//		AUser thisUser = new AUser();
-	//		thisUser = aUserDAO.get(id);
-		System.out.println(" uCard = " + uCard);
-			int card = 0;  // default user does not take cards and the db field is int
-			if(uCard.equals("y") || uCard.equals("Y")) card = 1;
-		System.out.println(" card = " + card);
+			ManageListingsDAO listingDAO = new ManageListingsDAO();
+	System.out.println(" after new ManageListingsDAO " );
 
-			AUser newU = new AUser(currUserId, request.getParameter("email"),request.getParameter("userName"),
-					request.getParameter("password"),card,request.getParameter("schoolName"));
-			
-		System.out.println("\n email = " + request.getParameter("email"));
-		System.out.println(" userName = " + request.getParameter("userName"));
-		System.out.println(" schoolName = " + request.getParameter("schoolName"));
-		System.out.println(" card = " + card);
-		System.out.println(" password = " + request.getParameter("password") + "\n ");
-		
-			aUserDAO.save(newU);
-//			aUserDAO.save(thisUser);
+			// jsp returns db id, userId, bookId, price, bookCondition, sold
+
+			// read in what the user may have changed
+	
+			String condition = request.getParameter("bookCondition");
+	System.out.println(" condition = " + condition);
+
+			double price = Double.parseDouble(request.getParameter("price")); 
+	System.out.println(" price = " + price);
+
+//			String school = request.getParameter("school");
+	System.out.println(" listingId = " + request.getParameter("listingId"));
+
+			int listingId = Integer.parseInt(request.getParameter("listingId"));
+	
+
+			UserInventory thisListing = listingDAO.get(listingId);
+
+			thisListing.setCondition(request.getParameter("bookCondition"));
+			thisListing.setPrice(price);
+			listingDAO.save(thisListing);
 
 			String curUser = request.getParameter("userName");
 			
-	System.out.println("\n curUser: " + curUser);
 			
-			viewProfile(request, response);
+			viewListings(request, response);
 		
 //			request.setAttribute("userId", id);
 //			request.setAttribute("theUser", curUser);
@@ -497,10 +466,6 @@ System.out.println("currUserId: " + currUserId);
 	HttpSession session = request.getSession(false);
 	int currUserId = (int)session.getAttribute("currUserId");
 
-System.out.println("currUserId: " + currUserId);
-
-System.out.println("listingId: " + listingId);
-//		System.out.println("\n id: " + id);
 			UsersDAO aUserDAO = new UsersDAO();
 			AUser thisUser = new AUser();
 

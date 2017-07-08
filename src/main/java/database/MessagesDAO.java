@@ -100,7 +100,9 @@ public class MessagesDAO {
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
@@ -255,8 +257,9 @@ public class MessagesDAO {
 	
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
-				
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);

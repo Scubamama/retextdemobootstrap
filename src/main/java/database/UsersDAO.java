@@ -144,7 +144,9 @@ public class UsersDAO {
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
@@ -298,8 +300,9 @@ System.out.println("in dao delete, id: " + id);
 	
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
-				
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);

@@ -138,7 +138,9 @@ public class SchoolDAO {
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
@@ -189,7 +191,9 @@ public class SchoolDAO {
 
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();	
+//				exc.printStackTrace();	
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
@@ -260,7 +264,9 @@ public class SchoolDAO {
 
 		} //end try
 		catch (Exception exc) {
-			exc.printStackTrace();
+//			exc.printStackTrace();
+			throw new RuntimeException(exc);
+
 		}
 		finally {
 	//		mgr.silentClose(myConn, myStmt, myRs);

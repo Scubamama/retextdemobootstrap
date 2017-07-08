@@ -40,23 +40,12 @@ public class TitleLocatedDAO {
 	//			"from retext.book_titles b join retext.user_inventory i " +
 	//		"where b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
 		
-		String sql = "select i.Price, i.Condition, u.UserName, u.Id , b.isbn " + 
+		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id , b.isbn " + 
 				"from retext.user_inventory i " +
 				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id " +
 				"join retext.users u " +
 			"where b.id = i.Book_id and i.User_id = u.id ";
 		
-	//	System.out.println("SQL: " + sql);
-		// actual working sql from mysql workbench:
-	//	select i.price, i.condition, u.UserName, u.id
-	//	from retext.user_inventory i  
-     //   inner join retext.book_titles b on isbn = 12345 and b.Id = i.Book_Id
-    //    join retext.users u 
-	//where b.id = i.Book_id and i.User_id = u.Id
-		
-	//	int currUserId = 1;
-		
-	//	System.out.println("in TitleLocatedDAO isbn = " + isbn);
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -69,10 +58,7 @@ public class TitleLocatedDAO {
 				myStmt.setString(1,isbn);
 				myRs = myStmt.executeQuery();
 
-	//			System.out.println("after executeQuery()");
 				// 4. Process the result set - put it into the ArrayList
-	//			if (myRs == null) {System.out.println("myRs is null");}
-	//			else System.out.println("myRs is not null");
 				while (myRs.next()) {					
 					myBookList.add(new TitleLocated(myRs.getInt("Id"),myRs.getString("Isbn"), 
 							myRs.getDouble("price"), myRs.getString("bookCondition"), 
@@ -82,14 +68,15 @@ public class TitleLocatedDAO {
 	
 			} //end try
 		catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		finally {
 			DataSource.silentClose(myConn);
 			DataSource.silentClose(myStmt);
 			DataSource.silentClose(myRs);
 		}
-		return myBookList;
+//		return myBookList;
 		} // end findAvailableBooks
 
 	
@@ -231,7 +218,9 @@ public class TitleLocatedDAO {
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
 	//			mgr.silentClose(myConn, myStmt, myRs);
@@ -431,8 +420,9 @@ public class TitleLocatedDAO {
 
 		} //end try
 		catch (Exception exc) {
-			exc.printStackTrace();
-			
+//			exc.printStackTrace();
+			throw new RuntimeException(exc);
+
 		}
 		finally {
 	//		mgr.silentClose(myConn, myStmt, myRs);
