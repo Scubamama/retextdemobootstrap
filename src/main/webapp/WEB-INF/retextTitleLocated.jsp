@@ -18,6 +18,7 @@
 	<%List<DisplayUserInventory> disp =(List<DisplayUserInventory>) request.getAttribute("titleList");%>
 
 	
+	<input type="hidden" id="condition" name="isbn" value="${isbn}">  
 	
 	<table id="located_table">
 		<tr><td >  Title Located:  ${title} </td></tr>
@@ -44,7 +45,8 @@
 			</tr>
 		</c:forEach>
 	</table>	
-
+	<h3><a href="<%=request.getContextPath() %>/loginOut">Login</a>  </h3>
+			
 	<h3><a href="<%=request.getContextPath() %>/loginOut/actions">More</a>  </h3>
 
 	<div class="copyright">

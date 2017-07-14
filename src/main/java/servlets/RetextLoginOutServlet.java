@@ -84,10 +84,15 @@ public class RetextLoginOutServlet extends HttpServlet {
 		
 		System.out.println("Inside loginForm.");
 //		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
-		
+		String isbn = "";
+		if (request.getParameter("isbn") != null) {
+			isbn = request.getParameter("isbn");
+		}
+
 	//	List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
 		
 		try{
+			request.setAttribute("isbn", isbn);
 
 			RequestDispatcher dispatcher = 
 					 request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
@@ -110,6 +115,9 @@ public class RetextLoginOutServlet extends HttpServlet {
 		
 		String currUserName = request.getParameter("userName");
 		String currUserPassword = request.getParameter("password");
+		String isbn = "";
+		if (request.getParameter("isbn") != null) isbn = request.getParameter("isbn");
+
 		UsersDAO aUserDAO = new UsersDAO();
 		int currUserId = 0;
 		try {

@@ -81,31 +81,38 @@ public class RetextMessagesServlet extends HttpServlet {
 
 //		System.out.println("\n In retextMessagesServlet - list");
 		
-	//	int userId = 1;  // change later when sessions are in place
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
-	System.out.println("currUserId: " + currUserId);
-
+//	System.out.println("currUserId: " + currUserId);
 		
 		DisplayMessagesDAO dispMessDAO = new DisplayMessagesDAO();
 		// get all users messages
 		List<DisplayMessages> messageList = null;
 		try {
 			messageList = dispMessDAO.listMyMessages(currUserId);
-		}
-		catch (Exception exc) {
-	//		e.printStackTrace();
-			throw new RuntimeException(exc);
 
-		}
-		request.setAttribute("messageList", messageList);
+			if (messageList.isEmpty()) {  // no messages found
+//				System.out.println("after titleDAO titleList is empty " );
+				String message = "You have no messages.";
+				request.setAttribute("message", message);
 
-		RequestDispatcher dispatcher = 
+				RequestDispatcher dispatcher = 
+						 request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
+				dispatcher.forward(request, response);
+	
+			}
+			
+			request.setAttribute("messageList", messageList);
+	
+			RequestDispatcher dispatcher = 
 				 request.getRequestDispatcher("/WEB-INF/retextViewMessages.jsp");
-		try {   // WHY???
-			dispatcher.forward(request, response);   
-		} catch (Exception e) {}
+			dispatcher.forward(request, response);
+
+		} catch (Exception exc) {
+			throw new RuntimeException(exc);
+	
+		}
 		finally {}
 
 	} // end list()
@@ -117,28 +124,66 @@ public class RetextMessagesServlet extends HttpServlet {
 		// calls up the form that the user fills in their data in (retextCreateUser.jsp)
 //		System.out.println("\n In retextMessagesServlet - sendMessageToSeller");
 
+		String isbn = request.getParameter("isbn");  // get the isbn from previous screen
+
 		String sellerName = "";
 	//	MessagesDAO messDAO = new MessagesDAO();
 //		System.out.println("\n id: " + request.getParameter("id"));
-		int sellerId =Integer.parseInt(request.getParameter("id"));
-		UsersDAO aUserDAO = new UsersDAO();
-		try {
-			AUser u = aUserDAO.get(sellerId); 
-			sellerName = u.getUserName();
-
-		} //end try
-		catch (Exception exc) {
-			throw new RuntimeException(exc);
-		}
-		 
-//		System.out.println("\n sellerId: " + sellerId);
-//		System.out.println("\n sellerName: " + sellerName);
 		
-		request.setAttribute("sellerName", sellerName);
-		request.setAttribute("sellerId", sellerId);
-		RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retextContactSellerForm.jsp");
-		dispatcher.forward(request, response);
+		// user needs to be logged in to do this
+		
+		HttpSession session = request.getSession(false);
+		if (session.getAttribute("currUserId") == null) {
+			System.out.println(" currUserId == null");
+
+		}
+		else {
+			System.out.println(" currUserId != null");
+			System.out.println(" currUserId: " + session.getAttribute("currUserId"));
+
+		}
+		if (session.getAttribute("currUserId") != null) {  // they are already logged in
+	
+		System.out.println("\n In retextMessagesServlet - sendMessageToSeller");
+		System.out.println(" session != null");
+
+//			int currUserId = (int)session.getAttribute("currUserId");
+	
+			int sellerId =Integer.parseInt(request.getParameter("id"));
+			UsersDAO aUserDAO = new UsersDAO();
+			try {
+				AUser u = aUserDAO.get(sellerId); 
+				sellerName = u.getUserName();
+	
+			} //end try
+			catch (Exception exc) {
+				throw new RuntimeException(exc);
+			}
+			 
+	//		System.out.println("\n sellerId: " + sellerId);
+	//		System.out.println("\n sellerName: " + sellerName);
+			
+			request.setAttribute("sellerName", sellerName);
+			request.setAttribute("sellerId", sellerId);
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/WEB-INF/retextContactSellerForm.jsp");
+			dispatcher.forward(request, response);
+		} // if (session != null)
+		
+		else { // make them log in
+			
+			request.setAttribute("isbn", isbn);
+
+			RequestDispatcher dispatcher = 
+					request.getRequestDispatcher("/loginOut");
+			dispatcher.forward(request, response);
+
+//			RetextLoginOutServlet.loginForm(request, response);
+//			RequestDispatcher dispatcher = 
+//					 request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
+//			dispatcher.forward(request, response);
+
+		}
 		
 	} // end sendMessageToSeller()
 

@@ -50,9 +50,7 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 			throws ServletException, IOException {
 				
 		String isbn = request.getParameter("isbn");
-//		System.out.println("isbn = " + isbn);
 		String school = request.getParameter("school");
-//		System.out.println("school = " + school);
 		
 		TitleLocatedDAO titleDAO = new TitleLocatedDAO();
 		String title = "";
@@ -63,18 +61,29 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		try {
 			titleList = titleDAO.findAvailableBooks(isbn);
 			title = titleDAO.getTitle(isbn);
-//			System.out.println("title = " + title);
+
+			if (titleList.isEmpty()) {  // no titles found
+//				System.out.println("after titleDAO titleList is empty " );
+				String message = "A title with that isbn was not found.";
+				request.setAttribute("message", message);
+
+				RequestDispatcher dispatcher = 
+						 request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
+				dispatcher.forward(request, response);
+	
+			}
+			request.setAttribute("titleList", titleList);
+			request.setAttribute("isbn", isbn);
+			request.setAttribute("title", title);
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
+			dispatcher.forward(request, response);
 		}
+
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		if (titleList == null) {System.out.println("after titleDAO null list " );}
-		request.setAttribute("titleList", titleList);
-		request.setAttribute("title", title);
-		RequestDispatcher dispatcher = 
-				 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
-		dispatcher.forward(request, response);
-		
+
 	} // end displayTitle
 
 	

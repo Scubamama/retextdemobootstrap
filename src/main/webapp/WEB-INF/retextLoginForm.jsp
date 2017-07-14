@@ -31,7 +31,8 @@
 				
 				</table>
 	<!--  			<p style="color:red; font-size:24px;"> "${warning}" </p>  -->
-				<div id="warning"> "${warning}" </div>
+	<!-- 				<div id="warning"> "${warning}" </div>  -->
+				<input type="hidden" id="condition" name="isbn" value="${isbn}">  
 				
 			</div>
 		</div>
