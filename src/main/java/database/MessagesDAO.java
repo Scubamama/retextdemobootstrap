@@ -26,45 +26,6 @@ public class MessagesDAO {
 	}
 
 	
-//	// not fixed yet - may not use this
-//	public List<AUser> searchUsers(String text) throws SQLException {
-//	//	DatabaseManager mgr = new DatabaseManager();
-//		List<AUser> userList = new ArrayList<AUser>();
-//		String sql = "SELECT * FROM Users where UserName LIKE ? ";
-//		
-//		PreparedStatement myStmt = null;
-//		ResultSet myRs = null;
-//		Connection myConn = null;
-//		
-//		try {
-//			// 1. Get a connection to the database
-//				myConn = ds.getConnection();
-//			// 2. Create a statement object
-//				myStmt = myConn.prepareStatement(sql);
-//				myStmt.setString(1, "%" + text + "%");
-//				myRs = myStmt.executeQuery();
-//
-//				// 4. Process the result set - put it into the ArrayList
-//				
-//				while (myRs.next()) {
-//					userList.add(new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") ));
-//				}
-//				return userList;
-//		
-//			} //end try
-//			finally {
-//	//			mgr.silentClose(myConn, myStmt, myRs);
-//				DataSource.silentClose(myConn);
-//				DataSource.silentClose(myStmt);
-//				DataSource.silentClose(myRs);
-//			}
-//		
-//		} // end searchUsers
-
-	// not fixed yet
-	
-
-	
 	public void save(Messages newMess) {
 		// save a user if one like this does not exist 
 		// otherwise update it
@@ -79,11 +40,9 @@ public class MessagesDAO {
 	} // end save()
 	
 	private void update (Messages newMess) {
-		// this is just going to update the user name
 		out.println("UPDATING... ");
 		
 		String sql = "UPDATE messages SET message=? WHERE id=?";
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -100,12 +59,10 @@ public class MessagesDAO {
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-//				exc.printStackTrace();
 				throw new RuntimeException(exc);
 
 			}
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -122,7 +79,6 @@ public class MessagesDAO {
 				+ "(SenderId, ReceiverId, Viewed, message)"
 				+ "VALUES (?, ?, ?, ?)";
 		
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -149,99 +105,91 @@ public class MessagesDAO {
 						
 			} //end try
 			catch (Exception exc) {
-		//		exc.printStackTrace();
 				throw new RuntimeException(exc);
 			}
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
 			}
 
 	} // end insert()
-
 	
 	// not fixed yet
-	public AUser get(Integer id) throws SQLException {
-		
-		String sql = "SELECT * FROM users where id=?";
-		
-	//	DatabaseManager mgr = new DatabaseManager();
-		PreparedStatement myStmt = null;
-		ResultSet myRs = null;
-		Connection myConn = null;
-		
-		try {
-			// 1. Get a connection to the database
-				myConn = ds.getConnection();
-			// 2. Create a statement object
-				myStmt = myConn.prepareStatement(sql);
-				myStmt.setInt(1,id);
-				myRs = myStmt.executeQuery();
-	
-				if (myRs.next()) {
-					AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
-					return u;
-					
-				} else {
-					return null;
-				}
-	
-			} //end try
-
-			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
-				DataSource.silentClose(myConn);
-				DataSource.silentClose(myStmt);
-				DataSource.silentClose(myRs);
-			}
-
-	} // end get()
-	
-	// not fixed yet
-	public AUser get(String uName) throws SQLException {
-		
-		String sql = "SELECT * FROM users where UserName=?";
-		
-	//	DatabaseManager mgr = new DatabaseManager();
-		PreparedStatement myStmt = null;
-		ResultSet myRs = null;
-		Connection myConn = null;
-		
-		try {
-			// 1. Get a connection to the database
-				myConn = ds.getConnection();
-			// 2. Create a statement object
-				myStmt = myConn.prepareStatement(sql);
-				myStmt.setString(1,uName);
-				myRs = myStmt.executeQuery();
-	
-				if (myRs.next()) {
-					AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
-					return u;
-					
-				} else {
-					return null;
-				}
-	
-			} //end try
-
-			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
-				DataSource.silentClose(myConn);
-				DataSource.silentClose(myStmt);
-				DataSource.silentClose(myRs);
-			}
-
-	} // end get()
+//	public AUser get(Integer id) throws SQLException {
+//		
+//		String sql = "SELECT * FROM users where id=?";
+//		
+//		PreparedStatement myStmt = null;
+//		ResultSet myRs = null;
+//		Connection myConn = null;
+//		
+//		try {
+//			// 1. Get a connection to the database
+//				myConn = ds.getConnection();
+//			// 2. Create a statement object
+//				myStmt = myConn.prepareStatement(sql);
+//				myStmt.setInt(1,id);
+//				myRs = myStmt.executeQuery();
+//	
+//				if (myRs.next()) {
+//					AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
+//					return u;
+//					
+//				} else {
+//					return null;
+//				}
+//	
+//			} //end try
+//
+//			finally {
+//				DataSource.silentClose(myConn);
+//				DataSource.silentClose(myStmt);
+//				DataSource.silentClose(myRs);
+//			}
+//
+//	} // end get()
+//	
+//	// not fixed yet
+//	public AUser get(String uName) throws SQLException {
+//		
+//		String sql = "SELECT * FROM users where UserName=?";
+//		
+//		PreparedStatement myStmt = null;
+//		ResultSet myRs = null;
+//		Connection myConn = null;
+//		
+//		try {
+//			// 1. Get a connection to the database
+//				myConn = ds.getConnection();
+//			// 2. Create a statement object
+//				myStmt = myConn.prepareStatement(sql);
+//				myStmt.setString(1,uName);
+//				myRs = myStmt.executeQuery();
+//	
+//				if (myRs.next()) {
+//					AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
+//					return u;
+//					
+//				} else {
+//					return null;
+//				}
+//	
+//			} //end try
+//
+//			finally {
+//				DataSource.silentClose(myConn);
+//				DataSource.silentClose(myStmt);
+//				DataSource.silentClose(myRs);
+//			}
+//
+//	} // end get()
 
 	
 	public void delete(Integer id) throws SQLException {
 			
 		String sql = "DELETE FROM messages WHERE id=?";
 		
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -257,12 +205,10 @@ public class MessagesDAO {
 	
 			} //end try
 			catch (Exception exc) {
-//				exc.printStackTrace();
 				throw new RuntimeException(exc);
 
 			}
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);

@@ -10,7 +10,7 @@ import database.DataSource;
 import model2.BookTitles;
 
 /**
- * A class to learn about MySql and JDBC
+ * CRUD functionality for the book titles table
  * Uses prepared statements to access a database
  * 
  * @author Holly Williams
@@ -27,7 +27,6 @@ public class BookTitlesDAO {
 	}
 
 	public List<BookTitles> searchBooks(String text) throws SQLException {
-	//	DatabaseManager mgr = new DatabaseManager();
 		List<BookTitles> bookList = new ArrayList<BookTitles>();
 		String sql = "SELECT * FROM Book_Titles where Title LIKE ? ";
 		
@@ -43,7 +42,7 @@ public class BookTitlesDAO {
 				myStmt.setString(1, "%" + text + "%");
 				myRs = myStmt.executeQuery();
 
-				// 4. Process the result set - put it into the ArrayList
+			// 3. Process the result set - put it into the ArrayList
 				
 				while (myRs.next()) {
 					bookList.add(new BookTitles(myRs.getInt("Id"), myRs.getString("Title"), myRs.getString("Author"), myRs.getString("Edition"), myRs.getString("Isbn") ));
@@ -52,17 +51,16 @@ public class BookTitlesDAO {
 	
 			} //end try
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
 
 			}
 			
-		} // end searchUsers
+		} // end searchBooks
 
+	// pulls all of the book titles 
 	public List<BookTitles> listMyBooks() throws SQLException {
-	//	DatabaseManager mgr = new DatabaseManager();
 		List<BookTitles> bookList = new ArrayList<BookTitles>();
 		String sql = "SELECT * FROM Book_Titles";
 		
@@ -78,7 +76,7 @@ public class BookTitlesDAO {
 				myStmt = myConn.prepareStatement(sql);
 				myRs = myStmt.executeQuery();
 				
-			// 4. Process the result set - put it into the ArrayList
+			// 3. Process the result set - put it into the ArrayList
 			
 				while (myRs.next()) {
 					bookList.add(new BookTitles(myRs.getInt("Id"), myRs.getString("Title"), myRs.getString("Author"), myRs.getString("Edition"), myRs.getString("Isbn") ));
@@ -86,7 +84,6 @@ public class BookTitlesDAO {
 				return bookList;
 			} //end try
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -115,7 +112,6 @@ public class BookTitlesDAO {
 		
 		String sql = "UPDATE Book_titles SET Title=?, Author=?, Edition=?,Isbn=? WHERE id=?";
 	
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -136,10 +132,11 @@ public class BookTitlesDAO {
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
+
 			}
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -157,7 +154,6 @@ public class BookTitlesDAO {
 				+ "(Title, Author, Edition, Isbn)"   //CourseDept and CourseNumber later
 				+ "VALUES (?, ?, ?, ?)";
 		
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -167,7 +163,7 @@ public class BookTitlesDAO {
 				myConn = ds.getConnection();
 			// 2. Create a statement object
 				myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-				myStmt.setString(1,book.getTitle()); //pulls info from object
+				myStmt.setString(1,book.getTitle()); //pulls info from object passed in
 				myStmt.setString(2,book.getAuthor());
 				myStmt.setString(3,book.getEdition());
 				myStmt.setString(4,book.getIsbn());
@@ -184,10 +180,10 @@ public class BookTitlesDAO {
 			
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();
+//				exc.printStackTrace();
+				throw new RuntimeException(exc);
 			}
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -196,12 +192,11 @@ public class BookTitlesDAO {
 
 	} // end insert()
 
-	
+// gets a bookTitle given its db id	
 	public BookTitles get(Integer id) throws SQLException {
 			
 		String sql = "SELECT * FROM Book_Titles where id=?";
 		
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -225,7 +220,6 @@ public class BookTitlesDAO {
 			} //end try
 
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -234,12 +228,11 @@ public class BookTitlesDAO {
 			
 	} // end get(id)
 	
-	
+	// gets a bookTitle given its title
 	public BookTitles get(String title) throws SQLException {
 			
 		String sql = "SELECT * FROM Book_Titles where Title=?";
 		
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -263,7 +256,6 @@ public class BookTitlesDAO {
 			} //end try
 
 			finally {
-		//		mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -272,11 +264,11 @@ public class BookTitlesDAO {
 			
 	} // end get(title)
 
+	// deletes a book title row from the db
 	public void delete(Integer id) throws SQLException {
 		
 		String sql = "DELETE FROM Book_Titles WHERE id=?";
 		
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -291,10 +283,10 @@ public class BookTitlesDAO {
 	
 			} //end try
 			catch (Exception exc) {
-				exc.printStackTrace();				
+//				exc.printStackTrace();	
+				throw new RuntimeException(exc);
 			}
 			finally {
-		//		mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -303,4 +295,4 @@ public class BookTitlesDAO {
 		
 	} // end delete
 	
-} // end class BooksDAO
+} // end class BookTitlesDAO

@@ -10,7 +10,7 @@ import database.DataSource;
 import model2.School;
 
 /**
- * A class to learn about MySql and JDBC
+ * CRUD functionality for schools in reText app
  * Uses prepared statements to access a database
  * 
  * @author Holly Williams
@@ -26,7 +26,6 @@ public class SchoolDAO {
 	}
 
 	public List<School> searchSchool(String text) throws SQLException {
-	//	DatabaseManager mgr = new DatabaseManager();
 		List<School> schoolList = new ArrayList<School>();
 		String sql = "SELECT * FROM School where SchoolName LIKE ? "; // later add or nickName like
 		
@@ -50,7 +49,6 @@ public class SchoolDAO {
 	
 			} //end try
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -60,7 +58,6 @@ public class SchoolDAO {
 		} // end searchSchool
 
 	public List<School> listSchools() throws SQLException {
-	//	DatabaseManager mgr = new DatabaseManager();
 		List<School> schoolList = new ArrayList<School>();
 		String sql = "SELECT * FROM School";
 		
@@ -87,7 +84,6 @@ public class SchoolDAO {
 			} //end try
 
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -101,10 +97,6 @@ public class SchoolDAO {
 		// save a user if one like this does not exist 
 		// otherwise update it
 		
-	//	insert(newU);   // for testing 
-	//	update(newU);   // for testing
-		
-		out.println("in save newU.getId() =  " + school.getId());
 		if(school.getId() == 0){
 			insert(school);
 		}else {
@@ -118,7 +110,6 @@ public class SchoolDAO {
 		out.println("UPDATING... ");
 		
 		String sql = "UPDATE School SET SchoolName=?, NickName=?, City=?, Campus=? WHERE id=?";
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -138,12 +129,10 @@ public class SchoolDAO {
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-//				exc.printStackTrace();
 				throw new RuntimeException(exc);
 
 			}
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -161,7 +150,6 @@ public class SchoolDAO {
 				+ "(SchoolName, NickName, City, Campus)"
 				+ "VALUES (?, ?, ?, ?)";
 		
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -176,7 +164,6 @@ public class SchoolDAO {
 				myStmt.setString(2,school.getNickName());
 				myStmt.setString(3,school.getCity());
 				myStmt.setString(4,school.getCampus());
-				//myStmt.setInt(5,school.getId());
 			// 3. pull info from db
 				myStmt.executeUpdate();
 			// 4. Process the result set
@@ -191,12 +178,10 @@ public class SchoolDAO {
 
 			} //end try
 			catch (Exception exc) {
-//				exc.printStackTrace();	
 				throw new RuntimeException(exc);
 
 			}
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -210,7 +195,6 @@ public class SchoolDAO {
 		
 		String sql = "SELECT * FROM School where id=?";
 		
-	//	DatabaseManager mgr = new DatabaseManager();
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -234,7 +218,6 @@ public class SchoolDAO {
 	
 			} //end try
 			finally {
-	//			mgr.silentClose(myConn, myStmt, myRs);
 				DataSource.silentClose(myConn);
 				DataSource.silentClose(myStmt);
 				DataSource.silentClose(myRs);
@@ -248,7 +231,6 @@ public class SchoolDAO {
 		
 	String sql = "DELETE FROM School WHERE id=?";
 	
-//	DatabaseManager mgr = new DatabaseManager();
 	PreparedStatement myStmt = null;
 	ResultSet myRs = null;
 	Connection myConn = null;
@@ -264,12 +246,10 @@ public class SchoolDAO {
 
 		} //end try
 		catch (Exception exc) {
-//			exc.printStackTrace();
 			throw new RuntimeException(exc);
 
 		}
 		finally {
-	//		mgr.silentClose(myConn, myStmt, myRs);
 			DataSource.silentClose(myConn);
 			DataSource.silentClose(myStmt);
 			DataSource.silentClose(myRs);

@@ -33,17 +33,13 @@ public class DisplayMessagesDAO {
 		
 		List<DisplayMessages> myMessageList = new ArrayList<DisplayMessages>();
 
-//		System.out.println("in DisplayMessagesdDAO  = " );
-		
 		String viewed = "";
 		String sql = "select u.Id, u.userName, m.id,  m.viewed, m.message " + 
 				"from retext.messages m join retext.users u " +
 				"where m.senderId = u.Id and m.receiverId = ? ";
 		
-	//	int currUserId = 1;  // until sessions is in place
 		int senderId = 0;
 		int messageId = 0;
-	//	System.out.println("sql: " + sql);
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
@@ -57,10 +53,10 @@ public class DisplayMessagesDAO {
 				myStmt.setInt(1,currUserId);
 				myRs = myStmt.executeQuery();
 
-				// 4. Process the result set - put it into the ArrayList
+			// 3. Process the result set - put it into the ArrayList
 				while (myRs.next()) {	
-					if (myRs.getInt("viewed") == 0) viewed = "n";
-					else viewed = "y";
+					if (myRs.getInt("viewed") == 0) viewed = "N";
+					else viewed = "Y";
 					senderId = myRs.getInt("u.id");
 					messageId = myRs.getInt("m.id");
 		
@@ -72,7 +68,6 @@ public class DisplayMessagesDAO {
 	
 			} //end try
 		catch (Exception exc) {
-	//		e.printStackTrace();
 			throw new RuntimeException(exc);
 		}
 		finally {
