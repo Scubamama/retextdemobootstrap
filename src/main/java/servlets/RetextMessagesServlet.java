@@ -21,6 +21,7 @@ import model2.TitleLocated;
 
 /**
  * Servlet implementation class RetextTitleLocatedServlet
+ * Allows users to message each other in the app
  */
 public class RetextMessagesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,10 +38,8 @@ public class RetextMessagesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("Inside RetextMessagesServlet - doGet.");
 
 		String pathInfo = request.getPathInfo();
-//		System.out.println("pathInfo: " + pathInfo);
 		
 		if (pathInfo == null || "".equals(pathInfo)) {
 			list(request, response); // list messages to this user
@@ -61,9 +60,7 @@ public class RetextMessagesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-//		System.out.println("Inside RetextMessagesServlet - doPost.");
 		String pathInfo = request.getPathInfo();
-//		System.out.println("pathInfo: " + pathInfo);
 		
 		if (pathInfo == null || "".equals(pathInfo)) {
 			list(request, response); // list messages to this user
@@ -79,12 +76,8 @@ public class RetextMessagesServlet extends HttpServlet {
 	// list all of this user's messages
 	private void list(HttpServletRequest request, HttpServletResponse response) {
 
-//		System.out.println("\n In retextMessagesServlet - list");
-		
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
-	
-//	System.out.println("currUserId: " + currUserId);
 		
 		DisplayMessagesDAO dispMessDAO = new DisplayMessagesDAO();
 		// get all users messages
@@ -93,7 +86,6 @@ public class RetextMessagesServlet extends HttpServlet {
 			messageList = dispMessDAO.listMyMessages(currUserId);
 
 			if (messageList.isEmpty()) {  // no messages found
-//				System.out.println("after titleDAO titleList is empty " );
 				String message = "You have no messages.";
 				request.setAttribute("message", message);
 
@@ -122,17 +114,15 @@ public class RetextMessagesServlet extends HttpServlet {
 	private void sendMessageToSeller(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// calls up the form that the user fills in their data in (retextCreateUser.jsp)
-//		System.out.println("\n In retextMessagesServlet - sendMessageToSeller");
 
 		String isbn = request.getParameter("isbn");  // get the isbn from previous screen
 
 		String sellerName = "";
-	//	MessagesDAO messDAO = new MessagesDAO();
-//		System.out.println("\n id: " + request.getParameter("id"));
 		
 		// user needs to be logged in to do this
 		
 		HttpSession session = request.getSession(false);
+		
 		if (session.getAttribute("currUserId") == null) {
 			System.out.println(" currUserId == null");
 
@@ -143,12 +133,7 @@ public class RetextMessagesServlet extends HttpServlet {
 
 		}
 		if (session.getAttribute("currUserId") != null) {  // they are already logged in
-	
-		System.out.println("\n In retextMessagesServlet - sendMessageToSeller");
-		System.out.println(" session != null");
-
-//			int currUserId = (int)session.getAttribute("currUserId");
-	
+		
 			int sellerId =Integer.parseInt(request.getParameter("id"));
 			UsersDAO aUserDAO = new UsersDAO();
 			try {
@@ -159,9 +144,6 @@ public class RetextMessagesServlet extends HttpServlet {
 			catch (Exception exc) {
 				throw new RuntimeException(exc);
 			}
-			 
-	//		System.out.println("\n sellerId: " + sellerId);
-	//		System.out.println("\n sellerName: " + sellerName);
 			
 			request.setAttribute("sellerName", sellerName);
 			request.setAttribute("sellerId", sellerId);
@@ -190,44 +172,34 @@ public class RetextMessagesServlet extends HttpServlet {
 	private void createNewMessage(HttpServletRequest request, HttpServletResponse response) {
 		// takes the info from gatherNewUserInfo() and stores it in the database
 		
-//		System.out.println("\n In retextMessagesServlet - createNewMessage");
 		// this all needs to be done for a new messages object
 		MessagesDAO messDAO = new MessagesDAO();
-		
-	//	int senderId = Integer.parseInt(request.getParameter("senderId"));
-		
-//		int senderId = 1;   // for now until login sessions are complete
-		
+				
 		// if user is not logged in make them do it now
 		
 		HttpSession session = request.getSession(false);
 		if (session == null) {}
 		
 		int senderId = (int)session.getAttribute("currUserId");
-	
-	System.out.println("currUserId (here it is senderId): " + senderId);
 		
 		int receiverId = Integer.parseInt(request.getParameter("id"));
 
 		int viewed = 0;
 		String message = request.getParameter("message");
 		
-//  System.out.println("senderId: " + senderId);
-//  System.out.println("receiverId: " + receiverId);
-//  System.out.println("viewed: " + viewed);
-//  System.out.println("message: " + message);
-		
 		Messages newMess = new Messages(senderId, 
 				Integer.parseInt(request.getParameter("id")),
 				viewed,	request.getParameter("message"));
 		messDAO.save(newMess);
 		
-	//			request.setAttribute("newUser",request.getParameter("userName") );
 		RequestDispatcher dispatcher = 
 				 request.getRequestDispatcher("/WEB-INF/retextMessageSent.jsp");
 		try {
 			dispatcher.forward(request, response);
-		} catch (Exception e) {}
+		} catch (Exception exc) {
+			throw new RuntimeException(exc);
+
+		}
 		finally {}
 	} // end createNewMessage()
 	
@@ -235,9 +207,7 @@ public class RetextMessagesServlet extends HttpServlet {
 	private void confirmDeleteMessage(HttpServletRequest request, HttpServletResponse response) {
 		// deletes the message from the database
 		
-//	System.out.println("\n In retextMessagesServlet - confirmDeleteMessage");
 		int id = Integer.parseInt(request.getParameter("id"));
-//	System.out.println("\n id: " + id);
 		// this all needs to be done for a new messages object
 		MessagesDAO messDAO = new MessagesDAO();
 		try {
@@ -258,10 +228,7 @@ public class RetextMessagesServlet extends HttpServlet {
 	private void deleteMessage(HttpServletRequest request, HttpServletResponse response) {
 		// deletes the message from the database
 		
-//	System.out.println("\n In retextMessagesServlet - deleteMessage");
-	
 		int id = Integer.parseInt(request.getParameter("id"));
-//		System.out.println("\n deleting: " + id);
 		// if they confirmed that they do want to delete then do it
 		MessagesDAO messDAO = new MessagesDAO();
 		try {
@@ -269,16 +236,10 @@ public class RetextMessagesServlet extends HttpServlet {
 			request.setAttribute("id", id);
 			list(request, response);
 			
-//			RequestDispatcher dispatcher = 
-//					 request.getRequestDispatcher("/WEB-INF/retextViewMessages.jsp");
-//
-//			dispatcher.forward(request, response);
-	//		response.sendRedirect(arg0);  // to go back to previous page
-
 		} //end try
 		catch (Exception exc) {
 			throw new RuntimeException(exc);
 		}
 	} // end deleteMessage
 	
-} // end class RetextCreateUserServlet
+} // end class RetextMessagesServlet

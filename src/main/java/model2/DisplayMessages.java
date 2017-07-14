@@ -1,8 +1,7 @@
 package model2;
 
 /**
- * The TitleLocated entity represents a both book and user data used to display 
- *   price, condition, and seller name
+ * The DisplayMessages entity represents a row in the messages table in the db 
  *   
  *   Used in the reText app 
  * 
@@ -11,7 +10,6 @@ package model2;
  */
 public class DisplayMessages {
 
-//	private int id = 0;
 	private int senderId = 0;
 	private String senderName = "";
 	private int messageId = 0;
@@ -23,10 +21,6 @@ public class DisplayMessages {
 	
 		this(senderName, messageId, viewed, message);
 		this.senderId = senderId;
-	//	this.id = id;
-//		this.sellerName = sellerName;
-//		this.viewed = viewed;
-//		this.message = message;
 	}
 	
 	public DisplayMessages(String senderName, Integer messageId, String viewed, String message) {
@@ -80,7 +74,5 @@ public class DisplayMessages {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-
 	
 } // end class DisplayMessages

@@ -27,14 +27,8 @@ public class TitleLocated {
 			String isbn, Double price, String condition, String seller) {
 	
 		this(id,title,author,edition,isbn,price);
-	//	this.id = id;
-	//	this.title = title;
-	//	this.author = author;
-	//	this.edition = edition;
 		this.dept = dept;
 		this.courseNum = courseNum;
-	//	this.isbn = isbn;
-	//	this.price = price;
 		this.condition = condition;
 		this.seller = seller;
 	}

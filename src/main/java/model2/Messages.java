@@ -24,10 +24,6 @@ public class Messages {
 	public Messages(int id, int senderId, int receiverId, int viewed, String message) {
 		this(senderId,receiverId,viewed,message);
 		this.id = id;
-//		this.senderId = senderId;
-//		this.receiverId = receiverId;
-//		this.viewed = viewed;
-//		this.message = message;
 	}
 	
 	public Messages(int senderId, int receiverId, int viewed, String message) {

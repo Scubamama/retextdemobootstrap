@@ -25,6 +25,7 @@ import model2.UserInventory;
 
 /**
  * Servlet implementation class RetextTitleLocatedServlet
+ * Shows the user stuff about them and lets them update it
  */
 public class RetextManageUserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,15 +42,11 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//	System.out.println("Inside RetextManageUserInfoServlet - doGet.");
 
 		String pathInfo = request.getPathInfo();
-//	System.out.println("pathInfo: " + pathInfo);
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
-//	System.out.println("currUserId: " + currUserId);
-
 		if (pathInfo == null || "".equals(pathInfo)) {
 			manageUserInfo(request, response); // 
 		} else if (pathInfo.equals("/listings")) {
@@ -74,11 +71,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//	System.out.println("Inside RetextManageUserInfoServlet - doPost.");
-		
-//	System.out.println("Inside RetextManageUserInfoServlet - doPost.");
 		String pathInfo = request.getPathInfo();
-//	System.out.println("pathInfo: " + pathInfo);
 		
 		if (pathInfo == null || "".equals(pathInfo)) {
 			manageUserInfo(request, response); // screen to ask what they want to do
@@ -106,7 +99,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	private void manageUserInfo(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// asks the user what they want to do: manage listings, profile, more, logout
-//	System.out.println("\n In RetextManageUserInfoServlet - manageUserInfo");
 
 		RequestDispatcher dispatcher = 
 				 request.getRequestDispatcher("/WEB-INF/retextManageUserInfo.jsp");
@@ -132,8 +124,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
-//	System.out.println("currUserId: " + currUserId);
-		
 		ManageListingsDAO dispListingsDAO = new ManageListingsDAO();
 		// get all users messages
 		List<DisplayUserListings> listingList = null;
@@ -169,12 +159,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// show the user their current info username, password, if they take cards and their school
 		// and allow them to edit all of that except maybe username
 		
-//	System.out.println("\n In RetextManageUserInfoServlet - viewProfile");
-
 			HttpSession session = request.getSession(false);
 			int currUserId = (int)session.getAttribute("currUserId");
-		
-//		System.out.println("currUserId: " + currUserId);
 			
 			UsersDAO aUserDAO = new UsersDAO();
 			AUser thisUser = new AUser();
@@ -195,18 +181,12 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	private void updateProfileForm(HttpServletRequest request, HttpServletResponse response) {
 		// gets the data to update a user
-//		System.out.println("\n In RetextManageUserInfoServlet - updateProfileForm");
 		
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
-//	System.out.println("currUserId: " + currUserId);
-
-//		String uCard = "";
-
 		try {
 			UsersDAO aUserDAO = new UsersDAO();
-//	System.out.println(" got new UsersDAO " );
 
 			AUser thisUser = new AUser();
 			thisUser = aUserDAO.get(currUserId);
@@ -237,38 +217,23 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	private void updateProfile(HttpServletRequest request, HttpServletResponse response) {
 		//  takes the data from retextUpdateProfileForm and updates this user in the db
-//		System.out.println("\n In RetextManageUserInfoServlet - updateProfile");
 		
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
-//	System.out.println("currUserId: " + currUserId);
-
 		String uCard = request.getParameter("takeCardsYN");
 
-//	System.out.println("\n id: " + id);
 		try {
 			UsersDAO aUserDAO = new UsersDAO();
-//		System.out.println(" uCard = " + uCard);
 			int card = 0;  // default user does not take cards and the db field is int
 			if(uCard.equals("y") || uCard.equals("Y")) card = 1;
-//		System.out.println(" card = " + card);
 
 			AUser newU = new AUser(currUserId, request.getParameter("email"),request.getParameter("userName"),
 					request.getParameter("password"),card,request.getParameter("schoolName"));
-			
-//		System.out.println("\n email = " + request.getParameter("email"));
-//		System.out.println(" userName = " + request.getParameter("userName"));
-//		System.out.println(" schoolName = " + request.getParameter("schoolName"));
-//		System.out.println(" card = " + card);
-//		System.out.println(" password = " + request.getParameter("password") + "\n ");
 		
 			aUserDAO.save(newU);
-//			aUserDAO.save(thisUser);
 
 			String curUser = request.getParameter("userName");
-			
-//	System.out.println("\n curUser: " + curUser);
 			
 			viewProfile(request, response);
 		
@@ -288,16 +253,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	private void confirmDeleteProfile(HttpServletRequest request, HttpServletResponse response) {
 		// 
-//		System.out.println("\n In RetextManageUserInfoServlet - confirmDeleteProfile");
-		
-//			int id = Integer.parseInt(request.getParameter("id"));
 		
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 
-// System.out.println("currUserId: " + currUserId);
-
-//		System.out.println("\n id: " + id);
 			UsersDAO aUserDAO = new UsersDAO();
 			AUser thisUser = new AUser();
 
@@ -319,16 +278,9 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	
 	private void archiveProfile(HttpServletRequest request, HttpServletResponse response) {
 		//  "deletes" this user
-//		System.out.println("\n In RetextManageUserInfoServlet - archiveProfile");
-		
-//		int id = Integer.parseInt(request.getParameter("id"));
-		
-//	System.out.println("\n id: " + id);
 	
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
-		
-//   System.out.println("currUserId: " + currUserId);
 
 		try {
 			UsersDAO aUserDAO = new UsersDAO();
@@ -337,7 +289,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			// set the archive field to true
 			aUserDAO.delete(currUserId); // archives the user
 			String curUser = thisUser.getUserName();
-//	System.out.println("\n curUser: " + curUser);
 
 			request.setAttribute("currUserId", currUserId);
 			request.setAttribute("theUser", curUser);
@@ -356,7 +307,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	private void updateListingForm(HttpServletRequest request, HttpServletResponse response) {
 		// gets the data to update a user
-//	System.out.println("\n In RetextManageUserInfoServlet - updateListingForm");
 			
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
@@ -371,12 +321,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			UserInventory thisListing = new UserInventory();
 			// get returns db id, userId, bookId, price, bookCondition, sold from the db table
 			thisListing = listingDAO.get(listingId); // get the data from the specific listing
-
-//	System.out.println(" thisListing created bookId:" + thisListing.getBookId());
-//	System.out.println(" thisListing created db id:" + thisListing.getId());
-//	System.out.println(" thisListing created userId:" + thisListing.getUserId());
-//	System.out.println(" thisListing created price:" + thisListing.getPrice());
-//	System.out.println(" thisListing created bookcondition:" + thisListing.getCondition());
 
 			int bookId = thisListing.getBookId();
 			
@@ -402,29 +346,20 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	private void updateListing(HttpServletRequest request, HttpServletResponse response) {
 		//  takes the data from retextUpdateProfileForm and updates this user in the db
-//	System.out.println("\n In RetextManageUserInfoServlet - updateListing");
 					
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
 	
-//	System.out.println("currUserId: " + currUserId);
-
 		try {
 			ManageListingsDAO listingDAO = new ManageListingsDAO();
-//	System.out.println(" after new ManageListingsDAO " );
 
 			// jsp returns db id, userId, bookId, price, bookCondition, sold
 
 			// read in what the user may have changed
 	
 			String condition = request.getParameter("bookCondition");
-//	System.out.println(" condition = " + condition);
 
 			double price = Double.parseDouble(request.getParameter("price")); 
-//	System.out.println(" price = " + price);
-
-//			String school = request.getParameter("school");
-//	System.out.println(" listingId = " + request.getParameter("listingId"));
 
 			int listingId = Integer.parseInt(request.getParameter("listingId"));
 	
@@ -455,15 +390,11 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	
 	private void confirmDeleteListing(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-//	System.out.println("\n In RetextManageUserInfoServlet - confirmDeleteProfile");
 		
 			int listingId = Integer.parseInt(request.getParameter("listingId"));
 		
-		HttpSession session = request.getSession(false);
-		int currUserId = (int)session.getAttribute("currUserId");
-
-//			UsersDAO aUserDAO = new UsersDAO();
-//			AUser thisUser = new AUser();
+			HttpSession session = request.getSession(false);
+			int currUserId = (int)session.getAttribute("currUserId");
 
 			try {
 				request.setAttribute("currUserId", currUserId);
@@ -484,16 +415,9 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	
 	private void deleteListing(HttpServletRequest request, HttpServletResponse response) {
 		//  "deletes" this user
-//	System.out.println("\n In RetextManageUserInfoServlet - archiveProfile");
 		// this is the id of the listing in the user_inventory table
 		int listingId = Integer.parseInt(request.getParameter("listingId"));
 		
-//	System.out.println("\n id: " + id);
-	
-//		HttpSession session = request.getSession(false);
-//		int currUserId = (int)session.getAttribute("currUserId");
-		
-//System.out.println("currUserId: " + currUserId);
 	
 		try {
 			ManageListingsDAO listingsDAO = new ManageListingsDAO();
@@ -502,23 +426,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			// show the user the list again
 			viewListings(request, response);
 			
-//			UsersDAO aUserDAO = new UsersDAO();
-//			AUser thisUser = new AUser();
-//			thisUser = aUserDAO.get(currUserId);
-			
-//			thisListing = listingsDAO.get(listingId);
-			// set the archive field to true
-//			aUserDAO.delete(currUserId); // archives the user
-//			String curUser = thisUser.getUserName();
-//	System.out.println("\n curUser: " + curUser);
-
-//			request.setAttribute("currUserId", currUserId);
-//			request.setAttribute("theUser", curUser);
-//			RequestDispatcher dispatcher = 
-//					 request.getRequestDispatcher("/WEB-INF/retextListingDeleted.jsp");
-//
-//			dispatcher.forward(request, response);
-
 		} //end try
 		catch (Exception exc) {
 			throw new RuntimeException(exc);
@@ -529,7 +436,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	private void gatherListingInfo(HttpServletRequest request, HttpServletResponse response) {
 		// gets the data to update a user
-//	System.out.println("\n In RetextManageUserInfoServlet - gatherListingInfo");
 		
 		String isbn = request.getParameter("isbn");
 		String condition = request.getParameter("condition");
@@ -540,16 +446,11 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		if (isbn == null) isbn = "";
 		if (condition == null) condition = "";
 
-//	System.out.println("currUserId: " + currUserId);
-
-
-//	System.out.println("\n id: " + id);
 		try {
 
 			request.setAttribute("isbn", isbn);
 			request.setAttribute("condition", condition);
 
-//			request.setAttribute("theUser", thisUser);
 			// this screen will display the current info and allow user to change it
 			RequestDispatcher dispatcher = 
 					 request.getRequestDispatcher("/WEB-INF/retextGatherListingInfo.jsp");
@@ -561,12 +462,11 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			throw new RuntimeException(exc);
 		}
 			
-	} // end addListingForm
+	} // end gatherListingInfo
 	
 
 	private void addListing(HttpServletRequest request, HttpServletResponse response) {
 		//  takes the data from retextUpdateProfileForm and updates this user in the db
-//	System.out.println("\n In RetextManageUserInfoServlet - addListing");
 		
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
@@ -576,29 +476,19 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		double price = Double.parseDouble(request.getParameter("price")); 
 		String school = request.getParameter("school");
 
-//	System.out.println("currUserId: " + currUserId);
-	
-//System.out.println(" isbn = " + request.getParameter("isbn"));
-//System.out.println(" school = " + request.getParameter("school"));
-//System.out.println(" condition = " + request.getParameter("condition"));
-//System.out.println(" price = " + request.getParameter("price") + "\n ");
-
 		try {
 			UserInventoryDAO userInventoryDAO = new UserInventoryDAO();
 			
 			//get a book_titles id from isbn
 			TitleLocatedDAO titleDAO = new TitleLocatedDAO();
 			int bookId = titleDAO.getId(isbn);
-//	System.out.println(" bookId = " + bookId);
 	
 			if (bookId != 0) { // we have that title in our system
 				// add a user_inventory row from user_id, book_id, price, and condition
 	
 				UserInventory thisUserInv =  new UserInventory(currUserId, bookId, price, condition);
-//		System.out.println(" thisUserInv created condition:" + thisUserInv.getCondition());
 			
 				userInventoryDAO.save(thisUserInv);  // put this in the db	
-//		System.out.println(" after save " );
 				
 				viewListings(request, response);
 			}
@@ -624,9 +514,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	private void addTitle(HttpServletRequest request, HttpServletResponse response) {
 		//  adds a title to the book_titles table if it doesn't currently exist in the db
-//		System.out.println("\n In RetextManageUserInfoServlet - addTitle");
-		
-//		int id = Integer.parseInt(request.getParameter("id"));
 			
 		HttpSession session = request.getSession(false);
 		int currUserId = (int)session.getAttribute("currUserId");
@@ -642,26 +529,16 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			BookTitles newTitle = new BookTitles(request.getParameter("title"),request.getParameter("author"),
 					request.getParameter("edition"),request.getParameter("isbn"));
 			
-//		System.out.println("\n title = " + request.getParameter("title"));
-//		System.out.println(" author = " + request.getParameter("author"));
-//		System.out.println(" edition = " + request.getParameter("edition"));
-//		System.out.println(" isbn = " + request.getParameter("isbn") + "\n ");
-		
-			titleDAO.save(newTitle);
+			titleDAO.save(newTitle); // save it in the db
 
 			String curUser = request.getParameter("userName");
-			
-//	System.out.println("\n curUser: " + curUser);
-			
-//			viewListings(request, response);
-	
+				
 		// go back to gather listing info page with isbn, price, and condition
 	
 			request.setAttribute("isbn", isbn);
 			request.setAttribute("price", price);
 			request.setAttribute("condition", condition);
 
-//			request.setAttribute("theUser", curUser);
 			RequestDispatcher dispatcher = 
 					 request.getRequestDispatcher("/WEB-INF/retextGatherListingInfo.jsp");
 

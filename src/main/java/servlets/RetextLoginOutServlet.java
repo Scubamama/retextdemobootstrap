@@ -16,7 +16,7 @@ import model2.AUser;
 import model2.DisplayUserInventory;
 
 /**
- * Servlet implementation class RetextTitleLocatedServlet
+ * Servlet implementation class RetextLoginOutServlet
  */
 public class RetextLoginOutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,7 +33,6 @@ public class RetextLoginOutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Inside RetextLoginServlet - doGet.");
 		
 		String pathInfo = request.getPathInfo();
 
@@ -45,24 +44,18 @@ public class RetextLoginOutServlet extends HttpServlet {
 			userActions(request, response); // 
 		}
 		
-//		loginForm(request, response);
-//		logout(request, response);
-
-	}
+	} // end doGet
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Inside RetextLoginServlet - doPost.");
 		login(request, response);
-	}
+	} // end doPost
 
-	// displays all of the copies of the requested title available at user's school
+	// displays screen with some actions that the user can do
 	private void userActions(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
-		System.out.println("Inside userActions.");
 		
 		try{
 
@@ -78,19 +71,15 @@ public class RetextLoginOutServlet extends HttpServlet {
 	} // end userActions
 
 	
-	// displays all of the copies of the requested title available at user's school
+	// displays a screen to input user info to login 
 	private void loginForm(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		System.out.println("Inside loginForm.");
-//		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
 		String isbn = "";
 		if (request.getParameter("isbn") != null) {
 			isbn = request.getParameter("isbn");
 		}
 
-	//	List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
-		
 		try{
 			request.setAttribute("isbn", isbn);
 
@@ -109,7 +98,6 @@ public class RetextLoginOutServlet extends HttpServlet {
 	private void login(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		System.out.println("Inside login.");
 		String warning = "";
 		// gather info from form and create a session for user
 		
@@ -122,7 +110,6 @@ public class RetextLoginOutServlet extends HttpServlet {
 		int currUserId = 0;
 		try {
 			currUserId = aUserDAO.checkLogin(currUserName,currUserPassword);
-	System.out.println("currUserId: " + currUserId);
 			
 			request.setAttribute("currUserId", currUserId);
 			if (currUserId == 0) { // invalid login go back to login form page
@@ -146,7 +133,6 @@ public class RetextLoginOutServlet extends HttpServlet {
 		catch (Exception exc) {
 			throw new RuntimeException(exc);
 		}
-
 		
 	} // end login
 	
@@ -157,7 +143,6 @@ public class RetextLoginOutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		try {
-	//		request.setAttribute("theUser",request.getParameter("userName") );
 			RequestDispatcher dispatcher = 
 					 request.getRequestDispatcher("/WEB-INF/retextUserLoggedOut.jsp");
 			dispatcher.forward(request, response);

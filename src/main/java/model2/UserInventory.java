@@ -25,9 +25,6 @@ public class UserInventory {
 
 	public UserInventory(int id, int userId, int bookId, double price, String condition, int sold) {
 		this(id,userId,bookId);
-	//	this.id = id;
-	//	this.userId = userId;
-	//	this.bookId = bookId;
 		this.price = price;
 		this.bookCondition = condition;
 		this.sold = sold;
@@ -35,9 +32,6 @@ public class UserInventory {
 
 	public UserInventory(int id, int userId, int bookId, double price, int sold) {
 		this(id,userId,bookId);
-	//	this.id = id;
-	//	this.userId = userId;
-	//	this.bookId = bookId;
 		this.price = price;
 		this.sold = sold;
 	}
@@ -117,9 +111,5 @@ public class UserInventory {
 	public void setSold(int sold) {
 		this.sold = sold;
 	}
-
-	
-	
-
 
 } // end class UserInventory

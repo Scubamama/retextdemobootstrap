@@ -1,8 +1,7 @@
 package model2;
 
 /**
- * The Book entity represents a book title used in the reText app (working name tabby)
- *  and the books table in the retext db
+ * The DisplayUserListings entity represents display info for user listings
  * 
  * @author Holly Williams
  *
@@ -48,8 +47,6 @@ public class DisplayUserListings {
 		this.condition = condition;
 		this.sold = sold;
 		this.listingId = listingId;
-//		this.dept = dept;
-//		this.courseNum = courseNum;
 	}
 
 	public String getCondition() {

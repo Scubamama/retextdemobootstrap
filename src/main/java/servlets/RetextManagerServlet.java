@@ -15,6 +15,7 @@ import model2.DisplayUserInventory;
 
 /**
  * Servlet implementation class RetextManagerServlet
+ * This is the main driver servlet where everything starts
  */
 public class RetextManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -81,21 +82,5 @@ public class RetextManagerServlet extends HttpServlet {
 		
 	} // end browseBooks
 	
-	// displays all of the copies of the requested title available at user's school
-//	private void displayTitle(HttpServletRequest request, HttpServletResponse response) 
-//			throws ServletException, IOException {
-//		
-//		UserInventoryDAO inventoryDAO = new UserInventoryDAO();
-//			
-//		List<DisplayUserInventory> titleList = inventoryDAO.listMyBooks();
-//		
-//		request.setAttribute("titleList", titleList);
-//		
-//		RequestDispatcher dispatcher = 
-//				 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
-//		dispatcher.forward(request, response);
-//		
-//	} // end displayTitle
-
 	
 } // end RetextManagerServlet

@@ -1,8 +1,8 @@
 package model2;
 
 /**
- * The Book entity represents a book title used in the reText app (working name tabby)
- *  and the books table in the retext db
+ * The BookTitles entity represents a book title used in the reText app 
+ *  and the book titles table in the retext db
  * 
  * @author Holly Williams
  *
@@ -22,10 +22,6 @@ public class BookTitles {
 	public BookTitles(int id, String title, String author, String edition, String dept, String courseNum, String isbn) {
 		this(title,author,edition,isbn);
 		this.id = id;
-	//	this.title = title;
-	//	this.author = author;
-	//	this.edition = edition;
-	//	this.isbn = isbn;
 		this.dept = dept;
 		this.courseNum = courseNum;
 	
@@ -34,10 +30,6 @@ public class BookTitles {
 	public BookTitles(int id, String title, String author, String edition, String isbn) {
 		this(title,author,edition,isbn);
 		this.id = id;
-	//	this.title = title;
-	//	this.author = author;
-	//	this.edition = edition;
-	//	this.isbn = isbn;
 	}
 
 	public BookTitles(String title, String author, String edition, String isbn) {
@@ -108,4 +100,4 @@ public class BookTitles {
 	}
 
 
-} // end class Book
+} // end class BookTitles

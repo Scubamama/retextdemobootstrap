@@ -132,7 +132,6 @@ public class BookTitlesDAO {
 				myStmt.executeUpdate();
 			} //end try
 			catch (Exception exc) {
-//				exc.printStackTrace();
 				throw new RuntimeException(exc);
 
 			}

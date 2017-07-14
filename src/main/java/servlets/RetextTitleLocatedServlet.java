@@ -16,6 +16,7 @@ import model2.TitleLocated;
 
 /**
  * Servlet implementation class RetextTitleLocatedServlet
+ * grabs titles that have the given isbn and displays them
  */
 public class RetextTitleLocatedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +33,6 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Inside RetextTitleLocatedServlet - doGet.");
 		displayTitle(request, response);
 	}
 
@@ -41,7 +41,6 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 
-		System.out.println("Inside RetextTitleLocatedServlet - doPost.");
 		displayTitle(request, response);
 	}
 
@@ -63,7 +62,6 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 			title = titleDAO.getTitle(isbn);
 
 			if (titleList.isEmpty()) {  // no titles found
-//				System.out.println("after titleDAO titleList is empty " );
 				String message = "A title with that isbn was not found.";
 				request.setAttribute("message", message);
 
@@ -86,6 +84,4 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 
 	} // end displayTitle
 
-	
-	
 } // end class RetextTitleLocatedServlet

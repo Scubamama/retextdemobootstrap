@@ -1,7 +1,8 @@
 package model2;
 
 /**
- * The Book entity represents a book title used in the reText app (working name tabby)
+ * The DisplayUserInventory entity represents info from the user_inventory table 
+ *   as well as the book titles table to show the user 
  *  and the books table in the retext db
  * 
  * @author Holly Williams
@@ -20,7 +21,6 @@ public class DisplayUserInventory {
 	
 	public DisplayUserInventory(Integer id, String title, String author, String edition, String dept, String courseNum,
 			String isbn, Double price) {
-	//	super();
 		this.id = id;
 		this.title = title;
 		this.author = author;
