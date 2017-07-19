@@ -47,7 +47,7 @@ public class RetextManagerServlet extends HttpServlet {
 			
 		}
 		finally {
-			
+			// compiler is requiring this. 
 		} // end finally
 	} // end doGet
 

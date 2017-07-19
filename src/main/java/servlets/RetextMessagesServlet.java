@@ -86,8 +86,8 @@ public class RetextMessagesServlet extends HttpServlet {
 			messageList = dispMessDAO.listMyMessages(currUserId);
 
 			if (messageList.isEmpty()) {  // no messages found
-				String message = "You have no messages.";
-				request.setAttribute("message", message);
+	//			String message = "You have no messages.";
+				request.setAttribute("message", "You have no messages.");
 
 				RequestDispatcher dispatcher = 
 						 request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
@@ -105,7 +105,6 @@ public class RetextMessagesServlet extends HttpServlet {
 			throw new RuntimeException(exc);
 	
 		}
-		finally {}
 
 	} // end list()
 
@@ -200,7 +199,6 @@ public class RetextMessagesServlet extends HttpServlet {
 			throw new RuntimeException(exc);
 
 		}
-		finally {}
 	} // end createNewMessage()
 	
 
@@ -234,8 +232,12 @@ public class RetextMessagesServlet extends HttpServlet {
 		try {
 			messDAO.delete(id);
 			request.setAttribute("id", id);
-			list(request, response);
-			
+//			list(request, response);
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/messages");
+
+			dispatcher.forward(request, response);
+
 		} //end try
 		catch (Exception exc) {
 			throw new RuntimeException(exc);

@@ -62,8 +62,8 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 			title = titleDAO.getTitle(isbn);
 
 			if (titleList.isEmpty()) {  // no titles found
-				String message = "A title with that isbn was not found.";
-				request.setAttribute("message", message);
+	//			String message = "A title with that isbn was not found.";
+				request.setAttribute("message", "A title with that isbn was not found.");
 
 				RequestDispatcher dispatcher = 
 						 request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");

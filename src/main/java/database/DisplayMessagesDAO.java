@@ -55,8 +55,10 @@ public class DisplayMessagesDAO {
 
 			// 3. Process the result set - put it into the ArrayList
 				while (myRs.next()) {	
-					if (myRs.getInt("viewed") == 0) viewed = "N";
-					else viewed = "Y";
+					if (myRs.getInt("viewed") == 0)
+						viewed = "N";
+					else
+						viewed = "Y";
 					senderId = myRs.getInt("u.id");
 					messageId = myRs.getInt("m.id");
 		

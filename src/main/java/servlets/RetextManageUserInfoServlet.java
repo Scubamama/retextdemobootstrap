@@ -91,6 +91,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			addTitle(request, response);
 		} else if (pathInfo.equals("/gatherListingInfo")) {
 			gatherListingInfo(request, response);
+		} else if (pathInfo.equals("/profile")) {
+			viewProfile(request, response); // 
+		}  else if (pathInfo.equals("/listings")) {
+			viewListings(request, response); // 
 		}
 			
 	} // end doPost
@@ -130,8 +134,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		try {
 			listingList = dispListingsDAO.listMyBooks(currUserId);
 			if (listingList.isEmpty()) {  // no listings found
-				String message = "You have no listings.";
-				request.setAttribute("message", message);
+	//			String message = "You have no listings.";
+				request.setAttribute("message", "You have no listings.");
 
 				RequestDispatcher dispatcher = 
 						 request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
@@ -150,7 +154,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			throw new RuntimeException(exc);
 		}
 
-		finally {}
 
 	} // end viewListings()
 
@@ -235,14 +238,14 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 			String curUser = request.getParameter("userName");
 			
-			viewProfile(request, response);
+//			viewProfile(request, response);
 		
 //			request.setAttribute("userId", id);
 //			request.setAttribute("theUser", curUser);
-//			RequestDispatcher dispatcher = 
-//					 request.getRequestDispatcher("/WEB-INF/retextUserProfileUpdated.jsp");
-//
-//			dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/manageUsers/profile");
+
+			dispatcher.forward(request, response);
 
 		} //end try
 		catch (Exception exc) {
@@ -371,14 +374,14 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 			String curUser = request.getParameter("userName");
 			
-			viewListings(request, response);
+//			viewListings(request, response);
 		
 //			request.setAttribute("userId", id);
 //			request.setAttribute("theUser", curUser);
-//			RequestDispatcher dispatcher = 
-//					 request.getRequestDispatcher("/WEB-INF/retextUserProfileUpdated.jsp");
-//
-//			dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/manageUsers/listings");
+
+			dispatcher.forward(request, response);
 
 		} //end try
 		catch (Exception exc) {
@@ -424,7 +427,12 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			// delete this listing
 			listingsDAO.deleteListing(listingId);   // delete it from the db
 			// show the user the list again
-			viewListings(request, response);
+			
+	//		viewListings(request, response);
+			RequestDispatcher dispatcher = 
+					 request.getRequestDispatcher("/manageUsers/listings");
+
+			dispatcher.forward(request, response);
 			
 		} //end try
 		catch (Exception exc) {
@@ -490,7 +498,12 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			
 				userInventoryDAO.save(thisUserInv);  // put this in the db	
 				
-				viewListings(request, response);
+//				viewListings(request, response);
+				RequestDispatcher dispatcher = 
+						 request.getRequestDispatcher("/manageUsers/listings");
+
+				dispatcher.forward(request, response);
+
 			}
 			else {  // that book title is not in our system and we need to add it
 				request.setAttribute("condition", condition);
