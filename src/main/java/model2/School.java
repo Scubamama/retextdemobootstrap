@@ -1,8 +1,8 @@
 package model2;
 
 /**
- * The School entity represents a school name used in the reText app 
- *  and the school table in the retext db
+ * The School entity represents a school name used in the reText app and the
+ * school table in the retext db
  * 
  * @author Holly Williams
  *
@@ -14,9 +14,9 @@ public class School {
 	private String nickName = "";
 	private String city = "";
 	private String campus = "";
-	
+
 	public School(int id, String name, String nickName, String city, String campus) {
-		//super();
+		// super();
 		this.id = id;
 		this.name = name;
 		this.nickName = nickName;
@@ -25,8 +25,8 @@ public class School {
 	}
 
 	public School(String name, String nickName, String city, String campus) {
-		//super();
-	
+		// super();
+
 		this.name = name;
 		this.nickName = nickName;
 		this.city = city;
@@ -72,6 +72,5 @@ public class School {
 	public void setCampus(String campus) {
 		this.campus = campus;
 	}
-
 
 } // end class School

@@ -1,9 +1,9 @@
 package model2;
 
 /**
- * The DisplayMessages entity represents a row in the messages table in the db 
- *   
- *   Used in the reText app 
+ * The DisplayMessages entity represents a row in the messages table in the db
+ * 
+ * Used in the reText app
  * 
  * @author Holly Williams
  *
@@ -15,24 +15,23 @@ public class DisplayMessages {
 	private int messageId = 0;
 	private String viewed = "";
 	private String message = "";
-	
-	public DisplayMessages(Integer senderId, String senderName, Integer messageId,
-			String viewed, String message) {
-	
+
+	public DisplayMessages(Integer senderId, String senderName, Integer messageId, String viewed, String message) {
+
 		this(senderName, messageId, viewed, message);
 		this.senderId = senderId;
 	}
-	
+
 	public DisplayMessages(String senderName, Integer messageId, String viewed, String message) {
-	
+
 		this.senderName = senderName;
 		this.messageId = messageId;
 		this.viewed = viewed;
 		this.message = message;
 	}
-	
+
 	public DisplayMessages() {
-		//super();
+		// super();
 	}
 
 	public int getSenderId() {
@@ -74,5 +73,5 @@ public class DisplayMessages {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
 } // end class DisplayMessages

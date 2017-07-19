@@ -1,8 +1,9 @@
 package model2;
 
 /**
- * The User entity (can't call it User because of so many other things that use the key word user)
- * represents a user of the reText app and the users table in the retext db
+ * The User entity (can't call it User because of so many other things that use
+ * the key word user) represents a user of the reText app and the users table in
+ * the retext db
  * 
  * @author Holly Williams
  *
@@ -16,8 +17,8 @@ public class AUser {
 	private int takeCards = 0;
 	private String takeCardsYN = "";
 	private String userSchool = "";
-	
-	public AUser(int id, String email, String name, String password, int cards, String school ) {
+
+	public AUser(int id, String email, String name, String password, int cards, String school) {
 		this.id = id;
 		this.userEmail = email;
 		this.userName = name;
@@ -25,8 +26,8 @@ public class AUser {
 		this.takeCards = cards;
 		this.userSchool = school;
 	}
-	
-	public AUser(int id, String email, String name, String password, String cards, String school ) {
+
+	public AUser(int id, String email, String name, String password, String cards, String school) {
 		this.id = id;
 		this.userEmail = email;
 		this.userName = name;
@@ -34,15 +35,15 @@ public class AUser {
 		this.takeCardsYN = cards;
 		this.userSchool = school;
 	}
-	
+
 	public AUser(String userName, String userPassword) {
 		super();
 		this.userName = userName;
 		this.userPassword = userPassword;
 	}
 
-	public AUser(String email, String name, String password, int cards, String school ) {
-		
+	public AUser(String email, String name, String password, int cards, String school) {
+
 		this.userEmail = email;
 		this.userName = name;
 		this.userPassword = password;
@@ -50,8 +51,8 @@ public class AUser {
 		this.userSchool = school;
 	}
 
-	public AUser(String email, String name, String password, String cards, String school ) {
-		
+	public AUser(String email, String name, String password, String cards, String school) {
+
 		this.userEmail = email;
 		this.userName = name;
 		this.userPassword = password;
@@ -59,12 +60,10 @@ public class AUser {
 		this.userSchool = school;
 	}
 
+	public AUser() {
 
-	public AUser( ) {
-		
 	}
-	
-	
+
 	public int getId() {
 		return id;
 	}
@@ -112,7 +111,7 @@ public class AUser {
 	public void setTakeCardsYN(String takeCardsYN) {
 		this.takeCardsYN = takeCardsYN;
 	}
-	
+
 	public String getUserSchool() {
 		return userSchool;
 	}
@@ -120,6 +119,5 @@ public class AUser {
 	public void setUserSchool(String userSchool) {
 		this.userSchool = userSchool;
 	}
-	
-	
+
 } // end class AUser

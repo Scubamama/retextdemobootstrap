@@ -19,10 +19,9 @@ public class DisplayUserListings {
 	private int listingId = 0;
 	private String dept = "";
 	private String courseNum = "";
-	
+
 	public DisplayUserListings(Integer id, String isbn, String title, String author, String edition, Double price,
-			String condition, String sold, Integer listingId,
-			String dept, String courseNum ) {
+			String condition, String sold, Integer listingId, String dept, String courseNum) {
 		this.id = id;
 		this.isbn = isbn;
 		this.title = title;
@@ -35,9 +34,9 @@ public class DisplayUserListings {
 		this.dept = dept;
 		this.courseNum = courseNum;
 	}
-	
+
 	public DisplayUserListings(Integer id, String isbn, String title, String author, String edition, Double price,
-			String condition, String sold, Integer listingId ) {
+			String condition, String sold, Integer listingId) {
 		this.id = id;
 		this.isbn = isbn;
 		this.title = title;
@@ -53,11 +52,9 @@ public class DisplayUserListings {
 		return condition;
 	}
 
-
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
-
 
 	public String getSold() {
 		return sold;
@@ -71,21 +68,17 @@ public class DisplayUserListings {
 		return listingId;
 	}
 
-
 	public void setListingId(int listingId) {
 		this.listingId = listingId;
 	}
-
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public DisplayUserListings(int id, String title, String author, String edition, String isbn, Double price) {
 		super();
@@ -97,7 +90,6 @@ public class DisplayUserListings {
 		this.price = price;
 	}
 
-
 	public DisplayUserListings(String title, String author, String edition, String isbn, Double price) {
 		super();
 		this.title = title;
@@ -106,7 +98,6 @@ public class DisplayUserListings {
 		this.isbn = isbn;
 		this.price = price;
 	}
-
 
 	public DisplayUserListings(String title, String author, String edition, String dept, String courseNum, String isbn,
 			Double price) {
@@ -121,76 +112,63 @@ public class DisplayUserListings {
 	}
 
 	public DisplayUserListings() {
-		//super();
+		// super();
 	}
 
 	public String getTitle() {
 		return title;
 	}
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 
 	public String getAuthor() {
 		return author;
 	}
 
-
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
 
 	public String getEdition() {
 		return edition;
 	}
 
-
 	public void setEdition(String edition) {
 		this.edition = edition;
 	}
-
 
 	public String getDept() {
 		return dept;
 	}
 
-
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
-
 
 	public String getCourseNum() {
 		return courseNum;
 	}
 
-
 	public void setCourseNum(String courseNum) {
 		this.courseNum = courseNum;
 	}
-
 
 	public String getIsbn() {
 		return isbn;
 	}
 
-
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-
 
 	public Double getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
+
 } // end class DisplayUserInventory

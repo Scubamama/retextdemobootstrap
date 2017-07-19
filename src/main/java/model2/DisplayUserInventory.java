@@ -1,9 +1,9 @@
 package model2;
 
 /**
- * The DisplayUserInventory entity represents info from the user_inventory table 
- *   as well as the book titles table to show the user 
- *  and the books table in the retext db
+ * The DisplayUserInventory entity represents info from the user_inventory table
+ * as well as the book titles table to show the user and the books table in the
+ * retext db
  * 
  * @author Holly Williams
  *
@@ -18,7 +18,7 @@ public class DisplayUserInventory {
 	private String courseNum = "";
 	private String isbn = "";
 	private Double price = 0.0;
-	
+
 	public DisplayUserInventory(Integer id, String title, String author, String edition, String dept, String courseNum,
 			String isbn, Double price) {
 		this.id = id;
@@ -31,16 +31,13 @@ public class DisplayUserInventory {
 		this.price = price;
 	}
 
-
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public DisplayUserInventory(int id, String title, String author, String edition, String isbn, Double price) {
 		super();
@@ -52,7 +49,6 @@ public class DisplayUserInventory {
 		this.price = price;
 	}
 
-
 	public DisplayUserInventory(String title, String author, String edition, String isbn, Double price) {
 		super();
 		this.title = title;
@@ -61,7 +57,6 @@ public class DisplayUserInventory {
 		this.isbn = isbn;
 		this.price = price;
 	}
-
 
 	public DisplayUserInventory(String title, String author, String edition, String dept, String courseNum, String isbn,
 			Double price) {
@@ -76,76 +71,63 @@ public class DisplayUserInventory {
 	}
 
 	public DisplayUserInventory() {
-		//super();
+		// super();
 	}
 
 	public String getTitle() {
 		return title;
 	}
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 
 	public String getAuthor() {
 		return author;
 	}
 
-
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
 
 	public String getEdition() {
 		return edition;
 	}
 
-
 	public void setEdition(String edition) {
 		this.edition = edition;
 	}
-
 
 	public String getDept() {
 		return dept;
 	}
 
-
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
-
 
 	public String getCourseNum() {
 		return courseNum;
 	}
 
-
 	public void setCourseNum(String courseNum) {
 		this.courseNum = courseNum;
 	}
-
 
 	public String getIsbn() {
 		return isbn;
 	}
 
-
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-
 
 	public Double getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
+
 } // end class DisplayUserInventory

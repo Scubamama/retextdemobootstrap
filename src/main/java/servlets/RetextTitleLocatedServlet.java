@@ -15,45 +15,50 @@ import model2.DisplayUserInventory;
 import model2.TitleLocated;
 
 /**
- * Servlet implementation class RetextTitleLocatedServlet
- * grabs titles that have the given isbn and displays them
+ * Servlet implementation class RetextTitleLocatedServlet grabs titles that have
+ * the given isbn and displays them
  */
 public class RetextTitleLocatedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RetextTitleLocatedServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		displayTitle(request, response);
+	public RetextTitleLocatedServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 
-		displayTitle(request, response);
-	}
-
-	// displays all of the copies of the requested title available at user's school
-	private void displayTitle(HttpServletRequest request, HttpServletResponse response) 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-				
+		displayTitle(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//
+		displayTitle(request, response);
+	}
+
+	// displays all of the copies of the requested title available at user's
+	// school
+	private void displayTitle(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String isbn = request.getParameter("isbn");
 		String school = request.getParameter("school");
-		
+
 		TitleLocatedDAO titleDAO = new TitleLocatedDAO();
 		String title = "";
-		
+
 		isbn = request.getParameter("isbn");
 		school = request.getParameter("school");
 		List<TitleLocated> titleList = null;
@@ -61,20 +66,18 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 			titleList = titleDAO.findAvailableBooks(isbn);
 			title = titleDAO.getTitle(isbn);
 
-			if (titleList.isEmpty()) {  // no titles found
-	//			String message = "A title with that isbn was not found.";
+			if (titleList.isEmpty()) { // no titles found
+				// String message = "A title with that isbn was not found.";
 				request.setAttribute("message", "A title with that isbn was not found.");
 
-				RequestDispatcher dispatcher = 
-						 request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
 				dispatcher.forward(request, response);
-	
+
 			}
 			request.setAttribute("titleList", titleList);
 			request.setAttribute("isbn", isbn);
 			request.setAttribute("title", title);
-			RequestDispatcher dispatcher = 
-					 request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
 			dispatcher.forward(request, response);
 		}
 

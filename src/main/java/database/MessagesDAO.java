@@ -10,9 +10,9 @@ import database.DataSource;
 import model2.AUser;
 import model2.Messages;
 
-
 /**
  * CRUD functionality for messages in reText app
+ * 
  * @author Holly Williams
  *
  */
@@ -20,200 +20,197 @@ import model2.Messages;
 public class MessagesDAO {
 
 	DataSource ds;
-	
+
 	public MessagesDAO() {
 		this.ds = DataSource.getInstance();
 	}
 
-	
 	public void save(Messages newMess) {
-		// save a user if one like this does not exist 
+		// save a user if one like this does not exist
 		// otherwise update it
-				
+
 		out.println("in save newMess.getId() =  " + newMess.getId());
-		if(newMess.getId() == 0){
+		if (newMess.getId() == 0) {
 			insert(newMess);
-		}else {
+		} else {
 			update(newMess);
 		}
-	
+
 	} // end save()
-	
-	private void update (Messages newMess) {
+
+	private void update(Messages newMess) {
 		out.println("UPDATING... ");
-		
+
 		String sql = "UPDATE messages SET message=? WHERE id=?";
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
-		
+
 		try {
 			// 1. Get a connection to the databased
-				myConn = ds.getConnection();
+			myConn = ds.getConnection();
 			// 2. Create a statement object
-				myStmt = myConn.prepareStatement(sql);
+			myStmt = myConn.prepareStatement(sql);
 
-				myStmt.setString(1,newMess.getMessage());
-				myStmt.setInt(2,newMess.getId());
-				
-				myStmt.executeUpdate();
-			} //end try
-			catch (Exception exc) {
-				throw new RuntimeException(exc);
+			myStmt.setString(1, newMess.getMessage());
+			myStmt.setInt(2, newMess.getId());
 
-			}
-			finally {
-				DataSource.silentClose(myConn);
-				DataSource.silentClose(myStmt);
-				DataSource.silentClose(myRs);
-			}
-		
+			myStmt.executeUpdate();
+		} // end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+
+		} finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
+
 	} // end update()
-	
-	
-	private void insert (Messages newMess) {
-		
+
+	private void insert(Messages newMess) {
+
 		out.println("INSERTING... ");
-		
-		String sql = "INSERT INTO messages "
-				+ "(SenderId, ReceiverId, Viewed, message)"
-				+ "VALUES (?, ?, ?, ?)";
-		
+
+		String sql = "INSERT INTO messages " + "(SenderId, ReceiverId, Viewed, message)" + "VALUES (?, ?, ?, ?)";
+
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
-		
+
 		try {
 			// 1. Get a connection to the database
-				myConn = ds.getConnection();
+			myConn = ds.getConnection();
 			// 2. Create a statement object
-				myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			//pulls data from object newMess & puts it into statement to add to db
-				myStmt.setInt(1,newMess.getSenderId()); 
-				myStmt.setInt(2,newMess.getReceiverId());
-				myStmt.setInt(3,newMess.getViewed());
-				myStmt.setString(4,newMess.getMessage());
-				
-				myStmt.executeUpdate();
-				
-				ResultSet generatedKeys = myStmt.getGeneratedKeys();
-					if (generatedKeys.next()) {
-						newMess.setId(generatedKeys.getInt(1));
-					} else {
-						throw new SQLException("Insertion failed, no new message created.");
-					}
-						
-			} //end try
-			catch (Exception exc) {
-				throw new RuntimeException(exc);
+			myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			// pulls data from object newMess & puts it into statement to add to
+			// db
+			myStmt.setInt(1, newMess.getSenderId());
+			myStmt.setInt(2, newMess.getReceiverId());
+			myStmt.setInt(3, newMess.getViewed());
+			myStmt.setString(4, newMess.getMessage());
+
+			myStmt.executeUpdate();
+
+			ResultSet generatedKeys = myStmt.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				newMess.setId(generatedKeys.getInt(1));
+			} else {
+				throw new SQLException("Insertion failed, no new message created.");
 			}
-			finally {
-				DataSource.silentClose(myConn);
-				DataSource.silentClose(myStmt);
-				DataSource.silentClose(myRs);
-			}
+
+		} // end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+		} finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
 
 	} // end insert()
-	
-	// not fixed yet
-//	public AUser get(Integer id) throws SQLException {
-//		
-//		String sql = "SELECT * FROM users where id=?";
-//		
-//		PreparedStatement myStmt = null;
-//		ResultSet myRs = null;
-//		Connection myConn = null;
-//		
-//		try {
-//			// 1. Get a connection to the database
-//				myConn = ds.getConnection();
-//			// 2. Create a statement object
-//				myStmt = myConn.prepareStatement(sql);
-//				myStmt.setInt(1,id);
-//				myRs = myStmt.executeQuery();
-//	
-//				if (myRs.next()) {
-//					AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
-//					return u;
-//					
-//				} else {
-//					return null;
-//				}
-//	
-//			} //end try
-//
-//			finally {
-//				DataSource.silentClose(myConn);
-//				DataSource.silentClose(myStmt);
-//				DataSource.silentClose(myRs);
-//			}
-//
-//	} // end get()
-//	
-//	// not fixed yet
-//	public AUser get(String uName) throws SQLException {
-//		
-//		String sql = "SELECT * FROM users where UserName=?";
-//		
-//		PreparedStatement myStmt = null;
-//		ResultSet myRs = null;
-//		Connection myConn = null;
-//		
-//		try {
-//			// 1. Get a connection to the database
-//				myConn = ds.getConnection();
-//			// 2. Create a statement object
-//				myStmt = myConn.prepareStatement(sql);
-//				myStmt.setString(1,uName);
-//				myRs = myStmt.executeQuery();
-//	
-//				if (myRs.next()) {
-//					AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"), myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school") );
-//					return u;
-//					
-//				} else {
-//					return null;
-//				}
-//	
-//			} //end try
-//
-//			finally {
-//				DataSource.silentClose(myConn);
-//				DataSource.silentClose(myStmt);
-//				DataSource.silentClose(myRs);
-//			}
-//
-//	} // end get()
 
-	
+	// not fixed yet
+	// public AUser get(Integer id) throws SQLException {
+	//
+	// String sql = "SELECT * FROM users where id=?";
+	//
+	// PreparedStatement myStmt = null;
+	// ResultSet myRs = null;
+	// Connection myConn = null;
+	//
+	// try {
+	// // 1. Get a connection to the database
+	// myConn = ds.getConnection();
+	// // 2. Create a statement object
+	// myStmt = myConn.prepareStatement(sql);
+	// myStmt.setInt(1,id);
+	// myRs = myStmt.executeQuery();
+	//
+	// if (myRs.next()) {
+	// AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"),
+	// myRs.getString("UserName"), myRs.getString("UserPassword"),
+	// myRs.getInt("TakeCards"), myRs.getString("school") );
+	// return u;
+	//
+	// } else {
+	// return null;
+	// }
+	//
+	// } //end try
+	//
+	// finally {
+	// DataSource.silentClose(myConn);
+	// DataSource.silentClose(myStmt);
+	// DataSource.silentClose(myRs);
+	// }
+	//
+	// } // end get()
+	//
+	// // not fixed yet
+	// public AUser get(String uName) throws SQLException {
+	//
+	// String sql = "SELECT * FROM users where UserName=?";
+	//
+	// PreparedStatement myStmt = null;
+	// ResultSet myRs = null;
+	// Connection myConn = null;
+	//
+	// try {
+	// // 1. Get a connection to the database
+	// myConn = ds.getConnection();
+	// // 2. Create a statement object
+	// myStmt = myConn.prepareStatement(sql);
+	// myStmt.setString(1,uName);
+	// myRs = myStmt.executeQuery();
+	//
+	// if (myRs.next()) {
+	// AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"),
+	// myRs.getString("UserName"), myRs.getString("UserPassword"),
+	// myRs.getInt("TakeCards"), myRs.getString("school") );
+	// return u;
+	//
+	// } else {
+	// return null;
+	// }
+	//
+	// } //end try
+	//
+	// finally {
+	// DataSource.silentClose(myConn);
+	// DataSource.silentClose(myStmt);
+	// DataSource.silentClose(myRs);
+	// }
+	//
+	// } // end get()
+
 	public void delete(Integer id) throws SQLException {
-			
+
 		String sql = "DELETE FROM messages WHERE id=?";
-		
+
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
-		
+
 		try {
-			// 1. Get a connection to the database 
-				myConn = ds.getConnection();
+			// 1. Get a connection to the database
+			myConn = ds.getConnection();
 			// 2. Create a statement object
-				myStmt = myConn.prepareStatement(sql);
-				myStmt.setInt(1, id);
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setInt(1, id);
 
-				myStmt.executeUpdate();
-	
-			} //end try
-			catch (Exception exc) {
-				throw new RuntimeException(exc);
+			myStmt.executeUpdate();
 
-			}
-			finally {
-				DataSource.silentClose(myConn);
-				DataSource.silentClose(myStmt);
-				DataSource.silentClose(myRs);
-			}
+		} // end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
+
+		} finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
 
 	} // end delete
-	
+
 } // end class MessagesDAO

@@ -26,7 +26,7 @@ public class DataSource {
 
 	private DataSource() throws IOException, SQLException, PropertyVetoException {
 		System.out.println("Setting up connection pool.  This should only happen once.");
-		
+
 		PropertyResourceBundle dbProps = (PropertyResourceBundle) ResourceBundle.getBundle("db");
 		if ("".equals(dbProps.getString("db.username"))) {
 			throw new RuntimeException("Can't understand contents of db.properties file - got empty username.");
@@ -61,7 +61,7 @@ public class DataSource {
 	 * @throws SQLException
 	 * @throws PropertyVetoException
 	 */
-	public static DataSource getInstance()  {
+	public static DataSource getInstance() {
 		if (datasource == null) {
 			try {
 				datasource = new DataSource();
@@ -92,16 +92,18 @@ public class DataSource {
 			}
 		}
 	}
+
 	public static void silentClose(Statement stmt) {
-		if (stmt != null) { 
+		if (stmt != null) {
 			try {
 				stmt.close();
 			} catch (SQLException se) {
 			}
 		}
 	}
+
 	public static void silentClose(Connection conn) {
-		if (conn != null) { 
+		if (conn != null) {
 			try {
 				conn.close();
 			} catch (SQLException se) {
@@ -112,33 +114,27 @@ public class DataSource {
 
 	/**
 	 * For testing use, validates that it can connect to a database and run a
-	 * simple query.  Also demonstrates proper use.
+	 * simple query. Also demonstrates proper use.
 	 * 
 	 * @param args
 	 * @throws SQLException
 	 * @throws IOException
 	 * @throws PropertyVetoException
 	 */
-/*	private static void main(String[] args) throws SQLException {
-		System.out.println("Testing DataSource.");
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet res = null;
-
-		try {
-			conn = DataSource.getInstance().getConnection();
-			pstmt = conn.prepareStatement("select 1 as a, 2 as b");
-			res = pstmt.executeQuery();
-			while (res.next()) {
-				System.out.println("Data row = " + res.getString(1) + ", " + res.getString(2));
-			}
-			System.out.println("Success.");
-		} finally {
-			DataSource.silentClose(res);
-			DataSource.silentClose(pstmt);
-			DataSource.silentClose(conn);
-		}
-
-	}   */
+	/*
+	 * private static void main(String[] args) throws SQLException {
+	 * System.out.println("Testing DataSource.");
+	 * 
+	 * Connection conn = null; PreparedStatement pstmt = null; ResultSet res =
+	 * null;
+	 * 
+	 * try { conn = DataSource.getInstance().getConnection(); pstmt =
+	 * conn.prepareStatement("select 1 as a, 2 as b"); res =
+	 * pstmt.executeQuery(); while (res.next()) { System.out.println(
+	 * "Data row = " + res.getString(1) + ", " + res.getString(2)); }
+	 * System.out.println("Success."); } finally { DataSource.silentClose(res);
+	 * DataSource.silentClose(pstmt); DataSource.silentClose(conn); }
+	 * 
+	 * }
+	 */
 }
