@@ -3,7 +3,7 @@
 <head>
 
 <title>Retext Login</title>
-<link type="text/css" rel="stylesheet" href="css/reTextStyle.css">
+<link type="text/css" rel="stylesheet" href="/retextdemo/css/reTextStyle.css">
 </head>
 
 <body>

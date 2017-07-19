@@ -156,7 +156,9 @@ public class RetextMessagesServlet extends HttpServlet {
 
 			request.setAttribute("isbn", isbn);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/loginOut");
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/loginOut");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
+
 			dispatcher.forward(request, response);
 
 			// RetextLoginOutServlet.loginForm(request, response);
