@@ -85,7 +85,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		if (pathInfo == null || "".equals(pathInfo)) {
 			manageUserInfo(request, response); // screen to ask what they want
 												// to do
-		} else if (pathInfo.equals("/updateProfile")) {
+		} else if (pathInfo.equals("/saveUpdateProfile")) {
 			updateProfile(request, response); // actually updates the db
 			// "delete" the user profile actually archives it
 		} else if (pathInfo.equals("/archiveProfile")) {
@@ -103,8 +103,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			gatherListingInfo(request, response);
 		} else if (pathInfo.equals("/profile")) {
 			viewProfile(request, response); //
-		} else if (pathInfo.equals("/listings")) {
-			viewListings(request, response); //
+//		} else if (pathInfo.equals("/listings")) {
+//			viewListings(request, response); //
 		}
 
 	} // end doPost
@@ -218,7 +218,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			request.setAttribute("theUser", thisUser);
 			// this screen will display the current info and allow user to
 			// change it
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextUpdateUser.jsp");
+			RequestDispatcher dispatcher = 
+					request.getRequestDispatcher("/WEB-INF/retextUpdateUser.jsp");
 
 			dispatcher.forward(request, response);
 
@@ -254,11 +255,12 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 			// viewProfile(request, response);
 
-			// request.setAttribute("userId", id);
-			// request.setAttribute("theUser", curUser);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/profile");
-
-			dispatcher.forward(request, response);
+			response.sendRedirect("profile");
+			
+//			RequestDispatcher dispatcher = 
+//					request.getRequestDispatcher("/manageUsers/profile");
+//
+//			dispatcher.forward(request, response);
 
 		} // end try
 		catch (Exception exc) {
@@ -390,9 +392,11 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 			// request.setAttribute("userId", id);
 			// request.setAttribute("theUser", curUser);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
+			response.sendRedirect("/retextdemo/manageUsers/listings");
 
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
+//
+//			dispatcher.forward(request, response);
 
 		} // end try
 		catch (Exception exc) {
@@ -436,9 +440,12 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			// show the user the list again
 
 			// viewListings(request, response);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
-
-			dispatcher.forward(request, response);
+			
+			response.sendRedirect("/retextdemo/manageUsers/listings");
+			
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
+//
+//			dispatcher.forward(request, response);
 
 		} // end try
 		catch (Exception exc) {
@@ -507,9 +514,12 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 				userInventoryDAO.save(thisUserInv); // put this in the db
 
 				// viewListings(request, response);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
+				
+				response.sendRedirect("/retextdemo/manageUsers/listings");
 
-				dispatcher.forward(request, response);
+//				RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
+//
+//				dispatcher.forward(request, response);
 
 			} else { // that book title is not in our system and we need to add
 						// it

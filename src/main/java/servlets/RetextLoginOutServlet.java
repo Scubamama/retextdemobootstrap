@@ -57,19 +57,58 @@ public class RetextLoginOutServlet extends HttpServlet {
 		login(request, response);
 	} // end doPost
 
-	// displays screen with some actions that the user can do
+	// displays screen with some actions that the user can do "MORE"
 	private void userActions(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+// original code before login check
+//		try {
+//
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextUserActions.jsp");
+//			dispatcher.forward(request, response);
+//
+//		} // end try
+//		catch (Exception exc) {
+//			throw new RuntimeException(exc);
+//		}
 
-		try {
+		// user needs to be logged in to do this
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextUserActions.jsp");
+		HttpSession session = request.getSession(false);
+
+//		if (session.getAttribute("currUserId") == null) {
+//			System.out.println(" currUserId == null");
+
+//		} else {
+//			System.out.println(" currUserId != null");
+//			System.out.println(" currUserId: " + session.getAttribute("currUserId"));
+//
+//		}
+		
+		if (session.getAttribute("currUserId") != null) { // they are already
+															// logged in
+
+//			int sellerId = Integer.parseInt(request.getParameter("id"));
+			UsersDAO aUserDAO = new UsersDAO();
+			try {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextUserActions.jsp");
+				dispatcher.forward(request, response);
+
+
+			} // end try
+			catch (Exception exc) {
+				throw new RuntimeException(exc);
+			}
+
+		} // if (session != null)
+
+		else { // make them log in
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
+
 			dispatcher.forward(request, response);
 
-		} // end try
-		catch (Exception exc) {
-			throw new RuntimeException(exc);
-		}
+		} // end else
 
 	} // end userActions
 

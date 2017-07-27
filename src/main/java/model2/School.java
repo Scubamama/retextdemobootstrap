@@ -32,7 +32,12 @@ public class School {
 		this.city = city;
 		this.campus = campus;
 	}
+	
+	public School() {
 
+	}
+
+	
 	public int getId() {
 		return id;
 	}

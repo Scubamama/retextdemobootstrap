@@ -197,8 +197,9 @@ public class UsersDAO {
 			myRs = myStmt.executeQuery();
 
 			if (myRs.next()) {
-				AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"),
-						myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school"));
+				AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), 
+						myRs.getString("UserName"), myRs.getString("UserPassword"), 
+						myRs.getInt("TakeCards"), myRs.getString("school"), myRs.getString("campus"));
 				return u;
 
 			} else {
@@ -206,7 +207,10 @@ public class UsersDAO {
 			}
 
 		} // end try
+		catch (Exception exc) {
+			throw new RuntimeException(exc);
 
+		}
 		finally {
 			DataSource.silentClose(myConn);
 			DataSource.silentClose(myStmt);

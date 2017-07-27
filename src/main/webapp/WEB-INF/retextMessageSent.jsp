@@ -25,10 +25,6 @@
 					<tr><td>Look For More Books</td></tr> 
 					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manage/browse">Browse for Books</a>  </td></tr>
 					
-					<tr></tr>   
-					<tr><td>Go Back to Message Other Users</td></tr> 
-					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/manage/browse">Message Other Users</a>  </td></tr>
-					<tr></tr>
 				</table>
 
 			</div>

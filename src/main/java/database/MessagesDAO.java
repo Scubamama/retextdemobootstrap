@@ -29,7 +29,6 @@ public class MessagesDAO {
 		// save a user if one like this does not exist
 		// otherwise update it
 
-		out.println("in save newMess.getId() =  " + newMess.getId());
 		if (newMess.getId() == 0) {
 			insert(newMess);
 		} else {

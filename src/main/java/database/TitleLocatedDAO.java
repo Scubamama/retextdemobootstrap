@@ -38,6 +38,18 @@ public class TitleLocatedDAO {
 				+ "join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id " + "join retext.users u "
 				+ "where b.id = i.Book_id and i.User_id = u.id ";
 
+// only called from titleLocatedDAO
+// from mysql workbench for adding school requirement
+// needs isbn and user obj to pull school and campus	
+		
+	// we need school name, campus, and nickname here
+//		select i.Price, i.bookCondition, u.UserName, u.Id, b.isbn, b.id, i.id,
+//		s.schoolName, s.nickName, s.campus, u.campus, u.school
+//from retext.user_inventory i
+//	join retext.book_titles b on Isbn = 5555 and b.Id = i.Book_Id 
+//	join retext.users u on i.User_id = u.id and u.school = 'University of Missouri' and u.campus = 'st. louis'
+//	join retext.school s on  'University of Missouri' = s.schoolName and 'st. louis' = s.campus or 'umsl' = s.NickName
+
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		Connection myConn = null;
@@ -68,6 +80,71 @@ public class TitleLocatedDAO {
 		}
 	} // end findAvailableBooks
 
+
+	public List<TitleLocated> findAvailableBooks(String isbn, String schoolName, String campus,
+			String nickName) {
+		List<TitleLocated> myBookList = new ArrayList<TitleLocated>();
+
+		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id, b.isbn, b.id, i.id, " +
+					"s.schoolName, s.nickName, s.campus, u.campus, u.school " +
+				"from retext.user_inventory i " +
+				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id  " +
+				"join retext.users u on i.User_id = u.id and u.school = ? and u.campus = ? " +
+				"join retext.school s on  ? = s.schoolName and ? = s.campus or ? = s.NickName";
+
+// only called from titleLocatedDAO
+// from mysql workbench for adding school requirement
+// needs isbn and user obj to pull school and campus	
+		
+	// we need school name, campus, and nickname here
+		
+//		select i.Price, i.bookCondition, u.UserName, u.Id, b.isbn, b.id, i.id,
+//			s.schoolName, s.nickName, s.campus, u.campus, u.school
+//		from retext.user_inventory i
+		
+//		join retext.book_titles b on Isbn = 5555 and b.Id = i.Book_Id 
+//		join retext.users u on i.User_id = u.id and u.school = 'University of Missouri' and 
+//			u.campus = 'st. louis'
+//		join retext.school s on  'University of Missouri' = s.schoolName and 
+//			'st. louis' = s.campus or 'umsl' = s.NickName
+
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		Connection myConn = null;
+
+		try {
+			// 1. Get a connection to the database
+			myConn = ds.getConnection();
+			// 2. Create a statement object
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, isbn);
+			myStmt.setString(2, schoolName);
+			myStmt.setString(3, campus);
+			myStmt.setString(4, schoolName);
+			myStmt.setString(5, campus);
+			myStmt.setString(6, nickName);
+
+			// 3. Do the actual db select
+			myRs = myStmt.executeQuery();
+
+			// 4. Process the result set - put it into the ArrayList
+			while (myRs.next()) {
+				myBookList.add(new TitleLocated(myRs.getInt("Id"), myRs.getString("Isbn"), myRs.getDouble("price"),
+						myRs.getString("bookCondition"), myRs.getString("userName")));
+			}
+			return myBookList;
+
+		} // end try
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
+	} // end findAvailableBooks
+
+	
 	// looks at my books and retrieves any with a title like what I am searching
 	// for
 

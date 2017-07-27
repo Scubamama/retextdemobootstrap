@@ -17,6 +17,7 @@ public class AUser {
 	private int takeCards = 0;
 	private String takeCardsYN = "";
 	private String userSchool = "";
+	private String userCampus = "";
 
 	public AUser(int id, String email, String name, String password, int cards, String school) {
 		this.id = id;
@@ -34,6 +35,28 @@ public class AUser {
 		this.userPassword = password;
 		this.takeCardsYN = cards;
 		this.userSchool = school;
+	}
+
+	public AUser(int id, String email, String name, String password, int cards, String school, String campus) {
+		this.id = id;
+		this.userEmail = email;
+		this.userName = name;
+		this.userPassword = password;
+		this.takeCards = cards;
+		this.userSchool = school;
+		this.userCampus = campus;
+
+	}
+
+	public AUser(int id, String email, String name, String password, String cards, String school, String campus) {
+		this.id = id;
+		this.userEmail = email;
+		this.userName = name;
+		this.userPassword = password;
+		this.takeCardsYN = cards;
+		this.userSchool = school;
+		this.userCampus = campus;
+
 	}
 
 	public AUser(String userName, String userPassword) {
@@ -118,6 +141,14 @@ public class AUser {
 
 	public void setUserSchool(String userSchool) {
 		this.userSchool = userSchool;
+	}
+
+	public String getUserCampus() {
+		return userCampus;
+	}
+
+	public void setUserCampus(String userCampus) {
+		this.userCampus = userCampus;
 	}
 
 } // end class AUser

@@ -229,6 +229,46 @@ public class SchoolDAO {
 
 	} // end get()
 
+
+	public School get(String name, String campus) throws SQLException {
+
+		String sql = "SELECT * FROM School where schoolName=? and campus=?";
+
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		Connection myConn = null;
+
+		try {
+			// 1. Get a connection to the database
+			myConn = ds.getConnection();
+			// 2. Create a statement object
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, name);
+			myStmt.setString(2, campus);
+
+			myRs = myStmt.executeQuery();
+
+			if (myRs.next()) {
+				// create a return object from db info
+				School s = new School(myRs.getInt("Id"), myRs.getString("SchoolName"), myRs.getString("NickName"),
+						myRs.getString("City"), myRs.getString("Campus"));
+				return s;
+
+			} else {
+				return null;
+			}
+
+		} // end try
+		finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+
+		}
+
+	} // end get()
+
+
 	public void delete(Integer id) throws SQLException {
 
 		String sql = "DELETE FROM School WHERE id=?";

@@ -9,9 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import database.SchoolDAO;
 import database.UserInventoryDAO;
+import database.UsersDAO;
+import model2.AUser;
 import model2.DisplayUserInventory;
+import model2.School;
 
 /**
  * Servlet implementation class RetextManagerServlet This is the main driver
@@ -75,10 +80,44 @@ public class RetextManagerServlet extends HttpServlet {
 	// at his/her school
 	private void browseBooks(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// find some books to sell
+		// find some books to buy
+		
+		String campus = "";
+		String nickName = "";
+		String school = "";
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextBrowse.jsp");
-		dispatcher.forward(request, response);
+		HttpSession session = request.getSession(false);
+
+		AUser theUser = new AUser();
+		try {
+
+			if (session.getAttribute("currUserId") != null) { // they are already signed in
+				// get the user's school info
+				UsersDAO aUserDAO = new UsersDAO();
+				theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
+				school = theUser.getUserSchool();
+				campus = theUser.getUserCampus();   // this is null
+				// get nickName from school obj
+				SchoolDAO schoolDAO = new SchoolDAO();
+				School s = new School();
+	
+				s = schoolDAO.get(school, campus);
+				nickName = s.getNickName();
+				
+			} // end if
+			request.setAttribute("school",school);
+			request.setAttribute("campus",campus);
+			request.setAttribute("nickName",nickName);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextBrowse.jsp");
+			dispatcher.forward(request, response);
+
+		} // end try
+
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
 
 	} // end browseBooks
 

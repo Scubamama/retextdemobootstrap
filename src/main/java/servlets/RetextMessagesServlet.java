@@ -124,14 +124,15 @@ public class RetextMessagesServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 
-		if (session.getAttribute("currUserId") == null) {
-			System.out.println(" currUserId == null");
+//		if (session.getAttribute("currUserId") == null) {
+//			System.out.println(" currUserId == null");
 
-		} else {
-			System.out.println(" currUserId != null");
-			System.out.println(" currUserId: " + session.getAttribute("currUserId"));
-
-		}
+//		} else {
+//			System.out.println(" currUserId != null");
+//			System.out.println(" currUserId: " + session.getAttribute("currUserId"));
+//
+//		}
+		
 		if (session.getAttribute("currUserId") != null) { // they are already
 															// logged in
 
@@ -166,7 +167,7 @@ public class RetextMessagesServlet extends HttpServlet {
 			// request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
 			// dispatcher.forward(request, response);
 
-		}
+		} // end else
 
 	} // end sendMessageToSeller()
 
@@ -231,9 +232,12 @@ public class RetextMessagesServlet extends HttpServlet {
 			messDAO.delete(id);
 			request.setAttribute("id", id);
 			// list(request, response);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/messages");
+			
+			response.sendRedirect("/retextdemo/messages");
 
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/messages");
+//
+//			dispatcher.forward(request, response);
 
 		} // end try
 		catch (Exception exc) {

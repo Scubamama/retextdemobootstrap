@@ -7,7 +7,7 @@
 </head>
 
 <body>
-	<form action="<%=request.getContextPath() %>/manageUsers/updateProfile" method="POST">
+	<form action="<%=request.getContextPath() %>/manageUsers/saveUpdateProfile" method="POST">
 			<div id="container">
 				<div id="wrapper">
 					<h2>ReText</h2>
