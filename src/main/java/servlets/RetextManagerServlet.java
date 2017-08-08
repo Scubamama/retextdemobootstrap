@@ -105,6 +105,7 @@ public class RetextManagerServlet extends HttpServlet {
 				nickName = s.getNickName();
 				
 			} // end if
+			
 			request.setAttribute("school",school);
 			request.setAttribute("campus",campus);
 			request.setAttribute("nickName",nickName);

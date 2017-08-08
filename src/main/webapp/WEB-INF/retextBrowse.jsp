@@ -21,8 +21,9 @@
 				<table id="find_table">
 					<tr><td>School: <input type="text" name="school" value="${school}" /> </td></tr>
 					<tr><td>Campus: <input type="text" name="campus" value="${campus}" /> </td></tr>
-					<tr><td> OR </td></tr>
-					<tr><td>School Nickname: <input type="text" name="nickName" value="${nickName}" /> </td></tr>
+					<tr><td>OR  </td></tr>
+					<tr><td>School Nick Name: <input type="text" name="nickName" value="${nickName}" /> </td></tr>
+
 					<tr><td>ISBN: <input type="input" name="isbn" /> </td></tr>
 					<tr><td>    </td></tr>
 					<tr><td id="browse-button"> <input type="submit" name="browsebutt" value="search" >   </td></tr>

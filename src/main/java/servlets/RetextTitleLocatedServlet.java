@@ -58,10 +58,11 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 	private void displayTitle(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// read all parameters from jsp
 		String isbn = request.getParameter("isbn");
 		String school = request.getParameter("school");
-		String campus = "";
-		String nickName = "";
+		String campus = request.getParameter("campus");
+		String nickName = request.getParameter("nickName");
 		
 		TitleLocatedDAO titleDAO = new TitleLocatedDAO();
 		String title = "";
@@ -70,31 +71,34 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 
 		isbn = request.getParameter("isbn");
 		school = request.getParameter("school");
+		
 		List<TitleLocated> titleList = null;
 		// see if they are logged in if not leave school box empty
 		// if so put school name, campus, and nickname in boxes - get school names from user
 		AUser theUser = new AUser();
 		try {
 
-		if (session.getAttribute("currUserId") != null) { // they are already signed in
-			// get the user's school info
-			UsersDAO aUserDAO = new UsersDAO();
-			theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
-			school = theUser.getUserSchool();
-			campus = theUser.getUserCampus();
-			// get nickName from school obj
-			SchoolDAO schoolDAO = new SchoolDAO();
-			School s = new School();
+			if (session.getAttribute("currUserId") != null) { // they are already signed in
+				// get the user's school info
+				UsersDAO aUserDAO = new UsersDAO();
+				theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
+				school = theUser.getUserSchool();
+				campus = theUser.getUserCampus();
+				// get nickName from school obj
+				SchoolDAO schoolDAO = new SchoolDAO();
+				School s = new School();
+	
+				s = schoolDAO.get(school, campus);
+				nickName = s.getNickName();
+			}
+			request.setAttribute("school",school);
+			request.setAttribute("campus",campus);
+			request.setAttribute("nickName",nickName);
 
-			s = schoolDAO.get(school, campus);
-			nickName = s.getNickName();
-		}
-		request.setAttribute("school",school);
-		request.setAttribute("campus",campus);
-		request.setAttribute("nickName",nickName);
-
-//		try {
-			titleList = titleDAO.findAvailableBooks(isbn,school,campus,nickName);
+			if (school == null) // they entered a nickname only
+				titleList = titleDAO.findAvailableBooks(isbn,school,campus,nickName);
+			else 
+				titleList = titleDAO.findAvailableBooks(isbn, nickName);
 			title = titleDAO.getTitle(isbn);
 
 			if (titleList.isEmpty()) { // no titles found

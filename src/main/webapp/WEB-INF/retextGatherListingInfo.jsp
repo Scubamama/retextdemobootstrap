@@ -20,9 +20,9 @@
 				
 				<table id="find_table">
 					<tr><td>School: <input type="text" name="school" /> </td></tr>
+					<tr><td>Campus: <input type="input" name="campus" /> </td></tr>  
 					
 					<tr><td>ISBN: <input type="input" name="isbn" value="${isbn}"/> </td></tr>
-			<!-- 		<tr><td>Condition: <input type="input" name="condition"  value="${condition}"/> </td></tr>  -->
 					<tr><td>Price: <input type="input" name="price" value="${price}"/> </td></tr>
 					<tr><td id="in_field"> Condition: 
 						<select name="condition">

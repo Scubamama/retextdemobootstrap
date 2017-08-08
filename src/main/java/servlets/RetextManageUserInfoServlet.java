@@ -320,7 +320,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	} // end archiveProfile
 
 	private void updateListingForm(HttpServletRequest request, HttpServletResponse response) {
-		// gets the data to update a user
+		// gets the data to update a listing
 
 		HttpSession session = request.getSession(false);
 		int currUserId = (int) session.getAttribute("currUserId");
@@ -340,11 +340,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 			int bookId = thisListing.getBookId();
 
-			// display a page showing the user's current info and let them
-			// change it
+			// display a page showing the listing
 			request.setAttribute("thisListing", thisListing);
 
-			// update the info the user input
+			// update the info the listing input
 
 			request.setAttribute("currUserId", currUserId);
 			// this screen will display the current info and allow user to
