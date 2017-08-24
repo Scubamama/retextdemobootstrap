@@ -75,7 +75,7 @@ public class RetextCreateUserServlet extends HttpServlet {
 				card = 1;
 
 			AUser newU = new AUser(request.getParameter("email"), currUserName, request.getParameter("password"), card,
-					request.getParameter("schoolName"));
+					request.getParameter("schoolName"), request.getParameter("campus"));
 			aUserDAO.save(newU); // put new user in db
 			newU = aUserDAO.get(currUserName); // get the db id from new entry
 			int currUserId = newU.getId();

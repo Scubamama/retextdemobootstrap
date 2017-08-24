@@ -67,6 +67,7 @@ public class TitleLocatedDAO {
 			while (myRs.next()) {
 				myBookList.add(new TitleLocated(myRs.getInt("Id"), myRs.getString("Isbn"), myRs.getDouble("price"),
 						myRs.getString("bookCondition"), myRs.getString("userName")));
+
 			}
 			return myBookList;
 

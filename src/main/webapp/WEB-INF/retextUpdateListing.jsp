@@ -1,30 +1,39 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Retext Update a Listing<</title>
 
-<head>
-
-<title>Retext Update A Listing</title>
-
-<link type="text/css" rel="stylesheet" href="/retextdemo/css/reTextStyle.css">
-</head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
 
 <body>
 
 	<form action="<%=request.getContextPath() %>/manageUsers/updateListing" method=POST>
-		<div id="container">
-			<div id="wrapper">
-				<h2>ReText</h2>
-				<div id="find">Update this Listing</div>
-				<div id="buy-sell">
-					<small>You can buy, sell, and trade text books on campus</small>
+	
+		<div class="container" style="background-color: #002147;padding:10px;">
+		 	<div class="well well-lg" style="background-color: #EEEEEE">
+ 	
+				<div class="row justify-content-center"><h2>ReText</h2></div>
+				<div class="row justify-content-center">
+					<p class="small">You can buy, sell, and trade text books on campus</p>
 				</div>
+				<div class="row justify-content-center"><h3>Update this Listing</h3></div>
+				
+				
 				<input type="hidden" name="listingId" value="${thisListing.id}"/>
 				
-				<table id="find_table">
+				<div class="row justify-content-center ">
+					<div class="center" style="padding:10px">
+						Price: <input type="input" name="price" value="${thisListing.price}" />
+					</div>
+				</div>
 					
-			<!-- 	<tr><td>ISBN: <input type="text" name="isbn" value="${isbn}"/> </td></tr>   -->	
-			<!-- 		<tr><td>Condition: <input type="input" name="condition"  value="${condition}"/> </td></tr>  -->
-					<tr><td>Price: <input type="input" name="price" value="${thisListing.price}"/> </td></tr>
-					<tr><td id="in_field"> Condition: 
+				<div class="row justify-content-center ">
+					 Condition: 
 						<select name="bookCondition">
 							<option>Poor</option>
 							<option>Fair</option>
@@ -32,29 +41,34 @@
 							<option>Very Good</option>
 							<option>Like New</option>
 							<option>New</option>
-						
 						</select>
-</td></tr>
-					
-					<tr><td>    </td></tr>
-					<tr><td id="browse-button"> <input type="submit" name="addbutt" value="Update the Listing" >   </td></tr>
-					
-					<tr></tr>   
-					
-					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/loginOut/actions">More Things To Do</a>  </td></tr>
-<!-- 				<h3><a href="<%=request.getContextPath() %>/loginOut/actions">More</a>  </h3>  -->
-					
-					<tr></tr>
-				</table>
+				</div>	
 
-			</div>
+				<div class="row justify-content-center">
+					<div class="center" style="padding:10px">
+						<input type="submit" class="btn btn-success center-block" name="addbutt" value="Update the Listing"  />
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="center" style="padding:10px">					
+						<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-info" role="button">More Actions</a> 
+					</div>
+				</div>
+
+				<div class="small">
+					<p class="small">&copy copyright 2017 Holly Williams</p>
+				</div>
+
+			</div> <!-- end well -->
 			
-			<div id="copyright">
-				<small>&copy copyright 2017 Holly Williams</small>
-			</div>
-			
-		</div>
+		</div> <!-- end container -->
 	</form>
+		   <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
 </body>
 
 </html>

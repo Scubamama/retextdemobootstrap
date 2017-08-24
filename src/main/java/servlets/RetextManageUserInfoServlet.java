@@ -181,6 +181,12 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			thisUser = aUserDAO.get(currUserId);
 			// display a page showing the user's current info and let them
 			// change it
+			// takeCards is 0 or 1 in the db
+			if (thisUser.getTakeCards() == 0)
+				thisUser.setTakeCardsYN("N");
+			else
+				thisUser.setTakeCardsYN("Y");
+
 			request.setAttribute("thisUser", thisUser);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewProfile.jsp");
 			dispatcher.forward(request, response);
@@ -247,7 +253,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 				card = 1;
 
 			AUser newU = new AUser(currUserId, request.getParameter("email"), request.getParameter("userName"),
-					request.getParameter("password"), card, request.getParameter("schoolName"));
+					request.getParameter("password"), card, request.getParameter("schoolName"), request.getParameter("campus"));
 
 			aUserDAO.save(newU);
 
@@ -280,6 +286,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 		try {
 			request.setAttribute("currUserId", currUserId);
+//			session = request.getSession();
+//			session.invalidate();
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextConfirmDeleteUser.jsp");
 
@@ -391,7 +399,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 			// request.setAttribute("userId", id);
 			// request.setAttribute("theUser", curUser);
-			response.sendRedirect("/retextdemo/manageUsers/listings");
+//			response.sendRedirect("/retextdemo/manageUsers/listings");
+			response.sendRedirect(request.getContextPath() + "/manageUsers/listings");
 
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
 //
@@ -440,7 +449,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 			// viewListings(request, response);
 			
-			response.sendRedirect("/retextdemo/manageUsers/listings");
+//			response.sendRedirect("/retextdemo/manageUsers/listings");
+			response.sendRedirect(request.getContextPath() + "/manageUsers/listings");
 			
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
 //
@@ -514,7 +524,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 				// viewListings(request, response);
 				
-				response.sendRedirect("/retextdemo/manageUsers/listings");
+//				response.sendRedirect("/retextdemo/manageUsers/listings");
+				response.sendRedirect(request.getContextPath() + "/manageUsers/listings");
 
 //				RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
 //

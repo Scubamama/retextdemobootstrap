@@ -63,7 +63,12 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		String school = request.getParameter("school");
 		String campus = request.getParameter("campus");
 		String nickName = request.getParameter("nickName");
-		
+//System.out.println("TitleLocatedServlet - displayTitle");
+//System.out.println("isbn" + isbn);		
+//System.out.println("school" + school);		
+//System.out.println("campus" + campus);		
+//System.out.println("nickName" + nickName);		
+
 		TitleLocatedDAO titleDAO = new TitleLocatedDAO();
 		String title = "";
 
@@ -77,38 +82,50 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		// if so put school name, campus, and nickname in boxes - get school names from user
 		AUser theUser = new AUser();
 		try {
-
-			if (session.getAttribute("currUserId") != null) { // they are already signed in
-				// get the user's school info
-				UsersDAO aUserDAO = new UsersDAO();
-				theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
-				school = theUser.getUserSchool();
-				campus = theUser.getUserCampus();
-				// get nickName from school obj
-				SchoolDAO schoolDAO = new SchoolDAO();
-				School s = new School();
-	
-				s = schoolDAO.get(school, campus);
-				nickName = s.getNickName();
+			if (session != null) {
+				if (session.getAttribute("currUserId") != null) { // they are already signed in
+					// get the user's school info
+					UsersDAO aUserDAO = new UsersDAO();
+					theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
+					school = theUser.getUserSchool();
+					campus = theUser.getUserCampus();
+					// get nickName from school obj
+					SchoolDAO schoolDAO = new SchoolDAO();
+					School s = new School();
+		
+					s = schoolDAO.get(school, campus);
+					nickName = s.getNickName();
+				}		
 			}
+			
 			request.setAttribute("school",school);
 			request.setAttribute("campus",campus);
 			request.setAttribute("nickName",nickName);
 
-			if (school == null) // they entered a nickname only
+
+			if (school == null) { // they entered a nickname only
 				titleList = titleDAO.findAvailableBooks(isbn,school,campus,nickName);
-			else 
+			}
+			else {
 				titleList = titleDAO.findAvailableBooks(isbn, nickName);
+			}	
 			title = titleDAO.getTitle(isbn);
 
 			if (titleList.isEmpty()) { // no titles found
-				// String message = "A title with that isbn was not found.";
+				//String message = "A title with that isbn was not found.";
 				request.setAttribute("message", "A title with that isbn was not found.");
 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
 				dispatcher.forward(request, response);
 
 			}
+			
+//		for (TitleLocated temp : titleList) {
+//			System.out.println(temp.getIsbn());
+//	//		System.out.println(temp.getSellerName());
+//
+//		}
+			
 			request.setAttribute("titleList", titleList);
 			request.setAttribute("isbn", isbn);
 			request.setAttribute("title", title);

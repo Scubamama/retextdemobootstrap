@@ -1,46 +1,77 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
-<title>Retext Login</title>
-<link type="text/css" rel="stylesheet" href="/retextdemo/css/reTextStyle.css">
+	<title>Retext Login</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	
+	<link type="text/css" rel="stylesheet" href="css/reTextStyle.css">
 </head>
 
 <body>
-<!-- 	<form action="WEB-INF/retextUserLoggedIn.jsp" method=POST> -->	
   	<form action="<%=request.getContextPath() %>/loginOut/save" method=POST>  
+		
+ 			<div class="container" style="background-color: #002147;padding:10px;">
+ 		 		<div class="well well-lg" style="background-color: #EEEEEE; style="padding:10px">
+ 		 		
+					<div class="row justify-content-center style="padding:10px""><h2>ReText</h2></div>
+					<div class="row justify-content-center">
+						<p class="small">You can buy, sell, and trade text books on campus</small>
+					</div>
+					
+					<div class="row justify-content-center" style="padding:10px"><h3>Log In</h3></div>
 	
-		<div id="container">
-			<div id="wrapper">
-				<h2>ReText</h2>
-				<h3>Log In</h3>
+					<div class="row justify-content-center" style="padding:10px">
+					<div class="col-lg-3 col-lg-offset-3">User Name: <input type="input" name="userName" placeholder="User Name"/> </div>
+					
+					<div class="col-lg-3">Password: <input type="password" name="password" placeholder="Password"/> </div>
+					<div class="col-lg-3"><input type="submit" class="btn btn-success center-block" name="Login" value="Log Me In" style="padding:10px"/> </div>
+					
+						</div>		
 						
-				<table id="login_table">
-					<tr><td><span id="tagline">You can buy, sell, and trade your text books on your campus</span></td></tr>
+					<div class="row justify-content-center" style="padding:10px">			
+		<!--  		<input type="submit" class="btn btn-success center-block" name="Login" value="Log Me In" style="padding:10px"/> -->	
+					</div>
+					<p style="padding:10px"></p>
+					
+					<div class="row justify-content-center">
+						<div class="center" style="padding:10px">
+							-- OR --
+						</div>
+					</div>
+					
+					<div class="row justify-content-center">
+						<div class="center" style="padding:10px">
+							<a href="<%=request.getContextPath() %>/newUser/*">Create New User Id</a>  
+						</div>
+					</div>
+					
+					
+	<!--  			<a href="<%=request.getContextPath() %>/newUser/*">Create New User Id</a>  -->	
 				
-					<tr><td id="cntr">User Name: <input type="input" name="userName" placeholder="User Name"/> </td></tr>
-					
-					<tr><td id="cntr">Password: <input type="password" name="password" placeholder="Password"/> </td></tr>
-					
-			<!-- 		<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/loginOut">Login</a> </td></tr>   -->
-					
-					<tr><td id="browse-button"><input type="submit" name="Login" value="Log Me In" /></td></tr>
-					
-					<tr><td id="browse-button"><a href="<%=request.getContextPath() %>/newUser/*">Create New User Id</a>  </td></tr>
-				
-				
-				</table>
 	<!--  			<p style="color:red; font-size:24px;"> "${warning}" </p>  -->
-	<!-- 				<div id="warning"> "${warning}" </div>  -->
-				<input type="hidden" id="condition" name="isbn" value="${isbn}">  
-				
-			</div>
-		</div>
+					<input type="hidden" id="condition" name="isbn" value="${isbn}">  
+					
+					<p style="padding:10px"></p>
+					
+					<div class="small">
+						<p class="small">&copy copyright 2017 Holly Williams</p>
+					</div>
+						
+			</div> <!-- end well -->
+		</div>  <!-- end container -->
 	</form>
 	
-	<div id="copyright">
-		&copy copyright 2017 Holly Williams
-	</div>
 </body>
+	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
 
 </html>

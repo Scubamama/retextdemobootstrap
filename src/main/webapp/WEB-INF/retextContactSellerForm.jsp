@@ -1,32 +1,49 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Retext Contact Seller<</title>
 
-<head>
-	<style>
-
-	</style>
-	<title>Contact Seller</title>
-	<link type="text/css" rel="stylesheet" href="/retextdemo/css/reTextStyle.css">
-</head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
 
 <body>
 	
 	<form action="<%=request.getContextPath() %>/messages/send?id=${sellerId}" method=POST>
-		<div id="container">
-			<div id="wrapper">	
-				<table id="contact_table" >
+	
+		<div class="container" style="background-color: #002147;padding:10px;">
+		 	<div class="well well-lg" style="background-color: #EEEEEE">
+	
+				<div class="row justify-content-center"><h2>ReText</h2></div>
+				<div class="row justify-content-center">
+					<p class="small">You can buy, sell, and trade text books on campus</small>
+				</div>
+				<div class="row justify-content-center"><h4>Contact a Seller</h4></div>
 					
-					<tr><td id="cntr">Contact a Seller</td></tr>
-					<tr><td >  Seller:  ${sellerName} </td></tr>
-					<tr><td id="loc_meet"> Message the Seller </td></tr>
-					<tr><td id="loc_meet"> Location on Campus and time to Meet perhaps: </td></tr>
-					<tr><td id="loc_meet"><textarea name="message" cols = "40" rows="5"/></textarea> </td></tr>
-					
-					<tr><td id="cntr"><input type="submit" name="Submit" value="Send"  /> </td></tr>
+				<div class="row justify-content-center">Seller:  ${sellerName}</div>
+				<div class="row justify-content-center"> Location on Campus to Meet:</div>
 				
-				</table>
-			</div>
+				<div class="row justify-content-center">
+					<textarea name="message" cols = "40" rows="5"/></textarea>
+				</div> 
+				<div class="row justify-content-center">
+					<div class="center" style="padding:10px">
+						<input type="submit" class="btn btn-success" name="Submit" value="Send"/>
+					</div>
+				</div>
+					
+			</div> <!-- end well -->
 		</div>
 	</form>
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 </body>
 

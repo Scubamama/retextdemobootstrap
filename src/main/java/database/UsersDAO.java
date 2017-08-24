@@ -237,7 +237,8 @@ public class UsersDAO {
 
 			if (myRs.next()) {
 				AUser u = new AUser(myRs.getInt("Id"), myRs.getString("Email"), myRs.getString("UserName"),
-						myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school"));
+						myRs.getString("UserPassword"), myRs.getInt("TakeCards"), myRs.getString("school"),
+						myRs.getString("campus"));
 				return u;
 
 			} else {
