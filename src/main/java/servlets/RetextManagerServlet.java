@@ -32,7 +32,6 @@ public class RetextManagerServlet extends HttpServlet {
 	 */
 	public RetextManagerServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -72,7 +71,7 @@ public class RetextManagerServlet extends HttpServlet {
 	// opened
 	private void welcome(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// just show the welcome page retext-welcome.jsp
+		// just show the welcome page retextWelcome.jsp
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextWelcome.jsp");
 		dispatcher.forward(request, response);
 	} // end welcome

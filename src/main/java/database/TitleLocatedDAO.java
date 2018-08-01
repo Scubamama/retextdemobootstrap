@@ -208,6 +208,60 @@ public class TitleLocatedDAO {
 		}
 	} // end findAvailableBooks
 
+// new findAvailableBooks that doesnt use the school nickname
+	public List<TitleLocated> findAvailableBooks(String isbn, String schoolName, String campus) {
+		List<TitleLocated> myBookList = new ArrayList<TitleLocated>();
+
+		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id, b.isbn, b.id, i.id, " +
+					"s.schoolName, s.campus, u.campus, u.school " +
+				"from retext.user_inventory i " +
+				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id  " +		
+				"join retext.users u on i.User_id = u.id and u.school = ? and u.campus = ? " +
+				"join retext.school s on  ? = s.schoolName and ? = s.campus";
+
+	System.out.println(sql);
+
+	// only called from titleLocatedDAO
+// from mysql workbench for adding school requirement
+// needs isbn and user obj to pull school and campus	
+		
+
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		Connection myConn = null;
+
+		try {
+			// 1. Get a connection to the database
+			myConn = ds.getConnection();
+			// 2. Create a statement object
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, isbn);
+			myStmt.setString(2, schoolName);
+			myStmt.setString(3, campus);
+			myStmt.setString(4, schoolName);
+			myStmt.setString(5, campus);
+//			myStmt.setString(6, nickName);
+
+	System.out.println("before executeQuery");
+			// 3. Do the actual db select
+			myRs = myStmt.executeQuery();
+	System.out.println("after executeQuery");
+			// 4. Process the result set - put it into the ArrayList
+			while (myRs.next()) {
+				myBookList.add(new TitleLocated(myRs.getInt("Id"), myRs.getString("Isbn"), myRs.getDouble("price"),
+						myRs.getString("bookCondition"), myRs.getString("userName")));
+			}
+			return myBookList;
+
+		} // end try
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
+	} // end findAvailableBooks
 
 	
 	// looks at my books and retrieves any with a title like what I am searching

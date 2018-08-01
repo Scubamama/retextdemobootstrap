@@ -102,13 +102,18 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 			request.setAttribute("campus",campus);
 			request.setAttribute("nickName",nickName);
 
+	System.out.println("before new call to titleDAO");
+			titleList = titleDAO.findAvailableBooks(isbn,school,campus);
+			System.out.println("after new call to titleDAO");
 
-			if (school == null) { // they entered a nickname only
-				titleList = titleDAO.findAvailableBooks(isbn,school,campus,nickName);
-			}
-			else {
-				titleList = titleDAO.findAvailableBooks(isbn, nickName);
-			}	
+
+//			if (school == null) { // they entered a nickname only
+//				titleList = titleDAO.findAvailableBooks(isbn,school,campus,nickName);
+//			}
+//			else {
+//				titleList = titleDAO.findAvailableBooks(isbn, nickName);
+//			}	
+			
 			title = titleDAO.getTitle(isbn);
 
 			if (titleList.isEmpty()) { // no titles found
