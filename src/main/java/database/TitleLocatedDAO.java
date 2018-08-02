@@ -110,47 +110,6 @@ public class TitleLocatedDAO {
 		}
 	} // end findAvailableBooks
 
-//	public List<TitleLocated> findAvailableBooks(String isbn, String nickName) {
-//		List<TitleLocated> myBookList = new ArrayList<TitleLocated>();
-//
-//		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id, b.isbn, b.id, i.id, " +
-//					"s.schoolName, s.nickName, s.campus, u.campus, u.school " +
-//				"from retext.user_inventory i " +
-//				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id  " +
-//				"join retext.users u on i.User_id = u.id " + 
-//				"join retext.school s on ? = s.NickName";
-//
-//		PreparedStatement myStmt = null;
-//		ResultSet myRs = null;
-//		Connection myConn = null;
-//
-//		try {
-//			// 1. Get a connection to the database
-//			myConn = ds.getConnection();
-//			// 2. Create a statement object
-//			myStmt = myConn.prepareStatement(sql);
-//			myStmt.setString(1, isbn);
-//			myStmt.setString(2, nickName);
-//
-//			// 3. Do the actual db select
-//			myRs = myStmt.executeQuery();
-//
-//			// 4. Process the result set - put it into the ArrayList
-//			while (myRs.next()) {
-//				myBookList.add(new TitleLocated(myRs.getInt("Id"), myRs.getString("Isbn"), myRs.getDouble("price"),
-//						myRs.getString("bookCondition"), myRs.getString("userName")));
-//			}
-//			return myBookList;
-//
-//		} // end try
-//		catch (Exception e) {
-//			throw new RuntimeException(e);
-//		} finally {
-//			DataSource.silentClose(myConn);
-//			DataSource.silentClose(myStmt);
-//			DataSource.silentClose(myRs);
-//		}
-//	} // end findAvailableBooks
 
 	public List<TitleLocated> findAvailableBooks(String isbn, String schoolName, String campus) {
 		List<TitleLocated> myBookList = new ArrayList<TitleLocated>();
@@ -191,85 +150,6 @@ public class TitleLocatedDAO {
 			DataSource.silentClose(myRs);
 		}
 	} // end findAvailableBooks
-
-
-//	public List<UserInventoryDisplay> searchMyBooks(String text) throws SQLException {
-//		List<UserInventoryDisplay> myBookList = new ArrayList<UserInventoryDisplay>();
-//
-//		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + "i.price "
-//				+ "from retext.book_titles b join retext.user_inventory i "
-//				+ "where b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
-//
-//		int currUserId = 1;
-//
-//		PreparedStatement myStmt = null;
-//		ResultSet myRs = null;
-//		Connection myConn = null;
-//
-//		try {
-//			// 1. Get a connection to the database
-//			myConn = ds.getConnection();
-//			// 2. Create a statement object
-//			myStmt = myConn.prepareStatement(sql);
-//			myStmt.setInt(1, currUserId);
-//			myStmt.setString(2, "%" + text + "%");
-//			// 3. do the actual select
-//			myRs = myStmt.executeQuery();
-//
-//			// 4. Process the result set - put it into the ArrayList
-//
-//			while (myRs.next()) {
-//				myBookList.add(
-//						new UserInventoryDisplay(myRs.getInt("Id"), myRs.getString("Title"), myRs.getString("author"),
-//								myRs.getString("edition"), myRs.getString("isbn"), myRs.getDouble("price")));
-//				// out.println("inv id = " + getId());
-//			}
-//			return myBookList;
-//
-//		} // end try
-//		finally {
-//			DataSource.silentClose(myConn);
-//			DataSource.silentClose(myStmt);
-//			DataSource.silentClose(myRs);
-//		}
-//
-//	} // end searchMyBooks
-
-//	public List<UserInventoryDisplay> listMyBooks(int currUserId) throws SQLException {
-//		List<UserInventoryDisplay> invList = new ArrayList<UserInventoryDisplay>();
-//
-//		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + "i.price "
-//				+ "from retext.book_titles b join retext.user_inventory i "
-//				+ "where b.id = i.Book_id and i.User_id = ?";
-//
-//		// int currUserId = 1;
-//		PreparedStatement myStmt = null;
-//		ResultSet myRs = null;
-//		Connection myConn = null;
-//
-//		try {
-//			// 1. Get a connection to the database
-//			myConn = ds.getConnection();
-//			// 2. Create a statement object
-//			myStmt = myConn.prepareStatement(sql);
-//			myStmt.setInt(1, currUserId);
-//			myRs = myStmt.executeQuery();
-//
-//			// 4. Process the result set - put it into the ArrayList
-//			while (myRs.next()) {
-//				invList.add(
-//						new UserInventoryDisplay(myRs.getInt("Id"), myRs.getString("Title"), myRs.getString("author"),
-//								myRs.getString("edition"), myRs.getString("isbn"), myRs.getDouble("price")));
-//			}
-//			return invList;
-//		} // end try
-//		finally {
-//			DataSource.silentClose(myConn);
-//			DataSource.silentClose(myStmt);
-//			DataSource.silentClose(myRs);
-//		}
-//
-//	} // end listMyBooks
 
 	public void save(UserInventory inv) {
 		// save a user if one like this does not exist
@@ -451,35 +331,5 @@ public class TitleLocatedDAO {
 		}
 
 	} // end getIs(isbn)
-
-//	public void delete(Integer currUserId, Integer bookId) throws SQLException {
-//
-//		String sql = "DELETE FROM User_Inventory WHERE User_Id=? AND Book_Id=?";
-//
-//		PreparedStatement myStmt = null;
-//		ResultSet myRs = null;
-//		Connection myConn = null;
-//
-//		try {
-//			// 1. Get a connection to the database
-//			myConn = ds.getConnection();
-//			// 2. Create a statement object
-//			myStmt = myConn.prepareStatement(sql);
-//			myStmt.setInt(1, currUserId);
-//			myStmt.setInt(2, bookId);
-//			// 3. do the db delete
-//			myStmt.executeUpdate();
-//
-//		} // end try
-//		catch (Exception exc) {
-//			throw new RuntimeException(exc);
-//
-//		} finally {
-//			DataSource.silentClose(myConn);
-//			DataSource.silentClose(myStmt);
-//			DataSource.silentClose(myRs);
-//		}
-//
-//	} // end delete
 
 } // end class TitleLocatedDAO
