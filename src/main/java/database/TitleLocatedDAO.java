@@ -216,9 +216,16 @@ public class TitleLocatedDAO {
 					"s.schoolName, s.campus, u.campus, u.school " +
 				"from retext.user_inventory i " +
 				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id  " +		
-				"join retext.users u on i.User_id = u.id and u.school = ? and u.campus = ? " +
+				"join retext.users u on i.User_id = u.id and u.school = ? and u.campus = ?and archived = 0 " +
 				"join retext.school s on  ? = s.schoolName and ? = s.campus";
 
+//		from retext.user_inventory i 
+//		join retext.book_titles b on Isbn = 12345 and b.Id = i.Book_Id 
+//        join retext.users u on i.User_id = u.id and archived = 0 and u.school = 'University of Missouri'
+//			and u.campus = 'st. louis'
+//        inner join retext.school s 
+//        on 'University of Missouri' = s.schoolName and 'st. louis' = s.campus 		
+		
 	System.out.println(sql);
 
 	// only called from titleLocatedDAO

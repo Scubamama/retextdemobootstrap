@@ -79,7 +79,7 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		
 		List<TitleLocated> titleList = null;
 		// see if they are logged in if not leave school box empty
-		// if so put school name, campus, and nickname in boxes - get school names from user
+		// if so put school name, campus in boxes - get school names from user
 		AUser theUser = new AUser();
 		try {
 			if (session != null) {
