@@ -53,21 +53,12 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		displayTitle(request, response);
 	}
 
-	// displays all of the copies of the requested title available at user's
-	// school
 	private void displayTitle(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// read all parameters from jsp
 		String isbn = request.getParameter("isbn");
 		String school = request.getParameter("school");
 		String campus = request.getParameter("campus");
-		String nickName = request.getParameter("nickName");
-//System.out.println("TitleLocatedServlet - displayTitle");
-//System.out.println("isbn" + isbn);		
-//System.out.println("school" + school);		
-//System.out.println("campus" + campus);		
-//System.out.println("nickName" + nickName);		
 
 		TitleLocatedDAO titleDAO = new TitleLocatedDAO();
 		String title = "";
@@ -94,25 +85,13 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 					School s = new School();
 		
 					s = schoolDAO.get(school, campus);
-					nickName = s.getNickName();
 				}		
 			}
 			
 			request.setAttribute("school",school);
 			request.setAttribute("campus",campus);
-			request.setAttribute("nickName",nickName);
 
-	System.out.println("before new call to titleDAO");
 			titleList = titleDAO.findAvailableBooks(isbn,school,campus);
-			System.out.println("after new call to titleDAO");
-
-
-//			if (school == null) { // they entered a nickname only
-//				titleList = titleDAO.findAvailableBooks(isbn,school,campus,nickName);
-//			}
-//			else {
-//				titleList = titleDAO.findAvailableBooks(isbn, nickName);
-//			}	
 			
 			title = titleDAO.getTitle(isbn);
 
@@ -124,12 +103,6 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 
 			}
-			
-//		for (TitleLocated temp : titleList) {
-//			System.out.println(temp.getIsbn());
-//	//		System.out.println(temp.getSellerName());
-//
-//		}
 			
 			request.setAttribute("titleList", titleList);
 			request.setAttribute("isbn", isbn);
