@@ -65,24 +65,17 @@ public class RetextCreateUserServlet extends HttpServlet {
 			UsersDAO aUserDAO = new UsersDAO();
 			String uCard = "";
 			uCard = request.getParameter("takeCardsYN");
-System.out.println("uCard: " + uCard);
 			// check to see if this name is already created
 
 			String currUserName = request.getParameter("userName");
-System.out.println("currUserName: " + currUserName);
 			int card = 0; // default user does not take cards
-System.out.println("uCard: " + uCard);
 			if (uCard.equals("y"))
 				card = 1;
-System.out.println("before creating newU");
 			AUser newU = new AUser(request.getParameter("email"), currUserName, request.getParameter("password"), card,
 					request.getParameter("schoolName"), request.getParameter("campus"));
-System.out.println("newU: " + newU);
 			aUserDAO.save(newU); // put new user in db
-System.out.println("after save");
 			newU = aUserDAO.get(currUserName); // get the db id from new entry
 			int currUserId = newU.getId();
-System.out.println("currUserId: "+ currUserId);
 			// create a session
 
 			HttpSession session = request.getSession();
