@@ -74,7 +74,7 @@
 					</div>
 	 				<div class="row justify-content-center ">
 						<div class="center" style="padding:10px">							
-							Are you able to take credit/debit cards? (y/n): <input type="text" name="takeCardsYN" value="${thisUser.takeCardsYN}"/> </td></tr>
+							Are you able to take non-cash payments? (y/n): <input type="text" name="takeCardsYN" value="${thisUser.takeCardsYN}"/> </td></tr>
 						</div>
 					</div>
 					<div class="row justify-content-center">

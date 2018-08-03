@@ -33,7 +33,7 @@
 						<th>Email</th>
 						<th>Username</th>
 						<th>Password</th>
-						<th>Take Cards</th>
+						<th>Take Non-Cash</th>
 						<th>School</th>
 						<th>Campus</th>
 	 										

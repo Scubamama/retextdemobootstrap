@@ -107,7 +107,7 @@ public class RetextManagerServlet extends HttpServlet {
 		
 					s = schoolDAO.get(school, campus);
 
-					nickName = s.getNickName();
+	//				nickName = s.getNickName();
 					
 				} // end if (session.getAttribute("currUserId") != null)
 			} // end if (session == null)
@@ -118,7 +118,7 @@ public class RetextManagerServlet extends HttpServlet {
 
 			request.setAttribute("school",school);
 			request.setAttribute("campus",campus);
-			request.setAttribute("nickName",nickName);
+//			request.setAttribute("nickName",nickName);
 //	System.out.println("after setAttributes");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextBrowse.jsp");
 			dispatcher.forward(request, response);
