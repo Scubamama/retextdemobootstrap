@@ -21,16 +21,16 @@
  		 		
 					<div class="row justify-content-center style="padding:10px""><h2>ReText</h2></div>
 					<div class="row justify-content-center">
-						<p class="small">You can buy, sell, and trade text books on campus</small>
+						<p class="small">You can buy, sell, and trade text books on campus</p>
 					</div>
 					
-					<div class="row justify-content-center" style="padding:10px"><h3>Log In</h3></div>
+					<div class="row justify-content-center" style="padding:10px"><h3>Sign In</h3></div>
 	
 					<div class="row justify-content-center" style="padding:10px">
 					<div class="col-lg-3 col-lg-offset-3">User Name: <input type="input" name="userName" placeholder="User Name"/> </div>
 					
-					<div class="col-lg-3">Password: <input type="password" name="password" placeholder="Password"/> </div>
-					<div class="col-lg-3"><input type="submit" class="btn btn-success center-block" name="Login" value="Log Me In" style="padding:10px"/> </div>
+					<div class="col-lg-3 col-lg-offset-3">Password:   <input type="password" name="password" placeholder="Password"/> </div>
+					<div class="col-lg-3"><input type="submit" class="btn btn-success center-block" name="Login" value="Sign Me In" style="padding:10px"/> </div>
 					
 						</div>		
 						
@@ -44,10 +44,10 @@
 							-- OR --
 						</div>
 					</div>
-					
+
 					<div class="row justify-content-center">
 						<div class="center" style="padding:10px">
-							<a href="<%=request.getContextPath() %>/newUser/*">Create New User Id</a>  
+							<a href="<%=request.getContextPath() %>/newUser/*" class="btn btn-outline-primary">Create New User Id</a>  
 						</div>
 					</div>
 					

@@ -25,15 +25,15 @@
 					<div class="row justify-content-center">
 						<p class="small">You can buy, sell, and trade text books on campus</small>
 					</div>
-					<div class="row justify-content-center"><h3>User Logged In</h3></div>
-					<div class="row justify-content-center" style="padding:10px;"><h5>You are logged in as ${theUser}</h5></div>
+					<div class="row justify-content-center"><h3>User Signed In</h3></div>
+					<div class="row justify-content-center" style="padding:10px;"><h5>You are signed in as ${theUser}</h5></div>
 
 					<div class="row justify-content-center"> <h4>  What would you like to do?<h4></div>
 					
 					<div class="row justify-content-center">
 						<div class="center" style="padding:10px">
 				<!-- 		<a href="<%=request.getContextPath() %>/manage/browse">Browse for Books</a> -->
-							<a href="<%=request.getContextPath() %>/manage/browse" class="btn btn-info" role="button">Look for Books</a>
+							<a href="<%=request.getContextPath() %>/manage/browse" class="btn btn-success" role="button">Look for Books</a>
 						</div>
 					</div>
 					<div class="row justify-content-center">
@@ -51,7 +51,7 @@
 						
 					<div class="row justify-content-center">
 						<div class="center" style="padding:10px">
-							<a href="<%=request.getContextPath() %>/loginOut/logOut">Sign Out</a>  
+							<a href="<%=request.getContextPath() %>/loginOut/logOut" class="btn btn-danger">Sign Out</a>  
 						</div>
 					</div>
 						

@@ -43,7 +43,7 @@
 			
 			<div class="row justify-content-center ">
 				<div class="center" style="padding:10px">
-					<a href="<%=request.getContextPath() %>/loginOut" class="btn btn-outline-success center-block">Login</a> 
+					<a href="<%=request.getContextPath() %>/loginOut" class="btn btn-outline-success center-block">Sign In</a> 
 				</div>
 			</div>
 			<div class="row justify-content-center">

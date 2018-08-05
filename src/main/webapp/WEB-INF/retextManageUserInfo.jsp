@@ -16,7 +16,7 @@
 
 <body>
 	
-<!--  -->	<form method=GET action="/retextdemo/manageUsers">  -->
+<!-- 	<form method=GET action="/retextdemo/manageUsers">  -->
 	<form action="<%=request.getContextPath() %>/manageUsers" method=GET>
 	
 		<div class="container" style="background-color: #002147;padding:10px;">
@@ -24,7 +24,7 @@
 
 					<div class="row justify-content-center"><h2>ReText</h2></div>
 					<div class="row justify-content-center">
-						<p class="small">You can buy, sell, and trade text books on campus</small>
+						<p class="small">You can buy, sell, and trade text books on campus</p>
 					</div>
 					<div class="row justify-content-center"><h4>Manage Your Listings And Profile</h4></div>
 				
@@ -41,6 +41,11 @@
 						</div>
 					</div>
 			
+					<div class="row justify-content-center">
+						<div class="center" style="padding:10px">					
+							<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-primary" role="button">More</a> 
+						</div>
+					</div>
 				
 				<div class="small">
 					<p class="small">&copy copyright 2017 Holly Williams</p>

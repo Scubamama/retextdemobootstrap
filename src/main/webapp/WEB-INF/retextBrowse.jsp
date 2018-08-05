@@ -44,14 +44,24 @@
 					</div>
 					<div class="row justify-content-center">
 						<div class="center" style="padding:10px">
-							<input type="submit" class="btn btn-success center-block" name="browsebutt" value="search"  />
+							<input type="submit" class="btn btn-success center-block" name="browsebutt" value="Search"  />
 						</div>
 					</div>
-					<div class="row justify-content-center">
+					
+					<div class="row justify-content-center"><h5>OR</h5></div>
+		
+					<div class="row justify-content-center ">
+						<div class="center" style="padding:10px">
+							<a href="<%=request.getContextPath() %>/loginOut" class="btn btn-primary center-block">Sign In</a> 
+						</div>
+					</div>
+
+					
+<!-- 				<div class="row justify-content-center">
 						<div class="center" style="padding:10px">
 							<a href="<%=request.getContextPath() %>/loginOut">Login</a>  
 						</div>
-					</div>
+ -->						</div>
 					
 						
 			<!-- 		  <input type="submit" name="browsebutt" value="search" >    -->	

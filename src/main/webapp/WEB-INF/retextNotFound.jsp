@@ -19,44 +19,43 @@
 		<div class="container" style="background-color: #002147;padding:10px;">
  	 		<div class="well well-lg" style="background-color: #EEEEEE">
 
-					<div class="row justify-content-center"><h2>ReText</h2></div>
-					<div class="row justify-content-center">
-						<p class="small">You can buy, sell, and trade text books on campus</small>
+				<div class="row justify-content-center"><h2>ReText</h2></div>
+				<div class="row justify-content-center">
+					<p class="small">You can buy, sell, and trade text books on campus</small>
+				</div>
+				<div class="row justify-content-center"><h4>${message}</h4></div>
+				<div class="row justify-content-center"><h4>What would you like to do now?</h4></div>
+									
+				<div class="row justify-content-center">
+					<div class="center" style="padding:10px">
+						<a href="<%=request.getContextPath() %>/manageUsers/listings" class="btn btn-info" role="button">Manage My Listings</a> 					
 					</div>
-					<div class="row justify-content-center"><h4>${message}</h4></div>
-										
-					<div class="row justify-content-center">
-						<div class="center" style="padding:10px">
-							<a href="<%=request.getContextPath() %>/manageUsers/listings" class="btn btn-info" role="button">Manage My Listings</a> 					
-						</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="center" style="padding:10px">
+						<a href="<%=request.getContextPath() %>/manageUsers/profile" class="btn btn-info" role="button">Manage MY Profile</a>  
 					</div>
-					<div class="row justify-content-center">
-						<div class="center" style="padding:10px">
-							<a href="<%=request.getContextPath() %>/manageUsers/profile" class="btn btn-info" role="button">Manage MY Profile</a>  
-						</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="center" style="padding:10px">					
+						<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-success" role="button">More</a> 
 					</div>
-					<div class="row justify-content-center">
-						<div class="center" style="padding:10px">					
-							<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-info" role="button">More</a> 
-						</div>
+				</div>
+					
+				<div class="row justify-content-center">
+					<div class="center" style="padding:10px">
+						<a href="<%=request.getContextPath() %>/loginOut/logOut" class="btn btn-danger" >Sign Out</a>  
 					</div>
-						
-					<div class="row justify-content-center">
-						<div class="center" style="padding:10px">
-							<a href="<%=request.getContextPath() %>/loginOut/logOut">Sign Out</a>  
-						</div>
-					</div>
-						
-				
-				
+				</div>
+					
+		 		<p></p>
+				<div class="small">
+					<p class="small">&copy copyright 2017 Holly Williams</p>
+				</div>
+			
 			</div> <!-- end well -->
 		</div> <!-- end container -->
-	
-	
-		<div id="copyright">
-			&copy copyright 2017 Holly Williams
-		</div>
-		
+			
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

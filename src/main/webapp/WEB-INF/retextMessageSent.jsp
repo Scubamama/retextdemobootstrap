@@ -32,7 +32,7 @@
 					
 					<div class="row justify-content-center">
 						<div class="center" style="padding:10px">					
-							<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-info" role="button">More</a> 
+							<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-primary" role="button">More</a> 
 						</div>
 					</div>
 

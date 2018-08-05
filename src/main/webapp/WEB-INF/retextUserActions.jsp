@@ -33,7 +33,7 @@
 				
 				<div class="row justify-content-center">
 					<div class="center" style="padding:10px">
-						<a href="<%=request.getContextPath() %>/manage/browse" class="btn btn-info" role="button">Look for Books</a>
+						<a href="<%=request.getContextPath() %>/manage/browse" class="btn btn-success" role="button">Look for Books</a>
 					</div>
 				</div>
 
@@ -53,7 +53,7 @@
 
 				<div class="row justify-content-center">
 					<div class="center" style="padding:10px">
-						<a href="<%=request.getContextPath() %>/loginOut/logOut">Sign Out</a>  
+						<a href="<%=request.getContextPath() %>/loginOut/logOut" class="btn btn-danger">Sign Out</a>  
 					</div>
 				</div>
 					

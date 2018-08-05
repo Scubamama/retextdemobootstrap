@@ -66,12 +66,18 @@
 			
 			<div class="row justify-content-center">
 				<div class="center" style="padding:10px">
-					<a href="<%=request.getContextPath() %>/loginOut/logOut">Sign Out</a>  
+					<a href="<%=request.getContextPath() %>/loginOut/logOut" class="btn btn-danger">Sign Out</a>  
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="center" style="padding:10px">
-					<a href="<%=request.getContextPath() %>/manageUsers">Return</a> 
+					<a href="<%=request.getContextPath() %>/manageUsers" class="btn btn-info">Return</a> 
+				</div>
+			</div>
+					
+			<div class="row justify-content-center">
+				<div class="center" style="padding:10px">					
+					<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-primary" role="button">More</a> 
 				</div>
 			</div>
 			
