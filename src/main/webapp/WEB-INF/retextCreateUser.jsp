@@ -16,7 +16,8 @@
 </head>
 
 <body>
-	<form action="WEB-INF/retextUserCreated.jsp" method="POST">
+  <form action="WEB-INF/retextUserCreated.jsp" method="POST">      
+
 	
 			<div class="container" style="background-color: #002147;padding:10px;">
 				<div class="well well-lg" style="background-color: #EEEEEE">

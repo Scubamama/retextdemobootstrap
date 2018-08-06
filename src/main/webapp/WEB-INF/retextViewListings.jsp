@@ -1,5 +1,7 @@
 <%@ page import="java.util.List,model2.UserInventoryDisplay,model2.DisplayUserInventory" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +53,9 @@
 							<td>  ${tempListingsList.title}</td>
 							<td>  ${tempListingsList.author}</td>
 							<td>  ${tempListingsList.edition}</td>
-							<td>  ${tempListingsList.price}</td>
+		<!--  				<td>  ${tempListingsList.price}</td>		-->	
+							<td> $ <fmt:formatNumber pattern="#.00" value="${tempListingsList.price}" /></td>
+
 							<td>  ${tempListingsList.condition}</td>
 							<td>  ${tempListingsList.sold}</td>
 							
@@ -66,7 +70,7 @@
 				<div class="row justify-content-center">
 					<div class="center" style="padding:10px">
 			<!--  			<a href="<%=request.getContextPath() %>/loginOut">Login</a>  -->
-						<a href="<%=request.getContextPath() %>/manageUsers/addListingForm">Add a Listing</a> 
+						<a href="<%=request.getContextPath() %>/manageUsers/addListingForm" class="btn btn-info">Add a Listing</a> 
 					</div>
 				</div>
 			
@@ -74,7 +78,7 @@
 				<div class="row justify-content-center">
 					<div class="center" style="padding:10px">
 			<!--  			<a href="<%=request.getContextPath() %>/loginOut">Login</a>  -->
-				   			<a href="<%=request.getContextPath() %>/loginOut/actions">More</a>  
+				   			<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-primary">More</a>  
 					</div>
 				</div>
 

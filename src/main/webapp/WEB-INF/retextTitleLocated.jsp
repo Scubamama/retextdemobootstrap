@@ -57,7 +57,15 @@
 							
 						</tr>
 					</c:forEach>
-				</table>	
+				</table>
+				
+				<div class="row justify-content-center">
+					<div class="center" style="padding:10px">					
+						<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-primary" role="button">More</a> 
+					</div>
+				</div>
+				
+					
 			</div>
 			<div class="small">
 				<p class="small">&copy copyright 2017 Holly Williams</p>

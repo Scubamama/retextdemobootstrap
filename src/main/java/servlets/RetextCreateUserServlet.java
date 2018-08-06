@@ -61,7 +61,6 @@ public class RetextCreateUserServlet extends HttpServlet {
 		// takes the info from gatherNewUserInfo() and stores it in the database
 
 		try {
-
 			UsersDAO aUserDAO = new UsersDAO();
 			String uCard = "";
 			uCard = request.getParameter("takeCardsYN");

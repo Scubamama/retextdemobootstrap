@@ -20,7 +20,7 @@
 					<p class="small">You can buy, sell, and trade text books on campus</p>
 				</div>
 
-				<div class="row justify-content-center" style="padding:10px"><h3>${theUser} has been deleted</h3></div>
+				<div class="row justify-content-center" style="padding:10px"><h3>User Profile for ${theUser} has been deleted</h3></div>
 				<div class="row justify-content-center" style="padding:10px"><h4>We are sorry to see you go.</h4></div>
 				
 				<div class="row justify-content-center" style="padding:10px"><h4>We will be here if you need us in the future.</h4></div>

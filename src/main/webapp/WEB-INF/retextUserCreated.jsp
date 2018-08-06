@@ -24,12 +24,12 @@
 					
 				
 					<div class="row justify-content-center"><h5>New User Created</h5></div>
-					<div class="row justify-content-center"><h5>Welcome ${newUser}</h5></div>
+					<div class="row justify-content-center"><h5>Welcome ${newUser}!</h5></div>
 					
 					<div class="row justify-content-center" style="padding:15px"><h4>What would you like to do?</h4></div>
 					<div class="row justify-content-center">
 						<div class="center" style="padding:15px">
-							<a href="<%=request.getContextPath() %>/manage/browse" class="btn btn-info" role="button">Look for Books</a>
+							<a href="<%=request.getContextPath() %>/manage/browse" class="btn btn-success" role="button">Look for Books</a>
 						</div>
 					</div>
 

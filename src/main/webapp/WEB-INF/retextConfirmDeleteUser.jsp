@@ -22,7 +22,7 @@
 				<div class="row justify-content-center">
 					<p class="small">You can buy, sell, and trade text books on campus</small>
 				</div>
-				<div class="row justify-content-center"><h4>Confirm Delete Message</h4></div>
+				<div class="row justify-content-center"><h4>Confirm Delete User Profile</h4></div>
 					
 				<div class="row justify-content-center">Are you sure you want to delete?</div>
 				

@@ -24,15 +24,21 @@
 				<div class="row justify-content-center">
 					<p class="small">You can buy, sell, and trade text books on campus</small>
 				</div>
-				<div class="row justify-content-center"  style="padding:10px;"><h3> You have been signed out</h3></div>
+				<div class="row justify-content-center"  style="padding:10px;"><h3> You are signed out</h3></div>
 				
 				<div class="row justify-content-center"  style="padding:10px;"><h5>Thank you for using ReText</h5></div>
 						
 					<div class="row justify-content-center ">
 						<div class="center" style="padding:10px">
-							<a href="<%=request.getContextPath() %>/loginOut" class="btn btn-primary center-block">Sign In</a> 
+							<a href="<%=request.getContextPath() %>/loginOut" class="btn btn-success center-block">Sign In</a> 
 						</div>
 					</div>
+					
+			<div class="row justify-content-center">
+				<div class="center" style="padding:10px">					
+					<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-primary" role="button">More</a> 
+				</div>
+			</div>
 				
 				
 	<!-- 		<div class="row justify-content-center">

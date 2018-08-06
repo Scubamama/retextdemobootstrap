@@ -82,6 +82,12 @@
 							<input type="submit" class="btn btn-success center-block" name="Create" value="Update User Info"  />
 						</div>
 					</div>
+				
+					<div class="row justify-content-center">
+						<div class="center" style="padding:10px">					
+							<a href="<%=request.getContextPath() %>/manageUsers/profile" class="btn btn-info" role="button">Cancel</a>
+						</div>
+					</div>
 
 					<div class="small">
 						<p class="small">&copy copyright 2017 Holly Williams</p>

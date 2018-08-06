@@ -142,8 +142,8 @@ public class UsersDAO {
 
 		out.println("INSERTING... ");
 
-		String sql = "INSERT INTO Users " + "(Email, UserName, UserPassword, TakeCards, school)"
-				+ "VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Users " + "(Email, UserName, UserPassword, TakeCards, school, campus)"
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
@@ -159,6 +159,7 @@ public class UsersDAO {
 			myStmt.setString(3, newU.getUserPassword());
 			myStmt.setInt(4, newU.getTakeCards());
 			myStmt.setString(5, newU.getUserSchool());
+			myStmt.setString(6, newU.getUserCampus());
 
 			myStmt.executeUpdate();
 
