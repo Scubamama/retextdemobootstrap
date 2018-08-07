@@ -51,13 +51,6 @@
 						</tr>
 					</c:forEach>
 				</table>	
-				<div class="row justify-content-center">
-					<div class="center" style="padding:10px">
-			<!--  			<a href="<%=request.getContextPath() %>/loginOut">Login</a>  -->
-				   			<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-primary">More</a>  
-					</div>
-				</div>
-				
 			</div>
 			
 			<div class="small">

@@ -49,14 +49,6 @@
 						<input type="submit" class="btn btn-success center-block" name="addbutt" value="Update the Listing"  />
 					</div>
 				</div>
-								
-				<div class="row justify-content-center">
-					<div class="center" style="padding:10px">					
-						<a href="<%=request.getContextPath() %>/manageUsers/listings" class="btn btn-primary" role="button">Cancel</a>
-					</div>
-				</div>
-				
-				
 				<div class="row justify-content-center">
 					<div class="center" style="padding:10px">					
 						<a href="<%=request.getContextPath() %>/loginOut/actions" class="btn btn-info" role="button">More Actions</a> 
