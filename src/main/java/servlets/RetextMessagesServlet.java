@@ -80,7 +80,10 @@ public class RetextMessagesServlet extends HttpServlet {
 	private void list(HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		DisplayMessagesDAO dispMessDAO = new DisplayMessagesDAO();
 		// get all users messages
@@ -183,7 +186,10 @@ public class RetextMessagesServlet extends HttpServlet {
 		if (session == null) {
 		}
 
-		int senderId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int senderId = (int)tempUserId;
+
+//		int senderId = (int) session.getAttribute("currUserId");
 
 		int receiverId = Integer.parseInt(request.getParameter("id"));
 

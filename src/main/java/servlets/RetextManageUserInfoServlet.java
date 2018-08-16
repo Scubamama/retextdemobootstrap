@@ -47,7 +47,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 		String pathInfo = request.getPathInfo();
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		if (pathInfo == null || "".equals(pathInfo)) {
 			manageUserInfo(request, response); //
@@ -140,7 +143,11 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	private void viewListings(HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		ManageListingsDAO dispListingsDAO = new ManageListingsDAO();
 		// get all users messages
@@ -173,7 +180,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// and allow them to edit all of that except maybe username
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		UsersDAO aUserDAO = new UsersDAO();
 		AUser thisUser = new AUser();
@@ -201,7 +211,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// gets the data to update a user
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		try {
 			UsersDAO aUserDAO = new UsersDAO();
@@ -241,7 +254,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// the db
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		String uCard = request.getParameter("takeCardsYN");
 
@@ -279,7 +295,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		//
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		UsersDAO aUserDAO = new UsersDAO();
 		AUser thisUser = new AUser();
@@ -304,7 +323,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// "deletes" this user
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		try {
 			UsersDAO aUserDAO = new UsersDAO();
@@ -331,7 +353,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// gets the data to update a listing
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 		int listingId = Integer.parseInt(request.getParameter("listingId"));
 
 		try {
@@ -372,7 +397,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// the db
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		try {
 			ManageListingsDAO listingDAO = new ManageListingsDAO();
@@ -414,12 +442,14 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	} // end updateListing
 
 	private void confirmDeleteListing(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
 
 		int listingId = Integer.parseInt(request.getParameter("listingId"));
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		try {
 			request.setAttribute("currUserId", currUserId);
@@ -470,7 +500,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		String condition = request.getParameter("condition");
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		if (isbn == null)
 			isbn = "";
@@ -500,7 +533,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// the db
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 
 		String isbn = request.getParameter("isbn");
 		String condition = request.getParameter("condition");
@@ -555,7 +591,10 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		// in the db
 
 		HttpSession session = request.getSession(false);
-		int currUserId = (int) session.getAttribute("currUserId");
+		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+		int currUserId = (int)tempUserId;
+
+//		int currUserId = (int) session.getAttribute("currUserId");
 		String isbn = request.getParameter("isbn");
 		double price = Double.parseDouble(request.getParameter("price"));
 		String condition = request.getParameter("condition");

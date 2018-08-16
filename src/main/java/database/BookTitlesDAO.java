@@ -170,14 +170,29 @@ public class BookTitlesDAO {
 			myStmt.setString(4, book.getIsbn());
 
 			myStmt.executeUpdate();
-			try (ResultSet generatedKeys = myStmt.getGeneratedKeys()) {
+			
+			try {
+				ResultSet generatedKeys = myStmt.getGeneratedKeys();
 				if (generatedKeys.next()) {
 					book.setId(generatedKeys.getInt(1));
 				} else {
 					throw new SQLException("Insertion failed, no new id created.");
 				}
 
+			
+//			try (ResultSet generatedKeys = myStmt.getGeneratedKeys()) {
+//				if (generatedKeys.next()) {
+//					book.setId(generatedKeys.getInt(1));
+//				} else {
+//					throw new SQLException("Insertion failed, no new id created.");
+//				}
+
 			} // end inner try
+			finally {
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);				
+			}
 
 		} // end try
 		catch (Exception exc) {

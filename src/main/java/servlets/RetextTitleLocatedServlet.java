@@ -77,7 +77,10 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 				if (session.getAttribute("currUserId") != null) { // they are already signed in
 					// get the user's school info
 					UsersDAO aUserDAO = new UsersDAO();
-					theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
+					Integer userId = (Integer)session.getAttribute("currUserId");
+					theUser = aUserDAO.get((int)userId);
+
+//					theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
 					school = theUser.getUserSchool();
 					campus = theUser.getUserCampus();
 					// get nickName from school obj

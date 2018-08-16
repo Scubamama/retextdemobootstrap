@@ -171,14 +171,28 @@ public class SchoolDAO {
 			// 3. pull info from db
 			myStmt.executeUpdate();
 			// 4. Process the result set
-			try (ResultSet generatedKeys = myStmt.getGeneratedKeys()) {
+			try {
+				ResultSet generatedKeys = myStmt.getGeneratedKeys();
 				if (generatedKeys.next()) {
 					school.setId(generatedKeys.getInt(1));
 				} else {
 					throw new SQLException("Insertion failed, no new id created.");
 				}
+			
+			
+//			try (ResultSet generatedKeys = myStmt.getGeneratedKeys()) {
+//				if (generatedKeys.next()) {
+//					school.setId(generatedKeys.getInt(1));
+//				} else {
+//					throw new SQLException("Insertion failed, no new id created.");
+//				}
 
 			} // end inner try
+			finally {
+				DataSource.silentClose(myConn);
+				DataSource.silentClose(myStmt);
+				DataSource.silentClose(myRs);
+			}
 
 		} // end try
 		catch (Exception exc) {

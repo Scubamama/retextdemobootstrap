@@ -1,5 +1,7 @@
 package database;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,7 +12,9 @@ import java.sql.Statement;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-import org.apache.commons.dbcp2.BasicDataSource;
+import java.sql.DriverManager;
+
+//import org.apache.commons.dbcp2.BasicDataSource;
 
 /**
  * A helper class for getting database connections from a persistent connection
@@ -65,8 +69,12 @@ public class DataSource {
 		if (datasource == null) {
 			try {
 				datasource = new DataSource();
-			} catch (IOException | SQLException | PropertyVetoException e) {
-				throw new RuntimeException(e);
+//			} catch (IOException | SQLException | PropertyVetoException e) {
+			} catch (Exception e) {
+				if (e instanceof IOException |e instanceof SQLException |e instanceof PropertyVetoException) {
+	
+					throw new RuntimeException(e);
+				}
 			}
 			return datasource;
 		} else {

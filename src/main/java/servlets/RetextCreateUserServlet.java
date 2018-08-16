@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import database.UsersDAO;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import model2.AUser;
 
 /**
@@ -64,14 +66,45 @@ public class RetextCreateUserServlet extends HttpServlet {
 			UsersDAO aUserDAO = new UsersDAO();
 			String uCard = "";
 			uCard = request.getParameter("takeCardsYN");
-			// check to see if this name is already created
+	// TODO - check to see if this name is already created
 
+	// encrypt password
+			// Create instance
+			Argon2 argon2 = Argon2Factory.create();
+
+			// Read password from user
+			char[] password =  request.getParameter("password").toCharArray();
+
+	System.out.println("request.getParameter(\"password\"): "+ request.getParameter("password"));
+	System.out.println("password: " + password.toString());		
+			try {
+			    // Hash password
+			    String hash = argon2.hash(2, 65536, 1, password);
+
+			    // Verify password
+			    if (argon2.verify(hash, password)) {
+			        // Hash matches password
+			    } else {
+			        // Hash doesn't match password
+			    }
+			} finally {
+			    // Wipe confidential data
+			    argon2.wipeArray(password);
+			}
+			
+	System.out.println("after encryption: " + password.toString());
+			String encryptedPassword = new String(password);
+	System.out.println("encryptedPassword: " + encryptedPassword);
+	
 			String currUserName = request.getParameter("userName");
 			int card = 0; // default user does not take cards
 			if (uCard.equals("y"))
 				card = 1;
-			AUser newU = new AUser(request.getParameter("email"), currUserName, request.getParameter("password"), card,
+			AUser newU = new AUser(request.getParameter("email"), currUserName, encryptedPassword, card,
 					request.getParameter("schoolName"), request.getParameter("campus"));
+//			AUser newU = new AUser(request.getParameter("email"), currUserName, request.getParameter("password"), card,
+//					request.getParameter("schoolName"), request.getParameter("campus"));
+
 			aUserDAO.save(newU); // put new user in db
 			newU = aUserDAO.get(currUserName); // get the db id from new entry
 			int currUserId = newU.getId();

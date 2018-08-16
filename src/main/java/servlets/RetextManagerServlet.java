@@ -98,7 +98,14 @@ public class RetextManagerServlet extends HttpServlet {
 //	System.out.println("session.getAttribute(\"currUserId\") != null");					
 					// get the user's school info
 					UsersDAO aUserDAO = new UsersDAO();
-					theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
+					Integer userId = (Integer)session.getAttribute("currUserId");
+					theUser = aUserDAO.get((int)userId);
+
+//					int userId = (int)tempUserId;
+//					theUser = aUserDAO.get(userId);
+					
+//					theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
+
 					school = theUser.getUserSchool();
 					campus = theUser.getUserCampus();   // this is null
 					// get nickName from school obj
