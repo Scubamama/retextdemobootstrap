@@ -69,8 +69,10 @@ public class DataSource {
 		if (datasource == null) {
 			try {
 				datasource = new DataSource();
-//			} catch (IOException | SQLException | PropertyVetoException e) {
 			} catch (Exception e) {
+				System.out.println("e: " +e);
+				System.out.println("database source error");
+
 				if (e instanceof IOException |e instanceof SQLException |e instanceof PropertyVetoException) {
 	
 					throw new RuntimeException(e);
