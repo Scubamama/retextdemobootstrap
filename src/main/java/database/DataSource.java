@@ -14,7 +14,6 @@ import java.util.ResourceBundle;
 
 import java.sql.DriverManager;
 
-//import org.apache.commons.dbcp2.BasicDataSource;
 
 /**
  * A helper class for getting database connections from a persistent connection
@@ -71,7 +70,6 @@ public class DataSource {
 				datasource = new DataSource();
 			} catch (Exception e) {
 				System.out.println("e: " +e);
-				System.out.println("database source error");
 
 				if (e instanceof IOException |e instanceof SQLException |e instanceof PropertyVetoException) {
 	
@@ -130,21 +128,5 @@ public class DataSource {
 	 * @throws SQLException
 	 * @throws IOException
 	 * @throws PropertyVetoException
-	 */
-	/*
-	 * private static void main(String[] args) throws SQLException {
-	 * System.out.println("Testing DataSource.");
-	 * 
-	 * Connection conn = null; PreparedStatement pstmt = null; ResultSet res =
-	 * null;
-	 * 
-	 * try { conn = DataSource.getInstance().getConnection(); pstmt =
-	 * conn.prepareStatement("select 1 as a, 2 as b"); res =
-	 * pstmt.executeQuery(); while (res.next()) { System.out.println(
-	 * "Data row = " + res.getString(1) + ", " + res.getString(2)); }
-	 * System.out.println("Success."); } finally { DataSource.silentClose(res);
-	 * DataSource.silentClose(pstmt); DataSource.silentClose(conn); }
-	 * 
-	 * }
 	 */
 }

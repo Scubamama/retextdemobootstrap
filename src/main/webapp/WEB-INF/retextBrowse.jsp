@@ -34,7 +34,8 @@
 					<div class="row justify-content-center ">
 						<div class="center" style="padding:10px">
 		<!-- 						OR  
-							School Nick Name: <input type="input" name="nickName" value="${nickName}" />   -->
+							School Nick Name: <input type="input" name="nickName" value="${nickName}" />
+		-->
 						</div>
 					</div>
 					<div class="row justify-content-center ">

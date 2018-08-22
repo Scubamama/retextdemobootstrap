@@ -72,25 +72,19 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		// see if they are logged in if not leave school box empty
 		// if so put school name, campus in boxes - get school names from user
 		AUser theUser = new AUser();
-		System.out.println("after new AUser");
 
 		try {
-			System.out.println("in try block before if session: " + session);
 
 			if (session != null) {
 				if (session.getAttribute("currUserId") != null) { // they are already signed in
 					// get the user's school info
-					System.out.println("in try if block");
 					UsersDAO aUserDAO = new UsersDAO();
-					System.out.println("after new usersDAO");
 					Integer userId = (Integer)session.getAttribute("currUserId");
 					theUser = aUserDAO.get((int)userId);
-					System.out.println("after aUserDAO.get");
 
 //					theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
 					school = theUser.getUserSchool();
 					campus = theUser.getUserCampus();
-					System.out.println("after aUserDAO.getUserCampus");
 					// get nickName from school obj
 					SchoolDAO schoolDAO = new SchoolDAO();
 					School s = new School();
@@ -99,15 +93,11 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 				}		
 			}
 
-			System.out.println("after if session != null");
-
 			request.setAttribute("school",school);
 			request.setAttribute("campus",campus);
 
-			System.out.println("before findAvailableBooks");
 
 			titleList = titleDAO.findAvailableBooks(isbn,school,campus);
-			System.out.println("after findAvailableBooks");
 
 			title = titleDAO.getTitle(isbn);
 

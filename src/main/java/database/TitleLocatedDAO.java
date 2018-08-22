@@ -127,6 +127,7 @@ public class TitleLocatedDAO {
 
 		try {
 			myConn = ds.getConnection();
+			if (myConn == null) System.out.println("myConn is null");
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, isbn);
 			myStmt.setString(2, schoolName);
