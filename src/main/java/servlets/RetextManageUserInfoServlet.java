@@ -125,6 +125,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	} // end manageUserInfo()
 
 	// displays a screen telling user that a feature is not available yet
+	//am keeping this code in case I ever need it again
+
 	// private void featureUnavailable(HttpServletRequest request,
 	// HttpServletResponse response)
 	// throws ServletException, IOException {
@@ -175,9 +177,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	} // end viewListings()
 
 	private void viewProfile(HttpServletRequest request, HttpServletResponse response) {
-		// show the user their current info username, password, if they take
-		// cards and their school
-		// and allow them to edit all of that except maybe username
 
 		HttpSession session = request.getSession(false);
 		Integer tempUserId = (Integer)session.getAttribute("currUserId");
@@ -189,9 +188,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		AUser thisUser = new AUser();
 		try {
 			thisUser = aUserDAO.get(currUserId);
-			// display a page showing the user's current info and let them
-			// change it
-			// takeCards is 0 or 1 in the db
 			if (thisUser.getTakeCards() == 0)
 				thisUser.setTakeCardsYN("N");
 			else
@@ -227,17 +223,12 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 				thisUser.setTakeCardsYN("N");
 			else
 				thisUser.setTakeCardsYN("Y");
-			// display a page showing the user's current info and let them
-			// change it
-			request.setAttribute("thisUser", thisUser);
 
-			// update the info the user input
+			request.setAttribute("thisUser", thisUser);
 
 			request.setAttribute("currUserId", currUserId);
 			request.setAttribute("theUser", thisUser);
-			// this screen will display the current info and allow user to
-			// change it
-			RequestDispatcher dispatcher = 
+			RequestDispatcher dispatcher =
 					request.getRequestDispatcher("/WEB-INF/retextUpdateUser.jsp");
 
 			dispatcher.forward(request, response);
@@ -250,8 +241,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	} // end updateProfileForm
 
 	private void updateProfile(HttpServletRequest request, HttpServletResponse response) {
-		// takes the data from retextUpdateProfileForm and updates this user in
-		// the db
 
 		HttpSession session = request.getSession(false);
 		Integer tempUserId = (Integer)session.getAttribute("currUserId");
@@ -278,11 +267,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			// viewProfile(request, response);
 
 			response.sendRedirect("profile");
-			
-//			RequestDispatcher dispatcher = 
-//					request.getRequestDispatcher("/manageUsers/profile");
-//
-//			dispatcher.forward(request, response);
 
 		} // end try
 		catch (Exception exc) {
@@ -405,10 +389,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		try {
 			ManageListingsDAO listingDAO = new ManageListingsDAO();
 
-			// jsp returns db id, userId, bookId, price, bookCondition, sold
-
-			// read in what the user may have changed
-
 			String condition = request.getParameter("bookCondition");
 
 			double price = Double.parseDouble(request.getParameter("price"));
@@ -429,10 +409,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			// request.setAttribute("theUser", curUser);
 //			response.sendRedirect("/retextdemo/manageUsers/listings");
 			response.sendRedirect(request.getContextPath() + "/manageUsers/listings");
-
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
-//
-//			dispatcher.forward(request, response);
 
 		} // end try
 		catch (Exception exc) {
@@ -482,10 +458,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 //			response.sendRedirect("/retextdemo/manageUsers/listings");
 			response.sendRedirect(request.getContextPath() + "/manageUsers/listings");
 			
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
-//
-//			dispatcher.forward(request, response);
-
 		} // end try
 		catch (Exception exc) {
 			throw new RuntimeException(exc);
@@ -551,21 +523,12 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			int bookId = titleDAO.getId(isbn);
 
 			if (bookId != 0) { // we have that title in our system
-				// add a user_inventory row from user_id, book_id, price, and
-				// condition
 
 				UserInventory thisUserInv = new UserInventory(currUserId, bookId, price, condition);
 
 				userInventoryDAO.save(thisUserInv); // put this in the db
 
-				// viewListings(request, response);
-				
-//				response.sendRedirect("/retextdemo/manageUsers/listings");
 				response.sendRedirect(request.getContextPath() + "/manageUsers/listings");
-
-//				RequestDispatcher dispatcher = request.getRequestDispatcher("/manageUsers/listings");
-//
-//				dispatcher.forward(request, response);
 
 			} else { // that book title is not in our system and we need to add
 						// it
@@ -610,9 +573,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			titleDAO.save(newTitle); // save it in the db
 
 			String curUser = request.getParameter("userName");
-
-			// go back to gather listing info page with isbn, price, and
-			// condition
 
 			request.setAttribute("isbn", isbn);
 			request.setAttribute("price", price);
