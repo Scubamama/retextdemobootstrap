@@ -26,13 +26,15 @@
 		  		<a href="<%=request.getContextPath() %>/loginOut" class="btn btn-outline-success center-block">Login</a> 
 		  		<a href="<%=request.getContextPath() %>/newUser/*" class="btn btn-outline-primary">Create New User Id</a> 
 		  	</div>
-	 -->	  
+	 -->
+
 		  	<div class="row"  style="padding:10px">  </div>
 		  	<p></p>
 			<div class="row justify-content-center"><h2>Welcome to ReText</h2></div>
 			<div class="row justify-content-center" style="padding:10px"><span>You can buy, sell, and trade your text books on your campus</span></div>
 			
 			<div class="row justify-content-center">
+
 	<!-- 	    <div class="col-4">
     			</div>   -->	
     			

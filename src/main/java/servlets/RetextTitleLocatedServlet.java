@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import database.SchoolDAO;
 import database.TitleLocatedDAO;
-import database.UserInventoryDAO;
+//import database.UserInventoryDAO;
 import database.UsersDAO;
 import model2.AUser;
-import model2.DisplayUserInventory;
+//import model2.DisplayUserInventory;
 import model2.School;
 import model2.TitleLocated;
 
