@@ -33,18 +33,6 @@ public class Messages {
 		this.message = message;
 	}
 
-	// for future reference if another constructor is needed
-	// public Messages(int id, int senderId, int receiverId, int viewed, String
-	// message) {
-	// this(id,userId,bookId);
-	// x this.id = id;
-	// x this.userId = userId;
-	// x this.bookId = bookId;
-	// this.price = price;
-	// this.condition = condition;
-	// this.sold = sold;
-	// }
-
 	public int getId() {
 		return id;
 	}
