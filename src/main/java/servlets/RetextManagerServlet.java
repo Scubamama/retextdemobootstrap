@@ -77,12 +77,9 @@ public class RetextManagerServlet extends HttpServlet {
 	} // end welcome
 
 	// pulls up the browse screen so that user can see if the book he/she wants
-	// is avaiable
-	// at his/her school
+	// is avaiable at his/her school
 	private void browseBooks(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// find some books to buy
-//	System.out.println("ManagerServlet - browseBooks");
 
 		String campus = "";
 		String nickName = "";
@@ -93,18 +90,11 @@ public class RetextManagerServlet extends HttpServlet {
 		AUser theUser = new AUser();
 		try {
 			if (session != null) {
-//	System.out.println("session != null");
 				if (session.getAttribute("currUserId") != null) { // they are already signed in
-//	System.out.println("session.getAttribute(\"currUserId\") != null");					
 					// get the user's school info
 					UsersDAO aUserDAO = new UsersDAO();
 					Integer userId = (Integer)session.getAttribute("currUserId");
 					theUser = aUserDAO.get((int)userId);
-
-//					int userId = (int)tempUserId;
-//					theUser = aUserDAO.get(userId);
-					
-//					theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
 
 					school = theUser.getUserSchool();
 					campus = theUser.getUserCampus();   // this is null
@@ -119,14 +109,9 @@ public class RetextManagerServlet extends HttpServlet {
 				} // end if (session.getAttribute("currUserId") != null)
 			} // end if (session == null)
 
-//		System.out.println("school" + school);		
-//		System.out.println("campus" + campus);		
-//		System.out.println("nickName" + nickName);		
-
 			request.setAttribute("school",school);
 			request.setAttribute("campus",campus);
 //			request.setAttribute("nickName",nickName);
-//	System.out.println("after setAttributes");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextBrowse.jsp");
 			dispatcher.forward(request, response);
 
