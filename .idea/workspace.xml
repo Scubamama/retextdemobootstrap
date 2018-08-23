@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="161df818-5db9-4281-b170-cc26a313d4c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/BookTitlesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/BookTitlesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/MessagesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/MessagesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/SchoolDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/SchoolDAO.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,7 +35,7 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="3" />
           <entry key="iml" value="1" />
-          <entry key="java" value="31" />
+          <entry key="java" value="34" />
           <entry key="jpg" value="3" />
           <entry key="jsp" value="5" />
           <entry key="properties" value="4" />
@@ -46,7 +47,7 @@
           <entry key="HTML" value="3" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="31" />
+          <entry key="JAVA" value="34" />
           <entry key="JSP" value="5" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Properties" value="4" />
@@ -56,7 +57,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="360" />
-          <entry key="java" value="540" />
+          <entry key="java" value="546" />
           <entry key="jsp" value="3" />
           <entry key="xml" value="47" />
         </counts>
@@ -64,7 +65,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="360" />
-          <entry key="JAVA" value="540" />
+          <entry key="JAVA" value="546" />
           <entry key="JSP" value="3" />
           <entry key="XML" value="47" />
         </counts>
@@ -82,11 +83,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="220">
+              <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1405">
+              <caret line="188" selection-start-line="188" selection-end-line="188" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/database/MessagesDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="111" lean-forward="true" selection-start-line="111" selection-end-line="111" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/database/SchoolDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="179" selection-start-line="179" selection-end-line="179" />
             </state>
           </provider>
         </entry>
@@ -136,6 +164,9 @@
         <option value="$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/BookTitlesDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/MessagesDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/SchoolDAO.java" />
       </list>
     </option>
   </component>
@@ -241,7 +272,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534982938259" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534983384639" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -628,8 +659,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="220">
+          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1405">
+          <caret line="188" selection-start-line="188" selection-end-line="188" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/MessagesDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="111" lean-forward="true" selection-start-line="111" selection-end-line="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/SchoolDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="179" selection-start-line="179" selection-end-line="179" />
         </state>
       </provider>
     </entry>

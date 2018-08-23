@@ -126,7 +126,6 @@ public class SchoolDAO {
 			// 1. Get a connection to the database
 			myConn = ds.getConnection();
 			// 2. Create a statement object
-			// pulls info from object and puts it into the statement object
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, school.getName());
 			myStmt.setString(2, school.getNickName());
@@ -162,7 +161,6 @@ public class SchoolDAO {
 			// 1. Get a connection to the database
 			myConn = ds.getConnection();
 			// 2. Create a statement object
-			// pulls info from object and puts it into the statement object
 			myStmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			myStmt.setString(1, school.getName());
 			myStmt.setString(2, school.getNickName());
@@ -179,14 +177,6 @@ public class SchoolDAO {
 					throw new SQLException("Insertion failed, no new id created.");
 				}
 			
-			
-//			try (ResultSet generatedKeys = myStmt.getGeneratedKeys()) {
-//				if (generatedKeys.next()) {
-//					school.setId(generatedKeys.getInt(1));
-//				} else {
-//					throw new SQLException("Insertion failed, no new id created.");
-//				}
-
 			} // end inner try
 			finally {
 				DataSource.silentClose(myConn);

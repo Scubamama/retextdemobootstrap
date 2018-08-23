@@ -111,8 +111,6 @@ public class ManageListingsDAO {
 	} // end listMyBooks
 
 	public void save(UserInventory inv) {
-		// save a user if one like this does not exist
-		// otherwise update it
 
 		if (inv.getId() == 0) {
 			insert(inv);
@@ -188,13 +186,6 @@ public class ManageListingsDAO {
 				} else {
 					throw new SQLException("Insertion failed, no new id created.");
 				}
-			
-//						try (ResultSet generatedKeys = myStmt.getGeneratedKeys()) {
-//				if (generatedKeys.next()) {
-//					inv.setId(generatedKeys.getInt(1));
-//				} else {
-//					throw new SQLException("Insertion failed, no new id created.");
-//				}
 
 			} // end inner try
 			finally {
@@ -273,7 +264,6 @@ public class ManageListingsDAO {
 			DataSource.silentClose(myConn);
 			DataSource.silentClose(myStmt);
 			DataSource.silentClose(myRs);
-
 		}
 
 	} // end delete
