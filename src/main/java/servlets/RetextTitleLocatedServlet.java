@@ -67,7 +67,7 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 
 		isbn = request.getParameter("isbn");
 		school = request.getParameter("school");
-		
+
 		List<TitleLocated> titleList = null;
 		// see if they are logged in if not leave school box empty
 		// if so put school name, campus in boxes - get school names from user
@@ -76,29 +76,25 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 		try {
 
 			if (session != null) {
-				if (session.getAttribute("currUserId") != null) { // they are already signed in
-					// get the user's school info
+				if (session.getAttribute("currUserId") != null) { // they are already signed i
 					UsersDAO aUserDAO = new UsersDAO();
-					Integer userId = (Integer)session.getAttribute("currUserId");
-					theUser = aUserDAO.get((int)userId);
+					Integer userId = (Integer) session.getAttribute("currUserId");
+					theUser = aUserDAO.get((int) userId);
 
-//					theUser = aUserDAO.get((int)session.getAttribute("currUserId"));
 					school = theUser.getUserSchool();
 					campus = theUser.getUserCampus();
 					// get nickName from school obj
 					SchoolDAO schoolDAO = new SchoolDAO();
 					School s = new School();
-		
+
 					s = schoolDAO.get(school, campus);
-				}		
+				}
 			}
 
-			request.setAttribute("school",school);
-			request.setAttribute("campus",campus);
+			request.setAttribute("school", school);
+			request.setAttribute("campus", campus);
 
-
-			titleList = titleDAO.findAvailableBooks(isbn,school,campus);
-
+			titleList = titleDAO.findAvailableBooks(isbn, school, campus);
 			title = titleDAO.getTitle(isbn);
 
 			if (titleList.isEmpty()) { // no titles found
@@ -107,13 +103,14 @@ public class RetextTitleLocatedServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
 				dispatcher.forward(request, response);
 
+			} else {
+
+				request.setAttribute("titleList", titleList);
+				request.setAttribute("isbn", isbn);
+				request.setAttribute("title", title);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
+				dispatcher.forward(request, response);
 			}
-			
-			request.setAttribute("titleList", titleList);
-			request.setAttribute("isbn", isbn);
-			request.setAttribute("title", title);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextTitleLocated.jsp");
-			dispatcher.forward(request, response);
 		} // end try
 
 		catch (Exception e) {
