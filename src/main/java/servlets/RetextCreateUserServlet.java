@@ -75,8 +75,6 @@ public class RetextCreateUserServlet extends HttpServlet {
 			// Read password from user
 			char[] password =  request.getParameter("password").toCharArray();
 
-	System.out.println("request.getParameter(\"password\"): "+ request.getParameter("password"));
-	System.out.println("password: " + password.toString());		
 			try {
 			    // Hash password
 			    String hash = argon2.hash(2, 65536, 1, password);
@@ -92,18 +90,14 @@ public class RetextCreateUserServlet extends HttpServlet {
 			    argon2.wipeArray(password);
 			}
 			
-	System.out.println("after encryption: " + password.toString());
-			String encryptedPassword = new String(password);
-	System.out.println("encryptedPassword: " + encryptedPassword);
-	
+			String encryptedPassword = new String(password.toString());
+
 			String currUserName = request.getParameter("userName");
 			int card = 0; // default user does not take cards
 			if (uCard.equals("y"))
 				card = 1;
 			AUser newU = new AUser(request.getParameter("email"), currUserName, encryptedPassword, card,
 					request.getParameter("schoolName"), request.getParameter("campus"));
-//			AUser newU = new AUser(request.getParameter("email"), currUserName, request.getParameter("password"), card,
-//					request.getParameter("schoolName"), request.getParameter("campus"));
 
 			aUserDAO.save(newU); // put new user in db
 			newU = aUserDAO.get(currUserName); // get the db id from new entry
