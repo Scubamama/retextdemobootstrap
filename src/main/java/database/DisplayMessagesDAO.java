@@ -27,8 +27,6 @@ public class DisplayMessagesDAO {
 		this.ds = DataSource.getInstance();
 	}
 
-	// looks at my messages and retrieves them
-
 	public List<DisplayMessages> listMyMessages(int currUserId) {
 
 		List<DisplayMessages> myMessageList = new ArrayList<DisplayMessages>();

@@ -95,8 +95,6 @@ public class BookTitlesDAO {
 	} // end listMyBooks
 
 	public void save(BookTitles book) {
-		// save a user if one like this does not exist
-		// otherwise update it
 
 		if (book.getId() == 0) {
 			out.println("INSERTING... ");
@@ -196,7 +194,6 @@ public class BookTitlesDAO {
 
 		} // end try
 		catch (Exception exc) {
-			// exc.printStackTrace();
 			throw new RuntimeException(exc);
 		} finally {
 			DataSource.silentClose(myConn);
@@ -244,7 +241,6 @@ public class BookTitlesDAO {
 
 	} // end get(id)
 
-	// gets a bookTitle given its title
 	public BookTitles get(String title) throws SQLException {
 
 		String sql = "SELECT * FROM Book_Titles where Title=?";
@@ -300,7 +296,6 @@ public class BookTitlesDAO {
 
 		} // end try
 		catch (Exception exc) {
-			// exc.printStackTrace();
 			throw new RuntimeException(exc);
 		} finally {
 			DataSource.silentClose(myConn);
