@@ -165,7 +165,6 @@ public class TitleLocatedDAO {
 	} // end save()
 
 	private void update(UserInventory inv) {
-		// this is going to update price and sold
 		out.println("UPDATING New User book... ");
 
 		String sql = "UPDATE User_Inventory SET Price=?,Sold=? WHERE id=?";
