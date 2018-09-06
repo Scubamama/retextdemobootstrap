@@ -1,1 +1,1 @@
-web: ./mvnw org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run-war
+web: java -jar target/dependency/webapp-runner.jar target/*.war
