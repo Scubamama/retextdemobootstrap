@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
+import java.net.*;
 
 import java.sql.DriverManager;
 
@@ -27,15 +28,41 @@ public class DataSource {
 	private static DataSource datasource;
 	private BasicDataSource ds;
 
-	private DataSource() throws IOException, SQLException, PropertyVetoException {
+	private DataSource() throws IOException, SQLException, PropertyVetoException, URISyntaxException {
 		System.out.println("Setting up connection pool.  This should only happen once.");
+		try
+		{
+			ds = createDataSourceFromBundle();
+		}
+		catch(RuntimeException rex){
+			ds = createDataSourceFromVariable();
+		}
+	}
+	private BasicDataSource createDataSourceFromVariable()throws URISyntaxException, SQLException {   // URISyntaxException,
+	//	return null;
+		//paste stuff from link
+		URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
+		String username = dbUri.getUserInfo().split(":")[0];
+		String password = dbUri.getUserInfo().split(":")[1];
+		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+
+		BasicDataSource ds = new BasicDataSource();
+		ds.setUrl(dbUrl);
+		ds.setUsername(username);
+		ds.setPassword(password);
+
+		return ds;
+
+	}
+
+	private BasicDataSource createDataSourceFromBundle(){
 		PropertyResourceBundle dbProps = (PropertyResourceBundle) ResourceBundle.getBundle("db");
 		if ("".equals(dbProps.getString("db.username"))) {
 			throw new RuntimeException("Can't understand contents of db.properties file - got empty username.");
 		}
 
-		ds = new BasicDataSource();
+		BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName(dbProps.getString("db.driver"));
 		ds.setUsername(dbProps.getString("db.username"));
 		ds.setPassword(dbProps.getString("db.password"));
@@ -53,6 +80,8 @@ public class DataSource {
 		ds.setMinIdle(5);
 		ds.setMaxIdle(20);
 		ds.setMaxOpenPreparedStatements(180);
+
+		return ds;
 	}
 
 	/**

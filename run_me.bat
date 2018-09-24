@@ -1,0 +1,1 @@
+c:\Maven\bin\mvn org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run-war
