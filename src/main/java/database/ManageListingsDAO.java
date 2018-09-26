@@ -31,8 +31,11 @@ public class ManageListingsDAO {
 	public List<UserInventoryDisplay> searchMyBooks(String text) throws SQLException {
 		List<UserInventoryDisplay> myBookList = new ArrayList<UserInventoryDisplay>();
 
+//		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + "i.price "
+//				+ "from retext.book_titles b join retext.user_inventory i "
+//				+ "where b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
 		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + "i.price "
-				+ "from retext.book_titles b join retext.user_inventory i "
+				+ "from book_titles b join user_inventory i "
 				+ "where b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
 
 		int currUserId = 1;
@@ -73,8 +76,11 @@ public class ManageListingsDAO {
 		List<DisplayUserListings> listingList = new ArrayList<DisplayUserListings>();
 
 		String isSold = "";
+//		String sql = "select i.id, b.isbn, b.title, b.author, b.edition, " + "i.price, i.bookCondition, i.sold "
+//				+ "from retext.book_titles b join retext.user_inventory i "
+//				+ "where b.id = i.Book_id and i.User_id = ?";
 		String sql = "select i.id, b.isbn, b.title, b.author, b.edition, " + "i.price, i.bookCondition, i.sold "
-				+ "from retext.book_titles b join retext.user_inventory i "
+				+ "from book_titles b join user_inventory i "
 				+ "where b.id = i.Book_id and i.User_id = ?";
 
 		PreparedStatement myStmt = null;
