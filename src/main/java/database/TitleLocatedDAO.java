@@ -114,12 +114,18 @@ public class TitleLocatedDAO {
 	public List<TitleLocated> findAvailableBooks(String isbn, String schoolName, String campus) {
 		List<TitleLocated> myBookList = new ArrayList<TitleLocated>();
 
+//		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id, b.isbn, b.id, i.id, " +
+//				"s.schoolName, s.campus, u.campus, u.school " +
+//				"from retext.user_inventory i " +
+//				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id  " +
+//				"join retext.users u on i.User_id = u.id and u.school = ? and u.campus = ? and archived = 0 " +
+//				"join retext.school s on  ? = s.schoolName and ? = s.campus";
 		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id, b.isbn, b.id, i.id, " +
-					"s.schoolName, s.campus, u.campus, u.school " +
-				"from retext.user_inventory i " +
-				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id  " +		
-				"join retext.users u on i.User_id = u.id and u.school = ? and u.campus = ?and archived = 0 " +
-				"join retext.school s on  ? = s.schoolName and ? = s.campus";
+				"s.schoolName, s.campus, u.campus, u.school " +
+				"from user_inventory i " +
+				"join book_titles b on Isbn = ? and b.Id = i.Book_Id  " +
+				"join users u on i.User_id = u.id and u.school = ? and u.campus = ? and archived = 0 " +
+				"join school s on  ? = s.schoolName and ? = s.campus";
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
