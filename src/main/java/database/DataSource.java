@@ -20,7 +20,7 @@ import java.sql.DriverManager;
  * A helper class for getting database connections from a persistent connection
  * pool.
  * 
- * @author jennybrown
+ * @author jennybrown, Val Houseman, heroku
  *
  */
 public class DataSource {
@@ -47,9 +47,6 @@ public class DataSource {
 		String password = dbUri.getUserInfo().split(":")[1];
 		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
 
-	System.out.println("username" + username);
-	System.out.println("password" + password);
-	System.out.println("dbUrl" + dbUrl);
 		BasicDataSource ds = new BasicDataSource();
 		ds.setUrl(dbUrl);
 		ds.setUsername(username);
