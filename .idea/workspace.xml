@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="161df818-5db9-4281-b170-cc26a313d4c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/database/UsersDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/UsersDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/RetextCreateUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/RetextCreateUserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/retextLoginForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/retextLoginForm.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,7 +71,7 @@
           <entry key="Procfile" value="17" />
           <entry key="bat" value="18" />
           <entry key="html" value="360" />
-          <entry key="java" value="1738" />
+          <entry key="java" value="1751" />
           <entry key="jsp" value="35" />
           <entry key="xml" value="50" />
         </counts>
@@ -83,7 +79,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="360" />
-          <entry key="JAVA" value="1738" />
+          <entry key="JAVA" value="1751" />
           <entry key="JSP" value="35" />
           <entry key="PLAIN_TEXT" value="35" />
           <entry key="XML" value="50" />
@@ -135,8 +131,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/UsersDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="108" column="17" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="17" />
+            <state relative-caret-position="-820">
+              <caret line="147" column="46" selection-start-line="147" selection-start-column="46" selection-end-line="147" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -336,7 +335,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538333628525" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538334114350" />
     <property name="last_opened_file_path" value="$USER_HOME$/java-getting-started" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -419,7 +418,7 @@
     <frame x="40" y="64" width="1452" height="772" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22126436" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22126436" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -428,7 +427,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3275862" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3599374" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3599374" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -806,8 +805,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/UsersDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="108" column="17" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="17" />
+        <state relative-caret-position="-820">
+          <caret line="147" column="46" selection-start-line="147" selection-start-column="46" selection-end-line="147" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

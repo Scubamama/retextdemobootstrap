@@ -144,8 +144,8 @@ public class UsersDAO {
 
 //		out.println("INSERTING... ");
 
-		String sql = "INSERT INTO Users " + "(Email, UserName, UserPassword, TakeCards, school, campus)"
-				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Users " + "(Email, UserName, UserPassword, TakeCards, school, campus, archived)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, 0)";
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
