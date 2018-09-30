@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.DataSource;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import model2.AUser;
 
 /**
@@ -104,7 +106,7 @@ public class UsersDAO {
 
 	private void update(AUser newU) {
 		// this is just going to update the user name
-		out.println("UPDATING... ");
+//		out.println("UPDATING... ");
 
 		String sql = "UPDATE Users SET Email=?, UserName=?, UserPassword=?, TakeCards=?, school=?" + " WHERE id=?";
 
@@ -140,7 +142,7 @@ public class UsersDAO {
 
 	private void insert(AUser newU) {
 
-		out.println("INSERTING... ");
+//		out.println("INSERTING... ");
 
 		String sql = "INSERT INTO Users " + "(Email, UserName, UserPassword, TakeCards, school, campus)"
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
@@ -290,7 +292,14 @@ public class UsersDAO {
 		// check the database to see if a user named uName with a password
 		// password exists
 		int id = 0; // will return 0 if id is not found
-		String sql = "SELECT * FROM users where UserName=? and UserPassword=?";
+
+		// encrypt entered password to compare to db
+		Argon2 argon2 = Argon2Factory.create();
+
+		// Read password from user
+
+//		String sql = "SELECT * FROM users where UserName=? and UserPassword=?";
+		String sql = "SELECT * FROM users where UserName=?";
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
@@ -302,14 +311,20 @@ public class UsersDAO {
 			// 2. Create a statement object
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, uName);
-			myStmt.setString(2, uPassword);
+//			myStmt.setString(2, encryptedPassword);
+//			myStmt.setString(2, uPassword);
 
 			myRs = myStmt.executeQuery();
 
 			if (myRs.next()) {
-				id = myRs.getInt("Id");
-				return id;
 
+				id = myRs.getInt("Id");
+				String encryptedPassword = myRs.getString("UserPassword");
+				if (argon2.verify(encryptedPassword, uPassword)) {
+					return id;
+				} else {
+					return 0;
+				}
 			} else {
 				return 0;
 			}

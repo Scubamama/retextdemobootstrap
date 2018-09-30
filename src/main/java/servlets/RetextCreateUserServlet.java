@@ -71,26 +71,29 @@ public class RetextCreateUserServlet extends HttpServlet {
 	// encrypt password
 			// Create instance
 			Argon2 argon2 = Argon2Factory.create();
+			String hash;
 
 			// Read password from user
 			char[] password =  request.getParameter("password").toCharArray();
 
 			try {
 			    // Hash password
-			    String hash = argon2.hash(2, 65536, 1, password);
+			    hash = argon2.hash(2, 65536, 1, password);
+//				System.out.println("hash = " + hash);
 
 			    // Verify password
-			    if (argon2.verify(hash, password)) {
-			        // Hash matches password
-			    } else {
-			        // Hash doesn't match password
-			    }
+//			    if (argon2.verify(hash, password)) {
+//			        // Hash matches password
+//			    } else {
+//			        // Hash doesn't match password
+//			    }
 			} finally {
 			    // Wipe confidential data
 			    argon2.wipeArray(password);
 			}
 			
-			String encryptedPassword = new String(password.toString());
+//			String encryptedPassword = new String(password.toString());
+			String encryptedPassword = hash;
 
 			String currUserName = request.getParameter("userName");
 			int card = 0; // default user does not take cards
