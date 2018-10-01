@@ -98,13 +98,13 @@ public class RetextMessagesServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
 				dispatcher.forward(request, response);
 
+			} else {
+
+				request.setAttribute("messageList", messageList);
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewMessages.jsp");
+				dispatcher.forward(request, response);
 			}
-
-			request.setAttribute("messageList", messageList);
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewMessages.jsp");
-			dispatcher.forward(request, response);
-
 		} catch (Exception exc) {
 			throw new RuntimeException(exc);
 

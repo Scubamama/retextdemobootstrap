@@ -160,7 +160,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 				listingList = dispListingsDAO.listMyBooks(currUserId);
 
 				if (listingList.isEmpty()) { // no listings found
-					
+
 					request.setAttribute("message", "You have no listings.");
 
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");

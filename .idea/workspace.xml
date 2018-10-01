@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="161df818-5db9-4281-b170-cc26a313d4c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/RetextMessagesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/RetextMessagesServlet.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,7 +49,7 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="4" />
           <entry key="iml" value="1" />
-          <entry key="java" value="61" />
+          <entry key="java" value="63" />
           <entry key="jpg" value="3" />
           <entry key="jsp" value="14" />
           <entry key="properties" value="7" />
@@ -60,7 +61,7 @@
           <entry key="HTML" value="4" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="61" />
+          <entry key="JAVA" value="63" />
           <entry key="JSP" value="14" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Properties" value="7" />
@@ -72,7 +73,7 @@
           <entry key="Procfile" value="17" />
           <entry key="bat" value="18" />
           <entry key="html" value="360" />
-          <entry key="java" value="2086" />
+          <entry key="java" value="2099" />
           <entry key="jsp" value="35" />
           <entry key="properties" value="26" />
           <entry key="xml" value="50" />
@@ -81,7 +82,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="360" />
-          <entry key="JAVA" value="2086" />
+          <entry key="JAVA" value="2099" />
           <entry key="JSP" value="35" />
           <entry key="PLAIN_TEXT" value="35" />
           <entry key="Properties" value="26" />
@@ -93,10 +94,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextTitleLocatedServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="91" column="33" lean-forward="true" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
+            <state relative-caret-position="136">
+              <caret line="99" column="13" lean-forward="true" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -119,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="162" column="20" selection-start-line="162" selection-start-column="20" selection-end-line="162" selection-end-column="20" />
+            <state relative-caret-position="2407">
+              <caret line="269" column="66" lean-forward="true" selection-start-line="269" selection-start-column="66" selection-end-line="269" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -131,8 +132,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextMessagesServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1100">
-              <caret line="117" lean-forward="true" selection-start-line="116" selection-end-line="117" />
+            <state relative-caret-position="356">
+              <caret line="107" column="33" lean-forward="true" selection-start-line="107" selection-start-column="33" selection-end-line="107" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="37" column="55" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -163,8 +173,11 @@
       <find>ds</find>
       <find>check</find>
       <find>print</find>
-      <find>retext.</find>
       <find>where</find>
+      <find>isem</find>
+      <find>isempty</find>
+      <find>retext.</find>
+      <find>isEmpty</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -203,10 +216,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
         <option value="$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/UserInventoryDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/servlets/RetextMessagesServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/servlets/RetextMessagesServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" />
       </list>
     </option>
   </component>
@@ -321,7 +334,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538428094365" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538428976834" />
     <property name="last_opened_file_path" value="$USER_HOME$/java-getting-started" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -680,13 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextTitleLocatedServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1460">
-          <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextCreateUserServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -771,10 +777,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="250" column="54" selection-start-line="250" selection-start-column="49" selection-end-line="250" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2407">
+          <caret line="269" column="66" lean-forward="true" selection-start-line="269" selection-start-column="66" selection-end-line="269" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="91" column="33" lean-forward="true" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
+        <state relative-caret-position="136">
+          <caret line="165" column="20" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -785,31 +805,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextTitleLocatedServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="66" column="33" lean-forward="true" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
+        <state relative-caret-position="136">
+          <caret line="99" column="13" lean-forward="true" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextMessagesServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="117" lean-forward="true" selection-start-line="116" selection-end-line="117" />
+        <state relative-caret-position="356">
+          <caret line="107" column="33" lean-forward="true" selection-start-line="107" selection-start-column="33" selection-end-line="107" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="250" column="54" selection-start-line="250" selection-start-column="49" selection-end-line="250" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="162" column="20" selection-start-line="162" selection-start-column="20" selection-end-line="162" selection-end-column="20" />
+        <state relative-caret-position="133">
+          <caret line="37" column="55" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
         </state>
       </provider>
     </entry>
