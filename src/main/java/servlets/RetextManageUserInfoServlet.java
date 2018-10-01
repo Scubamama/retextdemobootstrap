@@ -66,13 +66,13 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 														// to del
 		} else if (pathInfo.equals("/updateListingForm")) {
 			updateListingForm(request, response); // gets the data to update a
-													// user
+													// listing
 		} else if (pathInfo.equals("/deleteListingConfirm")) {
 			confirmDeleteListing(request, response); // asks if they really want
 														// to del
 		} else if (pathInfo.equals("/addListingForm")) {
 			gatherListingInfo(request, response); // gets the data to update a
-													// user
+													// listing
 		}
 
 	} // end doGet

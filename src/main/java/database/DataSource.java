@@ -56,13 +56,38 @@ public class DataSource {
 
 	}
 
-	private BasicDataSource createDataSourceFromBundle(){
+	private BasicDataSource createDataSourceFromBundle()throws URISyntaxException, SQLException {   // URISyntaxException,
+
+		PropertyResourceBundle dbProps = (PropertyResourceBundle) ResourceBundle.getBundle("db");
+		if ("".equals(dbProps.getString("db.username"))) {
+			throw new RuntimeException("Can't understand contents of db.properties file - got empty username.");
+		}
+
+//		String url = "jdbc:postgresql://localhost:5432/retextDemo";
+		String url = dbProps.getString("db.url");
+//		String username = ;
+//		String password = ;
+
+		BasicDataSource ds = new BasicDataSource();
+		ds.setUrl(url);
+//		ds.setUsername(username);
+//		ds.setPassword(password);
+		ds.setUsername(dbProps.getString("db.username"));
+		ds.setPassword(dbProps.getString("db.password"));
+
+
+		return ds;
+
+	}
+
+	private BasicDataSource createDataSourceFromBundleMySql(){
 		PropertyResourceBundle dbProps = (PropertyResourceBundle) ResourceBundle.getBundle("db");
 		if ("".equals(dbProps.getString("db.username"))) {
 			throw new RuntimeException("Can't understand contents of db.properties file - got empty username.");
 		}
 
 		BasicDataSource ds = new BasicDataSource();
+
 		ds.setDriverClassName(dbProps.getString("db.driver"));
 		ds.setUsername(dbProps.getString("db.username"));
 		ds.setPassword(dbProps.getString("db.password"));
