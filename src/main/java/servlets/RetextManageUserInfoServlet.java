@@ -48,8 +48,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		String pathInfo = request.getPathInfo();
 		HttpSession session = request.getSession(false);
 
-		Integer tempUserId = (Integer)session.getAttribute("currUserId");
-		int currUserId = (int)tempUserId;
+//		Integer tempUserId = (Integer)session.getAttribute("currUserId");
+//		int currUserId = (int)tempUserId;
 //		int currUserId = (int) session.getAttribute("currUserId");
 
 		if (pathInfo == null || "".equals(pathInfo)) {
@@ -142,64 +142,82 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	// } // end featureUnavailable()
 
 	// list all of this user's listings
-	private void viewListings(HttpServletRequest request, HttpServletResponse response) {
+	private void viewListings(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
-		
-		Integer tempUserId = (Integer)session.getAttribute("currUserId");
-		int currUserId = (int)tempUserId;
 
-//		int currUserId = (int) session.getAttribute("currUserId");
+		if (session.getAttribute("currUserId") != null) { // they are already logged in
 
-		ManageListingsDAO dispListingsDAO = new ManageListingsDAO();
-		// get all users messages
-		List<DisplayUserListings> listingList = null;
-		try {
-			listingList = dispListingsDAO.listMyBooks(currUserId);
-			if (listingList.isEmpty()) { // no listings found
-				// String message = "You have no listings.";
-				request.setAttribute("message", "You have no listings.");
+			Integer tempUserId = (Integer) session.getAttribute("currUserId");
+			int currUserId = (int) tempUserId;
 
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
+			ManageListingsDAO dispListingsDAO = new ManageListingsDAO();
+			// get all users messages
+			List<DisplayUserListings> listingList = null;
+			try {
+				listingList = dispListingsDAO.listMyBooks(currUserId);
+				if (listingList.isEmpty()) { // no listings found
+					request.setAttribute("message", "You have no listings.");
+
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
+					dispatcher.forward(request, response);
+
+				}
+
+				request.setAttribute("listingList", listingList);
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewListings.jsp");
 				dispatcher.forward(request, response);
 
+			} catch (Exception exc) {
+				throw new RuntimeException(exc);
 			}
+		} // if they are signed in
+		else { // make them log in
+			
 
-			request.setAttribute("listingList", listingList);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewListings.jsp");
 			dispatcher.forward(request, response);
 
-		} catch (Exception exc) {
-			throw new RuntimeException(exc);
-		}
-
+		} // end else make them log in
 	} // end viewListings()
 
-	private void viewProfile(HttpServletRequest request, HttpServletResponse response) {
+	private void viewProfile(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 
 		HttpSession session = request.getSession(false);
-		Integer tempUserId = (Integer)session.getAttribute("currUserId");
-		int currUserId = (int)tempUserId;
+		if (session.getAttribute("currUserId") != null) { // they are already logged in
 
-//		int currUserId = (int) session.getAttribute("currUserId");
+			Integer tempUserId = (Integer) session.getAttribute("currUserId");
+			int currUserId = (int) tempUserId;
 
-		UsersDAO aUserDAO = new UsersDAO();
-		AUser thisUser = new AUser();
-		try {
-			thisUser = aUserDAO.get(currUserId);
-			if (thisUser.getTakeCards() == 0)
-				thisUser.setTakeCardsYN("N");
-			else
-				thisUser.setTakeCardsYN("Y");
+			UsersDAO aUserDAO = new UsersDAO();
+			AUser thisUser = new AUser();
+			try {
+				thisUser = aUserDAO.get(currUserId);
+				if (thisUser.getTakeCards() == 0)
+					thisUser.setTakeCardsYN("N");
+				else
+					thisUser.setTakeCardsYN("Y");
 
-			request.setAttribute("thisUser", thisUser);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewProfile.jsp");
+				request.setAttribute("thisUser", thisUser);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewProfile.jsp");
+				dispatcher.forward(request, response);
+
+			} catch (Exception exc) {
+				throw new RuntimeException(exc);
+			}
+		} // if they are signed in
+		else { // make them log in
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
+
 			dispatcher.forward(request, response);
 
-		} catch (Exception exc) {
-			throw new RuntimeException(exc);
-		}
+		} // end else make them log in
 
 	} // end viewProfile
 

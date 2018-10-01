@@ -127,15 +127,6 @@ public class RetextMessagesServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 
-//		if (session.getAttribute("currUserId") == null) {
-//			System.out.println(" currUserId == null");
-
-//		} else {
-//			System.out.println(" currUserId != null");
-//			System.out.println(" currUserId: " + session.getAttribute("currUserId"));
-//
-//		}
-		
 		if (session.getAttribute("currUserId") != null) { // they are already
 															// logged in
 
@@ -160,15 +151,9 @@ public class RetextMessagesServlet extends HttpServlet {
 
 			request.setAttribute("isbn", isbn);
 
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/loginOut");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
 
 			dispatcher.forward(request, response);
-
-			// RetextLoginOutServlet.loginForm(request, response);
-			// RequestDispatcher dispatcher =
-			// request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
-			// dispatcher.forward(request, response);
 
 		} // end else
 
