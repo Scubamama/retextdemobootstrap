@@ -155,27 +155,30 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			ManageListingsDAO dispListingsDAO = new ManageListingsDAO();
 			// get all users messages
 			List<DisplayUserListings> listingList = null;
+
 			try {
 				listingList = dispListingsDAO.listMyBooks(currUserId);
+
 				if (listingList.isEmpty()) { // no listings found
+					
 					request.setAttribute("message", "You have no listings.");
 
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
 					dispatcher.forward(request, response);
 
+				} else {
+
+					request.setAttribute("listingList", listingList);
+
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewListings.jsp");
+					dispatcher.forward(request, response);
 				}
-
-				request.setAttribute("listingList", listingList);
-
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewListings.jsp");
-				dispatcher.forward(request, response);
-
 			} catch (Exception exc) {
 				throw new RuntimeException(exc);
 			}
 		} // if they are signed in
 		else { // make them log in
-			
+
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
 

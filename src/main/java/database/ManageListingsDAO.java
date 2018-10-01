@@ -36,7 +36,7 @@ public class ManageListingsDAO {
 //				+ "where b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
 		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + "i.price "
 				+ "from book_titles b join user_inventory i "
-				+ "where b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
+				+ "on b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
 
 		int currUserId = 1;
 
@@ -81,7 +81,7 @@ public class ManageListingsDAO {
 //				+ "where b.id = i.Book_id and i.User_id = ?";
 		String sql = "select i.id, b.isbn, b.title, b.author, b.edition, " + "i.price, i.bookCondition, i.sold "
 				+ "from book_titles b join user_inventory i "
-				+ "where b.id = i.Book_id and i.User_id = ?";
+				+ "on b.id = i.Book_id and i.User_id = ?";
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
