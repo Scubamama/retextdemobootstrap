@@ -34,8 +34,11 @@ public class UserInventoryDAO {
 
 		List<DisplayUserInventory> myBookList = new ArrayList<DisplayUserInventory>();
 
+//		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + "i.price "
+//				+ "from retext.book_titles b join retext.user_inventory i "
+//				+ "where b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
 		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + "i.price "
-				+ "from retext.book_titles b join retext.user_inventory i "
+				+ "from book_titles b join user_inventory i "
 				+ "where b.id = i.Book_id and i.User_id = ? and b.Title LIKE ? ";
 
 		int currUserId = 1; // change to sessions if needed
@@ -75,8 +78,11 @@ public class UserInventoryDAO {
 	public List<DisplayUserInventory> listMyBooks() {
 		List<DisplayUserInventory> invList = new ArrayList<DisplayUserInventory>();
 
+//		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + "i.price "
+//				+ "from retext.book_titles b join retext.user_inventory i "
+//				+ "where b.id = i.Book_id and i.User_id = ?";
 		String sql = "select i.id, b.title, b.author, b.edition, b.isbn," + "i.price "
-				+ "from retext.book_titles b join retext.user_inventory i "
+				+ "from book_titles b join user_inventory i "
 				+ "where b.id = i.Book_id and i.User_id = ?";
 
 		int currUserId = 1; // change to sessions if needed

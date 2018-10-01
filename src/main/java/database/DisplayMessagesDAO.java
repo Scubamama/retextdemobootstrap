@@ -32,8 +32,10 @@ public class DisplayMessagesDAO {
 		List<DisplayMessages> myMessageList = new ArrayList<DisplayMessages>();
 
 		String viewed = "";
+//		String sql = "select u.Id, u.userName, m.id,  m.viewed, m.message "
+//				+ "from retext.messages m join retext.users u " + "where m.senderId = u.Id and m.receiverId = ? ";
 		String sql = "select u.Id, u.userName, m.id,  m.viewed, m.message "
-				+ "from retext.messages m join retext.users u " + "where m.senderId = u.Id and m.receiverId = ? ";
+				+ "from messages m join users u " + "where m.senderId = u.Id and m.receiverId = ? ";
 
 		int senderId = 0;
 		int messageId = 0;

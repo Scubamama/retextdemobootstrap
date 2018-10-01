@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="161df818-5db9-4281-b170-cc26a313d4c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DataSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/UserInventoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/UserInventoryDAO.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,7 +49,7 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="4" />
           <entry key="iml" value="1" />
-          <entry key="java" value="57" />
+          <entry key="java" value="60" />
           <entry key="jpg" value="3" />
           <entry key="jsp" value="14" />
           <entry key="properties" value="7" />
@@ -60,7 +61,7 @@
           <entry key="HTML" value="4" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="57" />
+          <entry key="JAVA" value="60" />
           <entry key="JSP" value="14" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Properties" value="7" />
@@ -72,7 +73,7 @@
           <entry key="Procfile" value="17" />
           <entry key="bat" value="18" />
           <entry key="html" value="360" />
-          <entry key="java" value="1849" />
+          <entry key="java" value="1870" />
           <entry key="jsp" value="35" />
           <entry key="properties" value="26" />
           <entry key="xml" value="50" />
@@ -81,7 +82,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="360" />
-          <entry key="JAVA" value="1849" />
+          <entry key="JAVA" value="1870" />
           <entry key="JSP" value="35" />
           <entry key="PLAIN_TEXT" value="35" />
           <entry key="Properties" value="26" />
@@ -107,17 +108,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="125" column="33" lean-forward="true" selection-start-line="125" selection-start-column="33" selection-end-line="125" selection-end-column="33" />
+            <state relative-caret-position="353">
+              <caret line="91" column="33" lean-forward="true" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/database/UserInventoryDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="89" column="30" lean-forward="true" selection-start-line="89" selection-start-column="30" selection-end-line="89" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="87" column="33" lean-forward="true" selection-start-line="87" selection-start-column="33" selection-end-line="87" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="35" column="54" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9054">
-              <caret line="516" lean-forward="true" selection-start-line="516" selection-end-line="516" />
+            <state relative-caret-position="314">
+              <caret line="79" column="7" lean-forward="true" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -184,9 +212,9 @@
       <find>dbprops</find>
       <find>ds</find>
       <find>check</find>
-      <find>retext.</find>
       <find>print</find>
       <find>where</find>
+      <find>retext.</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -205,7 +233,6 @@
         <option value="$PROJECT_DIR$/src/main/java/servlets/RetextManagerServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/model2/Messages.java" />
         <option value="$PROJECT_DIR$/src/main/java/model2/School.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/MessagesDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/SchoolDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/servlets/RetextTitleLocatedServlet.java" />
@@ -219,7 +246,6 @@
         <option value="$PROJECT_DIR$/src/main/java/database/BookTitlesDAO.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/servlets/RetextCreateUserServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/retextLoginForm.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/database/UsersDAO.java" />
@@ -227,6 +253,9 @@
         <option value="$PROJECT_DIR$/src/main/resources/oldDb.properties" />
         <option value="$PROJECT_DIR$/src/main/java/database/DataSource.java" />
         <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/UserInventoryDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java" />
       </list>
     </option>
   </component>
@@ -341,7 +370,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538421756308" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538423297267" />
     <property name="last_opened_file_path" value="$USER_HOME$/java-getting-started" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -623,13 +652,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/UserInventoryDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2280">
-          <caret line="128" column="17" selection-start-line="128" selection-start-column="12" selection-end-line="128" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/retextLoginFormOld.jsp" />
     <entry file="file://$PROJECT_DIR$/src/main/java/database/MessagesDAO.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -642,13 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3400">
           <caret line="179" selection-start-line="179" selection-end-line="179" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -725,13 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1460">
           <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1400">
-          <caret line="82" column="49" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -819,17 +827,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="125" column="33" lean-forward="true" selection-start-line="125" selection-start-column="33" selection-end-line="125" selection-end-column="33" />
+        <state relative-caret-position="314">
+          <caret line="79" column="7" lean-forward="true" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/TitleLocatedDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9054">
-          <caret line="516" lean-forward="true" selection-start-line="516" selection-end-line="516" />
+        <state relative-caret-position="353">
+          <caret line="91" column="33" lean-forward="true" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/UserInventoryDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="89" column="30" lean-forward="true" selection-start-line="89" selection-start-column="30" selection-end-line="89" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/ManageListingsDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="87" column="33" lean-forward="true" selection-start-line="87" selection-start-column="33" selection-end-line="87" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/DisplayMessagesDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="35" column="54" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="54" />
         </state>
       </provider>
     </entry>

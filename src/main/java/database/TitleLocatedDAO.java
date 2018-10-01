@@ -31,8 +31,11 @@ public class TitleLocatedDAO {
 	public List<TitleLocated> findAvailableBooks(String isbn) {
 		List<TitleLocated> myBookList = new ArrayList<TitleLocated>();
 
-		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id , b.isbn " + "from retext.user_inventory i "
-				+ "join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id " + "join retext.users u "
+//		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id , b.isbn " + "from retext.user_inventory i "
+//				+ "join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id " + "join retext.users u "
+//				+ "where b.id = i.Book_id and i.User_id = u.id ";
+		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id , b.isbn " + "from user_inventory i "
+				+ "join book_titles b on Isbn = ? and b.Id = i.Book_Id " + "join users u "
 				+ "where b.id = i.Book_id and i.User_id = u.id ";
 
 		PreparedStatement myStmt = null;
@@ -71,12 +74,18 @@ public class TitleLocatedDAO {
 			String nickName) {
 		List<TitleLocated> myBookList = new ArrayList<TitleLocated>();
 
+//		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id, b.isbn, b.id, i.id, " +
+//					"s.schoolName, s.nickName, s.campus, u.campus, u.school " +
+//				"from retext.user_inventory i " +
+//				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id  " +
+//				"join retext.users u on i.User_id = u.id and u.school = ? and u.campus = ? " +
+//				"join retext.school s on  ? = s.schoolName and ? = s.campus or ? = s.NickName";
 		String sql = "select i.Price, i.bookCondition, u.UserName, u.Id, b.isbn, b.id, i.id, " +
-					"s.schoolName, s.nickName, s.campus, u.campus, u.school " +
-				"from retext.user_inventory i " +
-				"join retext.book_titles b on Isbn = ? and b.Id = i.Book_Id  " +
-				"join retext.users u on i.User_id = u.id and u.school = ? and u.campus = ? " +
-				"join retext.school s on  ? = s.schoolName and ? = s.campus or ? = s.NickName";
+				"s.schoolName, s.nickName, s.campus, u.campus, u.school " +
+				"from user_inventory i " +
+				"join book_titles b on Isbn = ? and b.Id = i.Book_Id  " +
+				"join users u on i.User_id = u.id and u.school = ? and u.campus = ? " +
+				"join school s on  ? = s.schoolName and ? = s.campus or ? = s.NickName";
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
