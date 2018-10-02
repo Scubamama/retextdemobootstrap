@@ -81,7 +81,7 @@ public class ManageListingsDAO {
 //				+ "where b.id = i.Book_id and i.User_id = ?";
 		String sql = "select i.id, b.isbn, b.title, b.author, b.edition, " + "i.price, i.bookCondition, i.sold "
 				+ "from book_titles b join user_inventory i "
-				+ "on b.id = i.Book_id and i.User_id = ?";
+				+ "on b.id = i.book_id and i.user_id = ?";
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
@@ -101,9 +101,13 @@ public class ManageListingsDAO {
 					isSold = "N";
 				else
 					isSold = "Y";
+System.out.println("myRs = " + myRs);
+//				listingList.add(new DisplayUserListings(myRs.getInt("Id"), myRs.getString("isbn"),
+//						myRs.getString("Title"), myRs.getString("author"), myRs.getString("edition"),
+//						myRs.getDouble("price"), myRs.getString("bookCondition"), isSold, myRs.getInt("i.id")));
 				listingList.add(new DisplayUserListings(myRs.getInt("Id"), myRs.getString("isbn"),
 						myRs.getString("Title"), myRs.getString("author"), myRs.getString("edition"),
-						myRs.getDouble("price"), myRs.getString("bookCondition"), isSold, myRs.getInt("i.id")));
+						myRs.getDouble("price"), myRs.getString("bookCondition"), isSold, myRs.getInt("id")));
 			}
 			return listingList;
 		} // end try

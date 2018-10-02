@@ -25,7 +25,7 @@
 			<div class="row justify-content-center">
 				<p class="small">You can buy, sell, and trade text books on campus</small>
 			</div>
-	
+	<div class="row justify-content-center"><h4>${message}</h4></div>
 			<%List<DisplayUserInventory> disp =(List<DisplayUserInventory>) request.getAttribute("titleList");%>
 			<div class="table-responsive">  
 				<table class="table table-striped">
@@ -58,8 +58,7 @@
 
 							<td>  ${tempListingsList.condition}</td>
 							<td>  ${tempListingsList.sold}</td>
-							
-					<!-- 		<td><a href="${tempLink}">Contact Seller</a></td>  -->
+
 				  				<td><a href="<%=request.getContextPath() %>/manageUsers/updateListingForm?listingId=${tempListingsList.listingId}">Edit</a> </td>
 				            	<td><a href="<%=request.getContextPath() %>/manageUsers/deleteListingConfirm?listingId=${tempListingsList.listingId}">Delete</a> </td>
 						</tr>
@@ -69,7 +68,7 @@
 			
 				<div class="row justify-content-center">
 					<div class="center" style="padding:10px">
-			<!--  			<a href="<%=request.getContextPath() %>/loginOut">Login</a>  -->
+
 						<a href="<%=request.getContextPath() %>/manageUsers/addListingForm" class="btn btn-info">Add a Listing</a> 
 					</div>
 				</div>

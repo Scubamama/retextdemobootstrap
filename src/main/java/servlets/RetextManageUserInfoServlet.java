@@ -141,52 +141,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	//
 	// } // end featureUnavailable()
 
-	// list all of this user's listings
-	private void viewListings(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		HttpSession session = request.getSession(false);
-
-		if (session.getAttribute("currUserId") != null) { // they are already logged in
-
-			Integer tempUserId = (Integer) session.getAttribute("currUserId");
-			int currUserId = (int) tempUserId;
-
-			ManageListingsDAO dispListingsDAO = new ManageListingsDAO();
-			// get all users messages
-			List<DisplayUserListings> listingList = null;
-
-			try {
-				listingList = dispListingsDAO.listMyBooks(currUserId);
-
-				if (listingList.isEmpty()) { // no listings found
-
-					request.setAttribute("message", "You have no listings.");
-
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
-					dispatcher.forward(request, response);
-
-				} else {
-
-					request.setAttribute("listingList", listingList);
-
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewListings.jsp");
-					dispatcher.forward(request, response);
-				}
-			} catch (Exception exc) {
-				throw new RuntimeException(exc);
-			}
-		} // if they are signed in
-		else { // make them log in
-
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
-
-			dispatcher.forward(request, response);
-
-		} // end else make them log in
-	} // end viewListings()
-
 	private void viewProfile(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -354,6 +308,55 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	} // end archiveProfile
 
+	// list all of this user's listings
+	private void viewListings(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession(false);
+
+		if (session.getAttribute("currUserId") != null) { // they are already logged in
+
+			Integer tempUserId = (Integer) session.getAttribute("currUserId");
+			int currUserId = (int) tempUserId;
+
+			ManageListingsDAO dispListingsDAO = new ManageListingsDAO();
+			// get all users messages
+			List<DisplayUserListings> listingList = null;
+
+			try {
+				System.out.println("before listMyBooks");
+				listingList = dispListingsDAO.listMyBooks(currUserId);
+				System.out.println("after listMyBooks");
+				if (listingList.isEmpty()) { // no listings found
+
+					request.setAttribute("message", "Sadly, you currently have no listings.");
+
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewListings.jsp");
+
+//					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextNotFound.jsp");
+					dispatcher.forward(request, response);
+
+				} else {
+
+					request.setAttribute("listingList", listingList);
+
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewListings.jsp");
+					dispatcher.forward(request, response);
+				}
+			} catch (Exception exc) {
+				throw new RuntimeException(exc);
+			}
+		} // if they are signed in
+		else { // make them log in
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
+
+			dispatcher.forward(request, response);
+
+		} // end else make them log in
+	} // end viewListings()
+
+
 	private void updateListingForm(HttpServletRequest request, HttpServletResponse response) {
 		// gets the data to update a listing
 
@@ -398,7 +401,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	} // end updateListingForm
 
 	private void updateListing(HttpServletRequest request, HttpServletResponse response) {
-		// takes the data from retextUpdateProfileForm and updates this user in
+		// takes the data from retextUpdateProfileForm and updates this listing in
 		// the db
 
 		HttpSession session = request.getSession(false);
@@ -487,7 +490,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	} // end deleteListing
 
 	private void gatherListingInfo(HttpServletRequest request, HttpServletResponse response) {
-		// gets the data to update a user
+		// gets the data to update a listing
 
 		String isbn = request.getParameter("isbn");
 		String condition = request.getParameter("condition");
@@ -522,7 +525,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	} // end gatherListingInfo
 
 	private void addListing(HttpServletRequest request, HttpServletResponse response) {
-		// takes the data from retextUpdateProfileForm and updates this user in
+		// takes the data from retextUpdateProfileForm and updates this listing in
 		// the db
 
 		HttpSession session = request.getSession(false);
@@ -546,6 +549,11 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			if (bookId != 0) { // we have that title in our system
 
 				UserInventory thisUserInv = new UserInventory(currUserId, bookId, price, condition);
+
+				System.out.println("currUserId = " + currUserId);
+				System.out.println("bookId = " + bookId);
+				System.out.println("price = " + price);
+				System.out.println("condition = " + condition);
 
 				userInventoryDAO.save(thisUserInv); // put this in the db
 

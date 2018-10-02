@@ -21,7 +21,7 @@
 				<div class="row justify-content-center">
 					<p class="small">You can buy, sell, and trade text books on campus</p>
 				</div>
-				<div class="row justify-content-center">Add a Listing</div>
+				<div class="row justify-content-center">List A Book For Sale</div>
 								
 				<div class="row justify-content-center ">
 					<div class="center" style="padding:10px">
