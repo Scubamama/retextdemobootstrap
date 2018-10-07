@@ -101,7 +101,7 @@ public class ManageListingsDAO {
 					isSold = "N";
 				else
 					isSold = "Y";
-System.out.println("myRs = " + myRs);
+
 //				listingList.add(new DisplayUserListings(myRs.getInt("Id"), myRs.getString("isbn"),
 //						myRs.getString("Title"), myRs.getString("author"), myRs.getString("edition"),
 //						myRs.getDouble("price"), myRs.getString("bookCondition"), isSold, myRs.getInt("i.id")));

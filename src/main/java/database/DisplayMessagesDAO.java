@@ -34,7 +34,7 @@ public class DisplayMessagesDAO {
 		String viewed = "";
 //		String sql = "select u.Id, u.userName, m.id,  m.viewed, m.message "
 //				+ "from retext.messages m join retext.users u " + "where m.senderId = u.Id and m.receiverId = ? ";
-		String sql = "select u.Id, u.userName, m.id,  m.viewed, m.message "
+		String sql = "select u.Id as uId, u.userName, m.id as mId,  m.viewed, m.message "
 				+ "from messages m join users u " + "on m.senderId = u.Id and m.receiverId = ? ";
 
 		int senderId = 0;
@@ -58,8 +58,10 @@ public class DisplayMessagesDAO {
 					viewed = "N";
 				else
 					viewed = "Y";
-				senderId = myRs.getInt("u.id");
-				messageId = myRs.getInt("m.id");
+//				senderId = myRs.getInt("u.id");
+//				messageId = myRs.getInt("m.id");
+				senderId = myRs.getInt("uId");
+				messageId = myRs.getInt("mId");
 
 				myMessageList.add(new DisplayMessages(senderId, myRs.getString("userName"), messageId, viewed,
 						myRs.getString("message")));
