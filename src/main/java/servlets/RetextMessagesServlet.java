@@ -24,9 +24,10 @@ import model2.TitleLocated;
  * message each other in the app
  */
 public class RetextMessagesServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    static final String CONFIRM_DELETE_JSP = "/WEB-INF/retextConfirmDeleteMess.jsp";
 
-	/**
+    /**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public RetextMessagesServlet() {
@@ -51,7 +52,6 @@ public class RetextMessagesServlet extends HttpServlet {
 		} else if (pathInfo.equals("/send")) {
 			sendMessageToSeller(request, response);
 		} else if (pathInfo.equals("/delete")) {
-			// delete message
 			confirmDeleteMessage(request, response);
 		}
 
@@ -195,24 +195,16 @@ public class RetextMessagesServlet extends HttpServlet {
 	} // end createNewMessage()
 
 	private void confirmDeleteMessage(HttpServletRequest request, HttpServletResponse response) {
-		// deletes the message from the database
-
 		int id = Integer.parseInt(request.getParameter("id"));
-		// this all needs to be done for a new messages object
-		MessagesDAO messDAO = new MessagesDAO();
+
+		request.setAttribute("id", id);
 		try {
-			request.setAttribute("id", id);
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextConfirmDeleteMess.jsp");
-
+			RequestDispatcher dispatcher = request.getRequestDispatcher(CONFIRM_DELETE_JSP);
 			dispatcher.forward(request, response);
-
-		} // end try
-		catch (Exception exc) {
+		} catch (ServletException | IOException exc) {
 			throw new RuntimeException(exc);
 		}
-	} // end confirmDeleteMessage
-
+    }
 	private void deleteMessage(HttpServletRequest request, HttpServletResponse response) {
 		// deletes the message from the database
 
@@ -223,7 +215,7 @@ public class RetextMessagesServlet extends HttpServlet {
 			messDAO.delete(id);
 			request.setAttribute("id", id);
 			// list(request, response);
-			
+
 			response.sendRedirect("/retextdemo/messages");
 
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("/messages");
