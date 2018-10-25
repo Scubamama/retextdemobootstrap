@@ -22,6 +22,9 @@ import model2.BookTitles;
 import model2.DisplayMessages;
 import model2.DisplayUserListings;
 import model2.UserInventory;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+
 
 /**
  * Servlet implementation class RetextTitleLocatedServlet Shows the user stuff
@@ -48,19 +51,20 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 		String pathInfo = request.getPathInfo();
 		HttpSession session = request.getSession(false);
 
-//		Integer tempUserId = (Integer)session.getAttribute("currUserId");
-//		int currUserId = (int)tempUserId;
-//		int currUserId = (int) session.getAttribute("currUserId");
-
 		if (pathInfo == null || "".equals(pathInfo)) {
 			manageUserInfo(request, response); //
 		} else if (pathInfo.equals("/listings")) {
 			viewListings(request, response); //
+//		} else if (pathInfo.equals("/profile")) {
+//			viewProfile(request, response); //
 		} else if (pathInfo.equals("/profile")) {
-			viewProfile(request, response); //
+			updateProfileForm(request, response); //
 		} else if (pathInfo.equals("/updateProfileForm")) {
 			updateProfileForm(request, response); // gets the data to update a
 													// user
+		} else if (pathInfo.equals("/updateProfile")) {
+			updateProfile(request, response); // gets the data to update a
+			// user
 		} else if (pathInfo.equals("/deleteProfile")) {
 			confirmDeleteProfile(request, response); // asks if they really want
 														// to del
@@ -118,6 +122,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// asks the user what they want to do: manage listings, profile, more,
 		// logout
+	System.out.println("manageUserInfo");
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextManageUserInfo.jsp");
 		dispatcher.forward(request, response);
@@ -143,7 +148,7 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	private void viewProfile(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+	System.out.println("viewProfile");
 
 		HttpSession session = request.getSession(false);
 		if (session.getAttribute("currUserId") != null) { // they are already logged in
@@ -161,7 +166,8 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 					thisUser.setTakeCardsYN("Y");
 
 				request.setAttribute("thisUser", thisUser);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewProfile.jsp");
+//				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextViewProfile.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextUpdateUser.jsp");
 				dispatcher.forward(request, response);
 
 			} catch (Exception exc) {
@@ -178,74 +184,105 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 
 	} // end viewProfile
 
-	private void updateProfileForm(HttpServletRequest request, HttpServletResponse response) {
+	private void updateProfileForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// gets the data to update a user
+System.out.println("updateProfileForm");
 
 		HttpSession session = request.getSession(false);
-		Integer tempUserId = (Integer)session.getAttribute("currUserId");
-		int currUserId = (int)tempUserId;
+		if (session.getAttribute("currUserId") != null) { // they are already logged in
+			Integer tempUserId = (Integer) session.getAttribute("currUserId");
+			int currUserId = (int) tempUserId;
 
-//		int currUserId = (int) session.getAttribute("currUserId");
+			try {
+				UsersDAO aUserDAO = new UsersDAO();
 
-		try {
-			UsersDAO aUserDAO = new UsersDAO();
+				AUser thisUser = new AUser();
+				thisUser = aUserDAO.get(currUserId);
 
-			AUser thisUser = new AUser();
-			thisUser = aUserDAO.get(currUserId);
+				// takeCards is 0 or 1 in the db
+				if (thisUser.getTakeCards() == 0)
+					thisUser.setTakeCardsYN("N");
+				else
+					thisUser.setTakeCardsYN("Y");
 
-			// takeCards is 0 or 1 in the db
-			if (thisUser.getTakeCards() == 0)
-				thisUser.setTakeCardsYN("N");
-			else
-				thisUser.setTakeCardsYN("Y");
+				request.setAttribute("thisUser", thisUser);
 
-			request.setAttribute("thisUser", thisUser);
+				request.setAttribute("currUserId", currUserId);
+				request.setAttribute("theUser", thisUser);
+				RequestDispatcher dispatcher =
+						request.getRequestDispatcher("/WEB-INF/retextUpdateUser.jsp");
 
-			request.setAttribute("currUserId", currUserId);
-			request.setAttribute("theUser", thisUser);
-			RequestDispatcher dispatcher =
-					request.getRequestDispatcher("/WEB-INF/retextUpdateUser.jsp");
+				dispatcher.forward(request, response);
 
-			dispatcher.forward(request, response);
-
-		} // end try
-		catch (Exception exc) {
-			throw new RuntimeException(exc);
+			} // end try
+			catch (Exception exc) {
+				throw new RuntimeException(exc);
+			}
 		}
+		else { // make them log in
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextLoginForm.jsp");
+
+				dispatcher.forward(request, response);
+
+			} // end else make them log in
 
 	} // end updateProfileForm
 
 	private void updateProfile(HttpServletRequest request, HttpServletResponse response) {
 
+		// this sticks the info in the db
 		HttpSession session = request.getSession(false);
 		Integer tempUserId = (Integer)session.getAttribute("currUserId");
 		int currUserId = (int)tempUserId;
-
-//		int currUserId = (int) session.getAttribute("currUserId");
-
+System.out.println("updateProfile");
+		String warning = "";
 		String uCard = request.getParameter("takeCardsYN");
+		// encrypt password
+		// Create instance
+		Argon2 argon2 = Argon2Factory.create();
+		String hash;
+
+		// Read password from user
+		char[] password =  request.getParameter("password").toCharArray();
 
 		try {
+			hash = argon2.hash(2, 65536, 1, password);
+			String encryptedPassword = hash;
+
 			UsersDAO aUserDAO = new UsersDAO();
 			int card = 0; // default user does not take cards and the db field
 							// is int
 			if (uCard.equals("y") || uCard.equals("Y"))
 				card = 1;
 
+//			AUser newU = new AUser(currUserId, request.getParameter("email"), request.getParameter("userName"),
+//					request.getParameter("password"), card, request.getParameter("schoolName"), request.getParameter("campus"));
 			AUser newU = new AUser(currUserId, request.getParameter("email"), request.getParameter("userName"),
-					request.getParameter("password"), card, request.getParameter("schoolName"), request.getParameter("campus"));
+					encryptedPassword, card, request.getParameter("schoolName"), request.getParameter("campus"));
 
 			aUserDAO.save(newU);
 
 			String curUser = request.getParameter("userName");
 
 			// viewProfile(request, response);
+			//response.sendRedirect("profile");
+			warning = "Your profile changes have been saved.";
+			request.setAttribute("warning", warning);
 
-			response.sendRedirect("profile");
+			RequestDispatcher dispatcher =
+					request.getRequestDispatcher("/WEB-INF/retextManageUserInfo.jsp");
+
+			dispatcher.forward(request, response);
+
 
 		} // end try
 		catch (Exception exc) {
 			throw new RuntimeException(exc);
+		} finally {
+			// Wipe confidential data
+			argon2.wipeArray(password);
 		}
 
 	} // end updateProfile

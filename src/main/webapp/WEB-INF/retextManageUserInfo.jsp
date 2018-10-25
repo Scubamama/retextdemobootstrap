@@ -27,7 +27,9 @@
 						<p class="small">You can buy, sell, and trade text books on campus</p>
 					</div>
 					<div class="row justify-content-center"><h4>Manage Your Listings And Profile</h4></div>
-				
+
+    				<div class="row justify-content-center" style="color: red;"><h4>${warning}</h4></div>
+
 					<div class="row justify-content-center">
 						<div class="center" style="padding:10px">
 				<!--  		<a href="<%=request.getContextPath() %>/listings" class="btn btn-info" role="button">Manage My Listings</a> -->	
