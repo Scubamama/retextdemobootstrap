@@ -27,7 +27,13 @@
 				<div class="row justify-content-center"  style="padding:10px;"><h3> You are signed out</h3></div>
 				
 				<div class="row justify-content-center"  style="padding:10px;"><h5>Thank you for using ReText</h5></div>
-						
+
+                    <div class="row justify-content-center">
+                        <div class="center" style="padding:10px">
+                            <a href="<%=request.getContextPath() %>/manage/browse" class="btn btn-success" role="button">Look for Books</a>
+                        </div>
+                    </div>
+
 					<div class="row justify-content-center ">
 						<div class="center" style="padding:10px">
 							<a href="<%=request.getContextPath() %>/loginOut" class="btn btn-success center-block">Sign In</a> 
