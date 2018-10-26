@@ -108,7 +108,8 @@ public class UsersDAO {
 		// this is just going to update the user name
 //		out.println("UPDATING... ");
 
-		String sql = "UPDATE Users SET Email=?, UserName=?, UserPassword=?, TakeCards=?, school=?" + " WHERE id=?";
+		String sql = "UPDATE Users SET Email=?, UserName=?, UserPassword=?, TakeCards=?, school=?, campus=?"
+				+ " WHERE id=?";
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
@@ -125,7 +126,8 @@ public class UsersDAO {
 			myStmt.setString(3, newU.getUserPassword());
 			myStmt.setInt(4, newU.getTakeCards());
 			myStmt.setString(5, newU.getUserSchool());
-			myStmt.setInt(6, newU.getId());
+			myStmt.setString(6, newU.getUserCampus());
+			myStmt.setInt(7, newU.getId());
 			// 3. do the actual update in the db
 			myStmt.executeUpdate();
 		} // end try

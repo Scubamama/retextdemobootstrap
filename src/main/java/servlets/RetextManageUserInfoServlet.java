@@ -122,7 +122,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// asks the user what they want to do: manage listings, profile, more,
 		// logout
-	System.out.println("manageUserInfo");
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextManageUserInfo.jsp");
 		dispatcher.forward(request, response);
@@ -187,7 +186,6 @@ public class RetextManageUserInfoServlet extends HttpServlet {
 	private void updateProfileForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// gets the data to update a user
-System.out.println("updateProfileForm");
 
 		HttpSession session = request.getSession(false);
 		if (session.getAttribute("currUserId") != null) { // they are already logged in
@@ -236,20 +234,37 @@ System.out.println("updateProfileForm");
 		HttpSession session = request.getSession(false);
 		Integer tempUserId = (Integer)session.getAttribute("currUserId");
 		int currUserId = (int)tempUserId;
-System.out.println("updateProfile");
 		String warning = "";
 		String uCard = request.getParameter("takeCardsYN");
 		// encrypt password
 		// Create instance
 		Argon2 argon2 = Argon2Factory.create();
-		String hash;
-
+		String hash, encryptedPassword ;
+		char[] password = request.getParameter("password").toCharArray();
 		// Read password from user
-		char[] password =  request.getParameter("password").toCharArray();
-
-		try {
+		if (request.getParameter("password") != null && request.getParameter("password") != "") {
+			password = request.getParameter("password").toCharArray();
 			hash = argon2.hash(2, 65536, 1, password);
-			String encryptedPassword = hash;
+			encryptedPassword = hash;
+
+		} else {
+			// they didn't change the password - get it from the db
+			UsersDAO aUserDAO = new UsersDAO();
+			AUser thisUser = new AUser();
+			try {
+				thisUser = aUserDAO.get(currUserId);
+				encryptedPassword = thisUser.getUserPassword();
+				password = encryptedPassword.toCharArray();
+			} catch (Exception exc) {
+				throw new RuntimeException(exc);
+			} finally {
+				argon2.wipeArray(password);
+			}
+
+		}
+		try {
+//			hash = argon2.hash(2, 65536, 1, password);
+//			String encryptedPassword = hash;
 
 			UsersDAO aUserDAO = new UsersDAO();
 			int card = 0; // default user does not take cards and the db field
