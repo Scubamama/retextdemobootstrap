@@ -90,7 +90,8 @@
 
 					<div class="row justify-content-center">
 						<div class="center" style="padding:10px">
-							<a href="<%=request.getContextPath() %>/manageUsers/profile" class="btn btn-info" role="button">Cancel</a>
+<!--							<a href="<%=request.getContextPath() %>/manageUsers/profile" class="btn btn-info" role="button">Cancel</a>    -->
+							<a href="<%=request.getContextPath() %>/manageUsers" class="btn btn-info" role="button">Cancel</a>
 						</div>
 					</div>
 

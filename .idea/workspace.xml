@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="161df818-5db9-4281-b170-cc26a313d4c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/UsersDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/UsersDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/retextUpdateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/retextUpdateUser.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +16,7 @@
     <session id="-1919382522">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="43" />
+          <entry key="project.closed" value="44" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.13" value="1" />
@@ -42,6 +41,7 @@
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.44" value="1" />
+          <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.69" value="1" />
           <entry key="project.open.time.70" value="1" />
@@ -49,7 +49,7 @@
           <entry key="project.open.time.80" value="1" />
           <entry key="project.open.time.85" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="45" />
+          <entry key="project.opened" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -61,7 +61,7 @@
           <entry key="iml" value="1" />
           <entry key="java" value="76" />
           <entry key="jpg" value="3" />
-          <entry key="jsp" value="30" />
+          <entry key="jsp" value="31" />
           <entry key="properties" value="7" />
           <entry key="xml" value="9" />
         </counts>
@@ -72,7 +72,7 @@
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="3" />
           <entry key="JAVA" value="76" />
-          <entry key="JSP" value="30" />
+          <entry key="JSP" value="31" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Properties" value="7" />
           <entry key="XML" value="9" />
@@ -84,7 +84,7 @@
           <entry key="bat" value="18" />
           <entry key="html" value="360" />
           <entry key="java" value="3904" />
-          <entry key="jsp" value="64" />
+          <entry key="jsp" value="77" />
           <entry key="properties" value="26" />
           <entry key="xml" value="50" />
         </counts>
@@ -93,7 +93,7 @@
         <counts>
           <entry key="HTML" value="360" />
           <entry key="JAVA" value="3904" />
-          <entry key="JSP" value="64" />
+          <entry key="JSP" value="77" />
           <entry key="PLAIN_TEXT" value="35" />
           <entry key="Properties" value="26" />
           <entry key="XML" value="50" />
@@ -105,14 +105,14 @@
     <favorites_list name="retextdemoBootStrap" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6063269">
+    <splitter split-orientation="horizontal" split-proportion="0.5173587">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-986">
-                  <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
+                <state relative-caret-position="2780">
+                  <caret line="188" selection-start-line="188" selection-end-line="188" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -129,33 +129,15 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextLoginOutServlet.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1140">
-                  <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/retextManageUserInfo.jsp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="600">
-                  <caret line="30" selection-start-line="30" selection-end-line="30" />
-                </state>
-              </provider>
-            </entry>
-          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextCreateUserServlet.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="602">
-                  <caret line="91" column="23" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
+                <state relative-caret-position="358">
+                  <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -163,11 +145,20 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/retextUpdateUser.jsp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="93" column="79" lean-forward="true" selection-start-line="93" selection-start-column="79" selection-end-line="93" selection-end-column="79" />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/database/UsersDAO.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-320">
-                  <caret line="187" column="18" lean-forward="true" selection-start-line="187" selection-start-column="18" selection-end-line="187" selection-end-column="18" />
+                <state relative-caret-position="3520">
+                  <caret line="187" column="18" selection-start-line="187" selection-start-column="18" selection-end-line="187" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
@@ -260,11 +251,11 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/servlets/RetextMessagesServletTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/servlets/RetextMessagesServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/retextUpdateUser.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/retextManageUserInfo.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/retextUserLoggedOut.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/database/UsersDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/retextUpdateUser.jsp" />
       </list>
     </option>
   </component>
@@ -305,10 +296,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1928" />
-    <option name="y" value="22" />
-    <option name="width" value="1906" />
-    <option name="height" value="1016" />
+    <option name="x" value="2030" />
+    <option name="y" value="50" />
+    <option name="width" value="1754" />
+    <option name="height" value="911" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -316,8 +307,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -409,7 +400,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540589968543" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540589976268" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$USER_HOME$/java-getting-started" />
@@ -593,10 +584,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1928" y="22" width="1906" height="1016" extended-state="0" />
+    <frame x="2030" y="50" width="1754" height="911" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.075297944" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13282172" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -605,7 +596,7 @@
       <window_info id="Favorites" order="6" side_tool="true" weight="0.3295302" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32539684" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21768707" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32214764" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -940,13 +931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/retextUpdateUser.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/retextLoginForm.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -998,28 +982,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/UsersDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-320">
-          <caret line="187" column="18" lean-forward="true" selection-start-line="187" selection-start-column="18" selection-end-line="187" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextCreateUserServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="91" column="23" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="3520">
+          <caret line="187" column="18" selection-start-line="187" selection-start-column="18" selection-end-line="187" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextManageUserInfoServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-986">
-          <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
+        <state relative-caret-position="2780">
+          <caret line="188" selection-start-line="188" selection-end-line="188" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/servlets/RetextCreateUserServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/retextUpdateUser.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="93" column="79" lean-forward="true" selection-start-line="93" selection-start-column="79" selection-end-line="93" selection-end-column="79" />
         </state>
       </provider>
     </entry>
