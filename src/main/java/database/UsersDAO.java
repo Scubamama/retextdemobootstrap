@@ -341,4 +341,79 @@ public class UsersDAO {
 
 	} // end checkLogin
 
+	public int checkUserNameUsed(String uName) throws SQLException {
+		// check the database to see if a user named uName exists
+
+		int id = 0; // will return 0 if id is not found
+
+		String sql = "SELECT * FROM users where UserName=?";
+
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		Connection myConn = null;
+
+		try {
+			// 1. Get a connection to the database
+			myConn = ds.getConnection();
+			// 2. Create a statement object
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, uName);
+
+			myRs = myStmt.executeQuery();
+
+			if (myRs.next()) {
+				id = myRs.getInt("Id");
+				return id;
+			} else {
+				return 0;
+			}
+
+		} // end try
+
+		finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
+
+	} // end checkUserNameUsed
+
+	public int checkEmailUsed(String uEmail) throws SQLException {
+		// check the database to see if a user named uName exists
+
+		int id = 0; // will return 0 if id is not found
+
+		String sql = "SELECT * FROM users where email=?";
+
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		Connection myConn = null;
+
+		try {
+			// 1. Get a connection to the database
+			myConn = ds.getConnection();
+			// 2. Create a statement object
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, uEmail);
+
+			myRs = myStmt.executeQuery();
+
+			if (myRs.next()) {
+				id = myRs.getInt("Id");
+				return id;
+			} else {
+				return 0;
+			}
+
+		} // end try
+
+		finally {
+			DataSource.silentClose(myConn);
+			DataSource.silentClose(myStmt);
+			DataSource.silentClose(myRs);
+		}
+
+	} // end checkEmailUsed
+
+
 } // end class UsersDAO

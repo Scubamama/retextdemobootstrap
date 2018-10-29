@@ -64,61 +64,88 @@ public class RetextCreateUserServlet extends HttpServlet {
 
 		try {
 			UsersDAO aUserDAO = new UsersDAO();
+			String warning = "";
 			String uCard = "";
 			uCard = request.getParameter("takeCardsYN");
-	// TODO - check to see if this name is already created
 
-	// encrypt password
-			// Create instance
-			Argon2 argon2 = Argon2Factory.create();
-			String hash;
+			String currEmail = request.getParameter("email");
+			String currUserName = request.getParameter("userName");
+			String currSchool = request.getParameter("schoolName");
+			String curCampus = request.getParameter("campus");
+			if (aUserDAO.checkUserNameUsed(currUserName) != 0){
+				warning = "We are sorry, That User Name is already being used. Please try again.";
+				request.setAttribute("warning", warning);
+				request.setAttribute("email", currEmail);
+				request.setAttribute("userName", currUserName);
+				request.setAttribute("schoolName", currSchool);
+				request.setAttribute("campus", curCampus);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextCreateUser.jsp");
+				dispatcher.forward(request, response);
 
-			// Read password from user
-			char[] password =  request.getParameter("password").toCharArray();
+			}
+			else if (aUserDAO.checkEmailUsed(currEmail) != 0){
+				warning = "We are sorry, That Email is already being used. Please try again.";
+				request.setAttribute("warning", warning);
+				request.setAttribute("email", currEmail);
+				request.setAttribute("userName", currUserName);
+				request.setAttribute("schoolName", currSchool);
+				request.setAttribute("campus", curCampus);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextCreateUser.jsp");
+				dispatcher.forward(request, response);
 
-			try {
-			    // Hash password
-			    hash = argon2.hash(2, 65536, 1, password);
+			}
+			else {
+				// encrypt password
+				// Create instance
+				Argon2 argon2 = Argon2Factory.create();
+				String hash;
+
+				// Read password from user
+				char[] password = request.getParameter("password").toCharArray();
+
+				try {
+					hash = argon2.hash(2, 65536, 1, password);
 //				System.out.println("hash = " + hash);
 
-			    // Verify password
-//			    if (argon2.verify(hash, password)) {
-//			        // Hash matches password
-//			    } else {
-//			        // Hash doesn't match password
-//			    }
-			} finally {
-			    // Wipe confidential data
-			    argon2.wipeArray(password);
-			}
-			
+				} finally {
+					// Wipe confidential data
+					argon2.wipeArray(password);
+				}
+
 //			String encryptedPassword = new String(password.toString());
-			String encryptedPassword = hash;
+				String encryptedPassword = hash;
 
-			String currUserName = request.getParameter("userName");
-			int card = 0; // default user does not take cards
-			if (uCard.equals("y"))
-				card = 1;
-			AUser newU = new AUser(request.getParameter("email"), currUserName, encryptedPassword, card,
-					request.getParameter("schoolName"), request.getParameter("campus"));
+//			String currUserName = request.getParameter("userName");
+				int card = 0; // default user does not take cards
+				if (uCard.equals("y"))
+					card = 1;
+				AUser newU = new AUser(request.getParameter("email"), currUserName, encryptedPassword, card,
+						request.getParameter("schoolName"), request.getParameter("campus"));
 
-			aUserDAO.save(newU); // put new user in db
-			newU = aUserDAO.get(currUserName); // get the db id from new entry
-			int currUserId = newU.getId();
-			// create a session
+				aUserDAO.save(newU); // put new user in db
+				newU = aUserDAO.get(currUserName); // get the db id from new entry
+				int currUserId = newU.getId();
+				// create a session
 
-			HttpSession session = request.getSession();
-			session.setAttribute("currUserId", currUserId);
+				HttpSession session = request.getSession();
+				session.setAttribute("currUserId", currUserId);
 
-			// display a page saying that the user has been created
-			request.setAttribute("newUser", request.getParameter("userName"));
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextUserCreated.jsp");
-			dispatcher.forward(request, response);
+				// display a page saying that the user has been created
+				request.setAttribute("newUser", request.getParameter("userName"));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/retextUserCreated.jsp");
+				dispatcher.forward(request, response);
+			}
 		} catch (Exception exc) {
 			throw new RuntimeException(exc);
 
 		} finally {
 		}
-	} // end createUserServlet()
+	} // end createUser()
+
+
+	private void verifyNewUserInfo() {
+
+	}
+
 
 } // end class RetextCreateUserServlet

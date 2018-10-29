@@ -27,17 +27,18 @@
 					</div>
 					<div class="row justify-content-center"><h4>Welcome! Please create a User Id</h4></div>
 
+    				<div class="row justify-content-center" style="color: red;"><h4>${warning}</h4></div>
 
 		 			<div class="row justify-content-center ">
 						<div class="center" style="padding:10px">
-							Email Address: <input name="email"  type="email"/> 
+							Email Address: <input name="email"  type="email" value="${email}"/>
 							
 						</div>
 					</div>
 		 							
 	 				<div class="row justify-content-center ">
 						<div class="center" style="padding:10px">							
-							User Name: <input type="text" name="userName" />
+							User Name: <input type="text" name="userName" value="${userName}" />
 						</div>
 					</div>
 	 				<div class="row justify-content-center ">
@@ -47,12 +48,12 @@
 					</div>
 	 				<div class="row justify-content-center ">
 						<div class="center" style="padding:10px">							
-							School Name: <input type="text" name="schoolName" /> 
+							School Name: <input type="text" name="schoolName" value="${schoolName}" />
 						</div>
 					</div>
 	 				<div class="row justify-content-center ">
 						<div class="center" style="padding:10px">							
-							Campus: <input type="input" name="campus" /> 
+							Campus: <input type="input" name="campus" value="${campus}"/>
 						</div>
 					</div>
 	 				<div class="row justify-content-center ">
